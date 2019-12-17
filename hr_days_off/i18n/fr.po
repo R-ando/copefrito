@@ -1,0 +1,276 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_days_off
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-28 10:27+0000\n"
+"PO-Revision-Date: 2016-09-28 10:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_active
+msgid "Active"
+msgstr "Actif"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_wizard
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_wizard
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: hr_days_off
+#: model:ir.actions.act_window,name:hr_days_off.holiday_categ_all_act
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_categ
+#: model:ir.ui.menu,name:hr_days_off.holiday_categ_all_mi
+msgid "Category"
+msgstr "Catégories"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/models/holiday.py:91
+#, python-format
+msgid "Configuration Error !"
+msgstr "Erreur Configuration !"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_create_uid
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_create_uid
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_create_uid
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_create_date
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_create_date
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_create_date
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_date_start
+msgid "Date Start"
+msgstr "Date de début"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_date_stop
+msgid "Date Stop"
+msgstr "Date de fin"
+
+#. module: hr_days_off
+#: model:ir.ui.menu,name:hr_days_off.holiday_mi
+msgid "Days off"
+msgstr "Week-end"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_display_name
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_display_name
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_display_name
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/models/day_off.py:61
+#, python-format
+msgid "Error"
+msgstr "Erreur"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/wizard/holiday_year_wizard.py:40
+#: code:addons/hr_days_off/wizard/holiday_year_wizard.py:84
+#, python-format
+msgid "Error!"
+msgstr "Erreur!"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_period_search
+msgid "Futures Periods"
+msgstr "Future Périodes"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_wizard
+msgid "Generate Week-End"
+msgstr "Génération de Week-End"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_period_search
+msgid "Group By..."
+msgstr "Groupé par..."
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_categ_form
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_categ_tree
+msgid "Holiday Category"
+msgstr "Catégorie de congé"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_period_form
+msgid "Holiday Period"
+msgstr "Période de congés"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_period_ids
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_period_tree
+msgid "Holiday Periods"
+msgstr "Période de congés"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_form
+msgid "Holiday Year"
+msgstr "Congés annuel"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_tree
+msgid "Holiday Years"
+msgstr "Années de congés"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_id
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_id
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_id
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period___last_update
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year___last_update
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard___last_update
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_write_uid
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_write_uid
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_write_uid
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_write_uid
+msgid "Last Updated by"
+msgstr "Mise à jour par"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_write_date
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_write_date
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_write_date
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_write_date
+msgid "Last Updated on"
+msgstr "Mise à jour le"
+
+#. module: hr_days_off
+#: model:ir.model,name:hr_days_off.model_hr_holidays
+msgid "Leave"
+msgstr "Congé"
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_name
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holidays_category_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/models/day_off.py:62
+#, python-format
+msgid "No date specified for 'Is in period' holiday period check"
+msgstr "Aucune date spécifiée pour cette période dans les périodes de congés"
+
+#. module: hr_days_off
+#: model:ir.actions.act_window,name:hr_days_off.holiday_period_all_act
+#: model:ir.ui.menu,name:hr_days_off.holiday_period_all_mi
+#: model:ir.ui.menu,name:hr_days_off.holiday_period_user_mi
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_form
+msgid "Periods"
+msgstr "Périodes"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/wizard/holiday_year_wizard.py:41
+#: code:addons/hr_days_off/wizard/holiday_year_wizard.py:85
+#, python-format
+msgid "Please enter valid year"
+msgstr "Svp, Insérez une valeur d'année correct"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/models/holiday.py:92
+#, python-format
+msgid "Please, Can you configure the week-end holidays ?"
+msgstr "SVP, Pouviez-vous Configurer les congés?"
+
+#. module: hr_days_off
+#: constraint:training.holiday.period:0
+msgid "Please, check the start date !"
+msgstr "Sélectionnez une date de début!"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_period_search
+msgid "Search Holiday Period Email"
+msgstr "Recherche"
+
+#. module: hr_days_off
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_year_search
+msgid "Search Holiday Year"
+msgstr "Recherche congés annuel"
+
+#. module: hr_days_off
+#: sql_constraint:training.holiday.year:0
+msgid "The year must be unique !"
+msgstr "L'année doit être unique !"
+
+#. module: hr_days_off
+#: code:addons/hr_days_off/wizard/holiday_year_wizard.py:56
+#: code:addons/hr_days_off/wizard/holiday_year_wizard.py:100
+#, python-format
+msgid "Week-End %02d"
+msgstr "Week-End %02d"
+
+#. module: hr_days_off
+#: model:ir.actions.act_window,name:hr_days_off.holiday_year_wizard_act
+#: model:ir.ui.menu,name:hr_days_off.holiday_year_wizard_mi
+msgid "Week-end Generator"
+msgstr "Generateur de Week-end "
+
+#. module: hr_days_off
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_period_year_id
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_wizard_year
+#: model:ir.model.fields,field_description:hr_days_off.field_training_holiday_year_year
+#: model:ir.ui.view,arch_db:hr_days_off.holiday_period_search
+msgid "Year"
+msgstr "Année"
+
+#. module: hr_days_off
+#: model:ir.actions.act_window,name:hr_days_off.holiday_year_all_act
+#: model:ir.ui.menu,name:hr_days_off.holiday_year_all_mi
+msgid "Years"
+msgstr "Années"
+
+#. module: hr_days_off
+#: model:ir.model,name:hr_days_off.model_training_holiday_period
+msgid "training.holiday.period"
+msgstr "training.holiday.period"
+
+#. module: hr_days_off
+#: model:ir.model,name:hr_days_off.model_training_holiday_year
+msgid "training.holiday.year"
+msgstr "Année"
+
+#. module: hr_days_off
+#: model:ir.model,name:hr_days_off.model_training_holiday_year_wizard
+msgid "training.holiday.year.wizard"
+msgstr "training.holiday.year.wizard"
+
+#. module: hr_days_off
+#: model:ir.model,name:hr_days_off.model_training_holidays_category
+msgid "training.holidays.category"
+msgstr "Categorie"
+

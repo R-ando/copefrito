@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="holiday_year_wizard">
+            <field name="name">training.holiday.year.wizard</field>
+            <field name="model">training.holiday.year.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Generate Week-End" version="7.0">
+                    <group colspan="4">
+                        <field name="year"/>
+                    </group>
+                    <separator colspan="2"/>
+                    <footer>
+                        <button name="action_apply" type="object" class="btn-primary" string="Apply"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="holiday_year_wizard_act">
+            <field name="name">Week-end Generator</field>
+            <field name="res_model">training.holiday.year.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="holiday_year_wizard" />
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="holiday_year_wizard_mi"
+            parent="holiday_mi"
+            action="holiday_year_wizard_act" icon="STOCK_EXECUTE"/>
+    </data>
+</odoo>
