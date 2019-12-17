@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <!--DELETE DEFAULT DATA-->
+    <delete model="hr.department" id="hr.dep_administration"/>
+    <delete model="hr.department" id="hr.dep_sales"/>
+
+    <!--This will create some default records if they do not exist yet. We will always need these so these are auto-rendered. -->
+    <record id="adm" model="hr.department">
+      <field name="name">Service adminstratif et finances</field>
+      <field name="code_service">ADM</field>
+    </record>
+    <record id="alg" model="hr.department">
+      <field name="name">Algue</field>
+      <field name="code_service">ALG</field>
+    </record>
+    <record id="aqc" model="hr.department">
+      <field name="name">Aquaculture Crabe</field>
+      <field name="code_service">AQC</field>
+    </record>
+    <record id="atl" model="hr.department">
+      <field name="name">Atelier</field>
+      <field name="code_service">ATL</field>
+    </record>
+    <record id="col" model="hr.department">
+      <field name="name">Collecte</field>
+      <field name="code_service">COL</field>
+    </record>
+    <record id="qlt" model="hr.department">
+      <field name="name">Qualité</field>
+      <field name="code_service">QLT</field>
+    </record>
+    <record id="svg" model="hr.department">
+      <field name="name">Services généraux</field>
+      <field name="code_service">SVG</field>
+    </record>
+    <record id="pdv" model="hr.department">
+      <field name="name">Produit Vivant</field>
+      <field name="code_service">PDV</field>
+    </record>
+    <record id="mar" model="hr.department">
+      <field name="name">Marin</field>
+      <field name="code_service">MAR</field>
+    </record>
+    <record id="usi" model="hr.department">
+      <field name="name">Usine</field>
+      <field name="code_service">USI</field>
+    </record>
+    <record id="moq" model="hr.department">
+      <field name="name">Morondava</field>
+      <field name="code_service">MOQ</field>
+    </record>
+    <record id="iva" model="hr.department">
+      <field name="name">Ambanja</field>
+      <field name="code_service">IVA</field>
+    </record>
+    <record id="die" model="hr.department">
+      <field name="name">Diego</field>
+      <field name="code_service">DIE</field>
+    </record>
+    <record id="mar" model="hr.department">
+      <field name="name">Marin</field>
+      <field name="code_service">MAR</field>
+    </record>
+
+    <!--CODE SERVICE-->
+    <!--
+            <record id="adm_code" model="hr.code.service">
+                <field name="name">ADM</field>
+                <field name="service_id" ref="hr_copefrito_paie.adm"/>
+            </record>
+            <record id="alg_code" model="hr.code.service">
+                <field name="name">ALG</field>
+                <field name="service_id" ref="hr_copefrito_paie.alg"/>
+            </record>
+            <record id="aqc_code" model="hr.code.service">
+                <field name="name">AQC</field>
+                <field name="service_id" ref="hr_copefrito_paie.aqc"/>
+            </record>
+            <record id="atl_code" model="hr.code.service">
+                <field name="name">ATL</field>
+                <field name="service_id" ref="hr_copefrito_paie.atl"/>
+            </record>
+            <record id="col_code" model="hr.code.service">
+                <field name="name">COL</field>
+                <field name="service_id" ref="hr_copefrito_paie.col"/>
+            </record>
+            <record id="qlt_code" model="hr.code.service">
+                <field name="name">QLT</field>
+                <field name="service_id" ref="hr_copefrito_paie.qlt"/>
+            </record>
+            <record id="svg_code" model="hr.code.service">
+                <field name="name">SVG</field>
+                <field name="service_id" ref="hr_copefrito_paie.svg"/>
+            </record>
+            <record id="pdv_code" model="hr.code.service">
+                <field name="name">PDV</field>
+                <field name="service_id" ref="hr_copefrito_paie.pdv"/>
+            </record>
+            <record id="mar_code" model="hr.code.service">
+                <field name="name">MAR</field>
+                <field name="service_id" ref="hr_copefrito_paie.mar"/>
+            </record>
+            <record id="usi_code" model="hr.code.service">
+                <field name="name">USI</field>
+                <field name="service_id" ref="hr_copefrito_paie.usi"/>
+            </record>
+            <record id="moq_code" model="hr.code.service">
+                <field name="name">MOQ</field>
+                <field name="service_id" ref="hr_copefrito_paie.moq"/>
+            </record>
+            <record id="iva_code" model="hr.code.service">
+                <field name="name">IVA</field>
+                <field name="service_id" ref="hr_copefrito_paie.iva"/>
+            </record>
+            <record id="die_code" model="hr.code.service">
+                <field name="name">DIE</field>
+                <field name="service_id" ref="hr_copefrito_paie.die"/>
+            </record>
+            <record id="mar_code" model="hr.code.service">
+                <field name="name">MAR</field>
+                <field name="service_id" ref="hr_copefrito_paie.mar"/>
+            </record>
+
+            assign code for each department
+            <record id="adm" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.adm_code"/>
+            </record>
+            <record id="alg" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.alg_code"/>
+            </record>
+            <record id="aqc" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.aqc_code"/>
+            </record>
+            <record id="atl" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.atl_code"/>
+            </record>
+            <record id="col" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.col_code"/>
+            </record>
+            <record id="qlt" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.qlt_code"/>
+            </record>
+            <record id="svg" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.svg_code"/>
+            </record>
+            <record id="pdv" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.pdv_code"/>
+            </record>
+            <record id="mar" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.mar_code"/>
+            </record>
+            <record id="usi" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.usi_code"/>
+            </record>
+            <record id="moq" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.moq_code"/>
+            </record>
+            <record id="iva" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.iva_code"/>
+            </record>
+            <record id="die" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.die_code"/>
+            </record>
+            <record id="mar" model="hr.department">
+                <field name="code" ref="hr_copefrito_paie.mar_code"/>
+            </record>
+    -->
+
+    <!-- Menu -->
+    <record id="hr.open_module_tree_department" model="ir.actions.act_window">
+      <field name="name">Services</field>
+    </record>
+    <record id="hr.menu_hr_department_tree" model="ir.ui.menu">
+      <field name="name">Services</field>
+    </record>
+  </data>
+</openerp>

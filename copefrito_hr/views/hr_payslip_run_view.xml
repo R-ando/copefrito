@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="custom_hr_payslip_run_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.run.form.custom.inherit</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_copefrito_paie.hr_payslip_run_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <div name="progress_bar" class="oe_right">
+                        <label for="payslips_generation_progress"/>
+                        <field name="payslips_generation_progress" widget="progressbar"/>
+                    </div>
+                </xpath>                
+            </field>
+        </record>
+
+ 
+
+    </data>
+</openerp>

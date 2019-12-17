@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+
+    <!--  Tree -->
+    <record id="dirickx_remote_db_view_tree" model="ir.ui.view">
+        <field name="name">dirickx.remote.db.view</field>
+        <field name="model">dirickx.remote.db</field>
+        <field name="arch" type="xml">
+            <tree string="Configuration CRON pour la feuille de temps">
+                <field name ='cron_title'  string ='Titre'/>
+                <field name ='cron_state' string ='En cours'/>
+                <field name ='date_run'  string ='Date de rapatriement'/>
+                <field name ='host_db'  string ='Hôte'/>
+                <field name ='port_db'  string ='Port'/>
+                <field name ='dbname'  string ='Nom de la base de données'/>
+                <field name ='user_db'  string ='Utilisateur'/>
+                <field name ='password_db'  string ='Mot de passe' password="True"/>                
+            </tree>
+        </field>
+    </record>
+
+        <!--  Form -->
+    <record id="dirickx_remote_db_view_form" model="ir.ui.view">
+        <field name="name">dirickx.remote.db.view.form</field>
+        <field name="model">dirickx.remote.db</field>
+        <field name="arch" type="xml">
+            <form string="Configuration CRON pour la feuille de temps">
+                <sheet>
+                    <group>                    
+                        <field name ='cron_title'  string ='Titre'/>
+                        <field name ='cron_state' string ='En cours'/>
+                        <field name ='date_run'  string ='Date de rapatriement'/>
+                        <field name ='host_db'  string ='Hôte'/>
+                        <field name ='port_db'  string ='Port'/>
+                        <field name ='dbname'  string ='Nom de la base de données'/>
+                        <field name ='user_db'  string ='Utilisateur'/>
+                        <field name ='password_db'  string ='Mot de passe' password="True"/>                                    
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action -->
+    <record id="action_dirickx_remote_db_form" model="ir.actions.act_window">
+        <field name="name">Configuration CRON</field>
+        <field name="res_model">dirickx.remote.db</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem
+        id="menu_dirickx_remote_db"
+        action="action_dirickx_remote_db_form"
+        parent="hr_attendance.menu_hr_time_tracking"
+        sequence="100"
+        icon="STOCK_INDENT"
+    />
+
+</openerp>

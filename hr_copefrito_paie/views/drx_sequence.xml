@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record forcecreate="True" id="seq_hr_employee_stag" model="ir.sequence">
+            <field name="name">Matricule Stagiaire</field>
+            <field name="code">mat_stag</field>
+            <field name="active">1</field>
+            <field name="prefix">ST</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">standard</field>
+        </record>
+
+        <!-- Sequences for matricule CDI -->
+        <record forcecreate="True" id="seq_hr_employee_cdi" model="ir.sequence">
+            <field name="name">Matricule CDI</field>
+            <field name="code">mat_cdi</field>
+            <field name="active">1</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</openerp>

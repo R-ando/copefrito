@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="paperformat_copefrito_landscape" model="report.paperformat">
+      <field name="name">European A4 Landscape</field>
+      <field name="default" eval="True"/>
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Landscape</field>
+      <field name="margin_top">5</field>
+      <field name="margin_bottom">20</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False"/>
+      <field name="header_spacing">1000</field>
+      <field name="dpi">90</field>
+    </record>
+
+    <!-- report menu -->
+    <report
+        id="copefrito_report_fiche_paie"
+        model="hr.payslip"
+        string="Fiche de Paie"
+        report_type="qweb-pdf"
+        name="hr_copefrito_paie.report_fiche_paie_copefrito"
+        file="hr_copefrito_paie.report_fiche_paie_copefrito"
+        paperformat="paperformat_copefrito_landscape"
+    />
+
+    <!-- report content page -->
+    <template id="report_fiche_paie_copefrito"><!--  -->
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="report.external_layout">
+            <div class="page">
+              <style type="text/css">
+                .bordered-copefrito {
+                border: 1px solid #ccc;
+                }
+                tr:nth-child(12) { border: none !important;}
+              </style>
+              <div class="row">
+                <div class="col-xs-6">
+                  <table class="table table-condensed"
+                         style="font-size: 72.5%; border-collapse: collapse;">
+                    <thead>
+                      <tr style="border-bottom: 1px solid #ccc;"></tr>
+                      <t t-if="o.is_stc">
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="7" align="left" width="30%">
+                            <span t-field="o.employee_id.company_id.logo_small"
+                                  t-field-options='{"widget": "image"}'/>
+                            <span t-field="o.employee_id.company_id.legal_form"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('BP')[0]"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('-')[1]"/>
+                            <br/>
+                            <span t-field="o.employee_id.company_id.zip"/>
+                            -
+                            <span t-field="o.employee_id.company_id.city"/>
+                            <br/>
+                            Téléphone
+                            <span t-field="o.employee_id.company_id.phone"/>
+                            -<br/>Fax
+                            <span t-field="o.employee_id.company_id.fax"/>
+                          </td>
+                          <td colspan="5" style="margin: 0" width="55%">
+                            <div align="center">
+                              <b>SOLDE DE TOUT COMPTE</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" width="15%">N°
+                            <span t-field="o.number"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" style="border-right:none; border-bottom:none">
+                            <div align="right" style="border: none">N°Mat</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right:none">
+                            <span t-field="o.employee_id.identification_cdi_id"/>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right: none">
+                            <div align="right">
+                              Poste
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="2" style="border-left:none; border-bottom:none">
+                            <span t-field="o.employee_id.job_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="2"
+                              style="border-left:none; border-top:none; border-right: none">
+                            <bold>
+                              <div align="right">Motif du départ</div>
+                            </bold>
+                          </td>
+                          <td class="bordered-copefrito" colspan="4" rowspan="2"
+                              style="border-left:none; border-top:none">
+                            <span t-field="o.note"/>
+                          </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Date d'embauche</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <span t-field="o.contract_id.date_start"/>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <div align="right">Date de débauche</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.contract_id.date_end"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Date de paiement</div>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <span t-esc="o.get_payment_date()[0]"/>
+                          </td>
+                          <td class="bordered-copefrito" colspan="2"
+                              style="border-top:none; border-bottom: none; border-left: none">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="border-top:none; border-right: none">
+                            <div align="right">Mode de paiement</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-top:none; border-right: none; border-left: none">
+                            <span t-field="o.payment_mode"/>
+                          </td>
+                          <td class="bordered-copefrito" colspan="2" style="border-top:none; border-left: none">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="4" style="vertical-align:middle">
+                            <div align="center" valign="middle" style="font-size:15px">
+                              <span t-field="o.employee_id"/>
+                            </div>
+                          </td>
+                          <td colspan="3" style="border-bottom:none; border-right:none">
+                            <div align="right">Salaire de base</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='100'">
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <div align="right">CSP</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.contract_qualification_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Primes fixe</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='111'">
+                                <!--<span t-field="line.montant"/>-->
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <div align="right">Indice</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.indice"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" rowspan="2" style="border-top:none; border-right: none">
+                            <div align="right">
+                              <b>Salaire brut contrat</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="3" rowspan="2" valign="middle"
+                              style="border-top:none; border-left: none">
+                            <t t-set="base_salary"
+                               t-value="o.contract_id.rubric_ids.filtered(lambda r: r.code == '100')"/>
+                            <t t-if="base_salary">
+                              <!--<t t-esc="o.set_decimal(base_salary.montant)"/>-->
+                              <t t-esc="o.set_decimal(o.contract_id.total_fix_salary)"/>
+                            </t>
+                          </td>
+
+                        </tr>
+                      </t>
+                      <t t-if="not o.is_stc">
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="7" align="left" width="30%">
+                            <span t-field="o.employee_id.company_id.logo_small"
+                                  t-field-options='{"widget": "image"}'/>
+                            <span t-field="o.employee_id.company_id.legal_form"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('BP')[0]"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('-')[1]"/>
+                            <br/>
+                            <span t-field="o.employee_id.company_id.zip"/>
+                            -
+                            <span t-field="o.employee_id.company_id.city"/>
+                            <br/>
+                            Téléphone
+                            <span t-field="o.employee_id.company_id.phone"/>
+                            -<br/>Fax
+                            <span t-field="o.employee_id.company_id.fax"/>
+                          </td>
+                          <td colspan="5" style="margin: 0" name="doc_type" width="55%">
+                            <div align="center">
+                              <b>BULLETIN DE PAIE</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" width="15%">N°
+                            <span t-field="o.number"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="border-right:none; border-bottom:none">
+                            <div align="right" style="border: none">Du</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right:none">
+                            <span t-field="o.date_from"
+                                  t-field-options='{"format": "dd/MM/y"}'/>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right: none">
+                            <div align="right">
+                              Au
+                            </div>
+                          </td>
+
+                          <td class="bordered-copefrito" colspan="1" style="border-left:none; border-bottom:none">
+                            <span t-field="o.date_to" t-field-options='{"format": "dd/MM/y"}'/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-right:none; border-bottom:none">
+                            <div align="right" style="border: none">Mois</div>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <span t-field="o.date_to" t-field-options='{"format": "MMMM"}'/>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <div align="right">Année</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-left:none; border-top:none; border-bottom: none">
+                            <span t-field="o.date_to" t-field-options='{"format": "y"}'/>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="3" style="border-right:none; border-top:none">
+                            <div align="right">Date de paiement</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-left:none; border-top:none; border-right: none">
+                            <span t-esc="o.get_payment_date()[0]"/>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-left:none; border-top:none; border-right: none">
+                            <div align="right">Mode</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-left:none; border-top:none">
+                            <span t-field="o.payment_mode"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">N°Mat</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <span t-field="o.employee_id.identification_cdi_id"/>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <div align="right">N°CIN</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.num_cin"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Poste</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="3"
+                              style="border-left:none; border-top:none; border-bottom: none">
+                            <span t-field="o.employee_id.job_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+
+                          <td colspan="3" style="border-top:none; border-right: none">
+                            <div align="right">N°Cnaps</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-top:none; border-right: none; border-left: none">
+                            <span t-field="o.employee_id.num_cnaps"/>
+                          </td>
+                          <td colspan="1"
+                              style="border-top:none; border-right:none; border-left: none">
+                            <t t-if="o.contract_id.status!='journalier'">
+                              <div align="right">Embauche</div>
+                            </t>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-top:none; border-left: none">
+                            <t t-if="o.contract_id.status!='journalier'">
+                              <span t-field="o.employee_id.contract_id.date_start"
+                                    t-field-options='{"format": "dd/MM/y"}'/>
+                            </t>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="4" style="vertical-align:middle">
+                            <div align="center" valign="middle" style="font-size:15px">
+                              <span t-field="o.employee_id"/>
+                            </div>
+                          </td>
+                          <td colspan="3" style="border-bottom:none; border-right:none">
+                            <div align="right">Salaire de base</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='100'">
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <div align="right">Catégorie</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.contract_qualification_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Primes fixe</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='111'">
+                                <!--<span t-field="line.montant"/>-->
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <div align="right">Indice</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.indice"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" rowspan="2" style="border-top:none; border-right: none">
+                            <div align="right">
+                              <b>Salaire brut contrat</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="3" rowspan="2" valign="middle"
+                              style="border-top:none; border-left: none">
+                            <t t-set="base_salary"
+                               t-value="o.contract_id.rubric_ids.filtered(lambda r: r.code == '100')"/>
+                            <t t-if="base_salary">
+                              <!--<t t-esc="o.set_decimal(base_salary.montant)"/>-->
+                              <t t-esc="o.set_decimal(o.contract_id.total_fix_salary)"/>
+                            </t>
+                          </td>
+
+                        </tr>
+                      </t>
+                      <tr>
+                      </tr>
+                      <tr>
+                        <td colspan="8">
+                        </td>
+                      </tr>
+                      <tr style="font-weight:bold">
+                        <td class="bordered-copefrito" align="center">Code</td>
+                        <td class="bordered-copefrito" align="center">Rubrique</td>
+                        <td class="bordered-copefrito" align="center">Nombre</td>
+                        <td class="bordered-copefrito" align="center">Unités</td>
+                        <td class="bordered-copefrito" align="center">Taux</td>
+                        <td class="bordered-copefrito" align="center">Base</td>
+                        <td class="bordered-copefrito" align="center">Gain (+)</td>
+                        <td class="bordered-copefrito" align="center">Retenue (-)</td>
+                      </tr>
+                    </thead>
+                    <t t-foreach="o.line_ids" t-as="line">
+                      <style>
+                        .bold_line {font-weight:bold; background-color: #f2f2f2}
+                      </style>
+                      <t t-set="rubric" t-value="line.salary_rule_id.rubric_id"/>
+                      <t t-set="input" t-value="line.input_id"/>
+                      <tr t-att-class="'bold_line' if rubric.type == 'total' or rubric.classe_id.code == 'ST' else ''">
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito">
+                            <span t-field="line.code_rubric"/>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito">
+                            <span t-field="line.name"/>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-set="line_nb_hours" t-value="line.the_quantity.replace(',','.')"/>
+                            <t t-set="contract_nb_hours" t-value="line.contract_id.monthly_hours_amount_id.hours"/>
+                            <t t-if="line.code_rubric!='100' and line.the_quantity">
+                              <span t-field="line.number_hours"/>
+                            </t>
+                            <t t-if="line.code_rubric=='100' and str(line_nb_hours) == str(contract_nb_hours) and line.contract_id.status != 'journalier'">
+                              <span t-esc="o.set_decimal(line.contract_id.monthly_hours_amount_id.hours)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='100' and str(line_nb_hours) != str(contract_nb_hours) and line.contract_id.status != 'journalier'">
+                              <span t-esc="o.set_decimal(line.number_hours)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='100' and line.the_quantity and line.contract_id.status == 'journalier'">
+                              <span t-esc="o.set_decimal(line.number_hours)"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="center">
+                            <span t-field="line.rubric_id.paylip_rubric_conf_id.product_uom"/>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.code_rubric=='731'">
+                              <span t-esc="o.set_decimal(line.slip_id.taux_cnaps_info)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='732'">
+                              <span t-esc="o.set_decimal(line.slip_id.taux_om_emp_info)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='745'">
+                              <span t-esc="o.set_decimal(o.get_irsa_rate()[0])"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.code_rubric!='111' and line.base">
+                              <span t-field="line.base"/>
+                            </t>
+                            <t t-if="line.code_rubric=='111' and line.base">
+                              <span t-esc="o.set_decimal(0)"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.rubric_id.paylip_rubric_conf_id.mouvement=='+'">
+                              <span t-field="line.amount"/>
+                            </t>
+                            <t t-if="not line.rubric_id.paylip_rubric_conf_id.mouvement and line.amount &gt; 0">
+                              <span t-field="line.amount"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.rubric_id.paylip_rubric_conf_id.mouvement=='-'">
+                              <t t-if="line.amount &lt; 0">
+                                <t t-esc="o.set_decimal(-line.amount)"/>
+                              </t>
+                              <t t-if="line.amount &gt;= 0">
+                                <t t-esc="line.amount"/>
+                              </t>
+                            </t>
+                            <t t-if="not line.rubric_id.paylip_rubric_conf_id.mouvement and line.amount &lt; 0">
+                              <t t-if="line.amount &lt; 0">
+                                <t t-esc="o.set_decimal(-line.amount)"/>
+                              </t>
+                              <t t-if="line.amount &gt;= 0">
+                                <t t-esc="line.amount"/>
+                              </t>
+                            </t>
+                          </td>
+                        </t>
+                      </tr>
+                    </t>
+                    <tr t-foreach="o.line_ids" t-as="line">
+                      <t t-if="line.code_rubric=='ST3'">
+                        <td class="bordered-copefrito">
+                          <span style="font-weight: bold;">
+                            ST3
+                          </span>
+                        </td>
+                        <td class="bordered-copefrito" align="center" colspan="5">
+                          <span style="font-size:12px; font-weight: bold;">
+                            Net à payer
+                          </span>
+                        </td>
+                        <td class="bordered-copefrito" align="right" colspan="2">
+                          <span t-field="line.amount"
+                                style="font-size:12px; font-weight: bold;"/>
+                        </td>
+                      </t>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-xs-6">
+                  <table class="table table-condensed"
+                         style="font-size: 72.5%; border-collapse: collapse;">
+                    <thead>
+                      <tr style="border-bottom: 1px solid #ccc;"></tr>
+                      <t t-if="o.is_stc">
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="7" align="left" width="30%">
+                            <span t-field="o.employee_id.company_id.logo_small"
+                                  t-field-options='{"widget": "image"}'/>
+                            <span t-field="o.employee_id.company_id.legal_form"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('BP')[0]"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('-')[1]"/>
+                            <br/>
+                            <span t-field="o.employee_id.company_id.zip"/>
+                            -
+                            <span t-field="o.employee_id.company_id.city"/>
+                            <br/>
+                            Téléphone
+                            <span t-field="o.employee_id.company_id.phone"/>
+                            -<br/>Fax
+                            <span t-field="o.employee_id.company_id.fax"/>
+                          </td>
+                          <td colspan="5" style="margin: 0" width="55%">
+                            <div align="center">
+                              <b>SOLDE DE TOUT COMPTE</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" width="15%">N°
+                            <span t-field="o.number"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" style="border-right:none; border-bottom:none">
+                            <div align="right" style="border: none">N°Mat</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right:none">
+                            <span t-field="o.employee_id.identification_cdi_id"/>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right: none">
+                            <div align="right">
+                              Poste
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="2" style="border-left:none; border-bottom:none">
+                            <span t-field="o.employee_id.job_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="2"
+                              style="border-left:none; border-top:none; border-right: none">
+                            <bold>
+                              <div align="right">Motif du départ</div>
+                            </bold>
+                          </td>
+                          <td class="bordered-copefrito" colspan="4" rowspan="2"
+                              style="border-left:none; border-top:none">
+                            <span t-field="o.note"/>
+                          </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Date d'embauche</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <span t-field="o.contract_id.date_start"/>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <div align="right">Date de débauche</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.contract_id.date_end"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Date de paiement</div>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <span t-esc="o.get_payment_date()[0]"/>
+                          </td>
+                          <td class="bordered-copefrito" colspan="2"
+                              style="border-top:none; border-bottom: none; border-left: none">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="border-top:none; border-right: none">
+                            <div align="right">Mode de paiement</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-top:none; border-right: none; border-left: none">
+                            <span t-field="o.payment_mode"/>
+                          </td>
+                          <td class="bordered-copefrito" colspan="2" style="border-top:none; border-left: none">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="4" style="vertical-align:middle">
+                            <div align="center" valign="middle" style="font-size:15px">
+                              <span t-field="o.employee_id"/>
+                            </div>
+                          </td>
+                          <td colspan="3" style="border-bottom:none; border-right:none">
+                            <div align="right">Salaire de base</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='100'">
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <div align="right">CSP</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.contract_qualification_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Primes fixe</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='111'">
+                                <!--<span t-field="line.montant"/>-->
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <div align="right">Indice</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.indice"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" rowspan="2" style="border-top:none; border-right: none">
+                            <div align="right">
+                              <b>Salaire brut contrat</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="3" rowspan="2" valign="middle"
+                              style="border-top:none; border-left: none">
+                            <t t-set="base_salary"
+                               t-value="o.contract_id.rubric_ids.filtered(lambda r: r.code == '100')"/>
+                            <t t-if="base_salary">
+                              <!--<t t-esc="o.set_decimal(base_salary.montant)"/>-->
+                              <t t-esc="o.set_decimal(o.contract_id.total_fix_salary)"/>
+                            </t>
+                          </td>
+
+                        </tr>
+                      </t>
+                      <t t-if="not o.is_stc">
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="7" align="left" width="30%">
+                            <span t-field="o.employee_id.company_id.logo_small"
+                                  t-field-options='{"widget": "image"}'/>
+                            <span t-field="o.employee_id.company_id.legal_form"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('BP')[0]"/>
+                            <br/>
+                            <span t-esc="o.employee_id.company_id.street.split('-')[1]"/>
+                            <br/>
+                            <span t-field="o.employee_id.company_id.zip"/>
+                            -
+                            <span t-field="o.employee_id.company_id.city"/>
+                            <br/>
+                            Téléphone
+                            <span t-field="o.employee_id.company_id.phone"/>
+                            -<br/>Fax
+                            <span t-field="o.employee_id.company_id.fax"/>
+                          </td>
+                          <td colspan="5" style="margin: 0" name="doc_type" width="55%">
+                            <div align="center">
+                              <b>BULLETIN DE PAIE</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" width="15%">N°
+                            <span t-field="o.number"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="border-right:none; border-bottom:none">
+                            <div align="right" style="border: none">Du</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right:none">
+                            <span t-field="o.date_from"
+                                  t-field-options='{"format": "dd/MM/y"}'/>
+                          </td>
+                          <td colspan="1"
+                              style="border-left:none; border-bottom:none; border-right: none">
+                            <div align="right">
+                              Au
+                            </div>
+                          </td>
+
+                          <td class="bordered-copefrito" colspan="1" style="border-left:none; border-bottom:none">
+                            <span t-field="o.date_to" t-field-options='{"format": "dd/MM/y"}'/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-right:none; border-bottom:none">
+                            <div align="right" style="border: none">Mois</div>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <span t-field="o.date_to" t-field-options='{"format": "MMMM"}'/>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <div align="right">Année</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-left:none; border-top:none; border-bottom: none">
+                            <span t-field="o.date_to" t-field-options='{"format": "y"}'/>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="3" style="border-right:none; border-top:none">
+                            <div align="right">Date de paiement</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-left:none; border-top:none; border-right: none">
+                            <span t-esc="o.get_payment_date()[0]"/>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-left:none; border-top:none; border-right: none">
+                            <div align="right">Mode</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-left:none; border-top:none">
+                            <span t-field="o.payment_mode"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">N°Mat</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <span t-field="o.employee_id.identification_cdi_id"/>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <div align="right">N°CIN</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.num_cin"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Poste</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="3"
+                              style="border-left:none; border-top:none; border-bottom: none">
+                            <span t-field="o.employee_id.job_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+
+                          <td colspan="3" style="border-top:none; border-right: none">
+                            <div align="right">N°Cnaps</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-top:none; border-right: none; border-left: none">
+                            <span t-field="o.employee_id.num_cnaps"/>
+                          </td>
+                          <td colspan="1"
+                              style="border-top:none; border-right:none; border-left: none">
+                            <t t-if="o.contract_id.status!='journalier'">
+                              <div align="right">Embauche</div>
+                            </t>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-top:none; border-left: none">
+                            <t t-if="o.contract_id.status!='journalier'">
+                              <span t-field="o.employee_id.contract_id.date_start"
+                                    t-field-options='{"format": "dd/MM/y"}'/>
+                            </t>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td class="bordered-copefrito" colspan="2" rowspan="4" style="vertical-align:middle">
+                            <div align="center" valign="middle" style="font-size:15px">
+                              <span t-field="o.employee_id"/>
+                            </div>
+                          </td>
+                          <td colspan="3" style="border-bottom:none; border-right:none">
+                            <div align="right">Salaire de base</div>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='100'">
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1"
+                              style="border-bottom:none; border-right:none; border-left: none">
+                            <div align="right">Catégorie</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1" style="border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.contract_qualification_id"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"
+                              style="border-top:none; border-bottom:none; border-right: none">
+                            <div align="right">Primes fixe</div>
+                          </td>
+                          <td colspan="1" style="border:none">
+                            <t t-foreach="o.employee_id.contract_id.rubric_ids" t-as="line">
+                              <t t-if="line.code=='111'">
+                                <!--<span t-field="line.montant"/>-->
+                                <span t-esc="o.set_decimal(line.montant)"/>
+                              </t>
+                              <t t-if="line.code!='111'"></t>
+                            </t>
+                          </td>
+                          <td colspan="1" style="border: none">
+                            <div align="right">Indice</div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="1"
+                              style="border-top:none; border-bottom:none; border-left: none">
+                            <span t-field="o.employee_id.contract_id.indice"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" rowspan="2" style="border-top:none; border-right: none">
+                            <div align="right">
+                              <b>Salaire brut contrat</b>
+                            </div>
+                          </td>
+                          <td class="bordered-copefrito" colspan="3" rowspan="2" valign="middle"
+                              style="border-top:none; border-left: none">
+                            <t t-set="base_salary"
+                               t-value="o.contract_id.rubric_ids.filtered(lambda r: r.code == '100')"/>
+                            <t t-if="base_salary">
+                              <!--<t t-esc="o.set_decimal(base_salary.montant)"/>-->
+                              <t t-esc="o.set_decimal(o.contract_id.total_fix_salary)"/>
+                            </t>
+                          </td>
+
+                        </tr>
+                      </t>
+                      <tr>
+                      </tr>
+                      <tr>
+                        <td colspan="8">
+                        </td>
+                      </tr>
+                      <tr style="font-weight:bold">
+                        <td class="bordered-copefrito" align="center">Code</td>
+                        <td class="bordered-copefrito" align="center">Rubrique</td>
+                        <td class="bordered-copefrito" align="center">Nombre</td>
+                        <td class="bordered-copefrito" align="center">Unités</td>
+                        <td class="bordered-copefrito" align="center">Taux</td>
+                        <td class="bordered-copefrito" align="center">Base</td>
+                        <td class="bordered-copefrito" align="center">Gain (+)</td>
+                        <td class="bordered-copefrito" align="center">Retenue (-)</td>
+                      </tr>
+                    </thead>
+                    <t t-foreach="o.line_ids" t-as="line">
+                      <style>
+                        .bold_line {font-weight:bold; background-color: #f2f2f2}
+                      </style>
+                      <t t-set="rubric" t-value="line.salary_rule_id.rubric_id"/>
+                      <t t-set="input" t-value="line.input_id"/>
+                      <tr t-att-class="'bold_line' if rubric.type == 'total' or rubric.classe_id.code == 'ST' else ''">
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito">
+                            <span t-field="line.code_rubric"/>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito">
+                            <span t-field="line.name"/>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-set="line_nb_hours" t-value="line.the_quantity.replace(',','.')"/>
+                            <t t-set="contract_nb_hours" t-value="line.contract_id.monthly_hours_amount_id.hours"/>
+                            <t t-if="line.code_rubric!='100' and line.the_quantity">
+                              <span t-field="line.number_hours"/>
+                            </t>
+                            <t t-if="line.code_rubric=='100' and str(line_nb_hours) == str(contract_nb_hours) and line.contract_id.status != 'journalier'">
+                              <span t-esc="o.set_decimal(line.contract_id.monthly_hours_amount_id.hours)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='100' and str(line_nb_hours) != str(contract_nb_hours) and line.contract_id.status != 'journalier'">
+                              <span t-esc="o.set_decimal(line.number_hours)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='100' and line.the_quantity and line.contract_id.status == 'journalier'">
+                              <span t-esc="o.set_decimal(line.number_hours)"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="center">
+                            <span t-field="line.rubric_id.paylip_rubric_conf_id.product_uom"/>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.code_rubric=='731'">
+                              <span t-esc="o.set_decimal(line.slip_id.taux_cnaps_info)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='732'">
+                              <span t-esc="o.set_decimal(line.slip_id.taux_om_emp_info)"/>
+                            </t>
+                            <t t-if="line.code_rubric=='745'">
+                              <span t-esc="o.set_decimal(o.get_irsa_rate()[0])"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.code_rubric!='111' and line.base">
+                              <span t-field="line.base"/>
+                            </t>
+                            <t t-if="line.code_rubric=='111' and line.base">
+                              <span t-esc="o.set_decimal(0)"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.rubric_id.paylip_rubric_conf_id.mouvement=='+'">
+                              <span t-field="line.amount"/>
+                            </t>
+                            <t t-if="not line.rubric_id.paylip_rubric_conf_id.mouvement and line.amount &gt; 0">
+                              <span t-field="line.amount"/>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-if="line.amount and line.code_rubric and line.code_rubric!='ST3'">
+                          <td class="bordered-copefrito" align="right">
+                            <t t-if="line.rubric_id.paylip_rubric_conf_id.mouvement=='-'">
+                              <t t-if="line.amount &lt; 0">
+                                <t t-esc="o.set_decimal(-line.amount)"/>
+                              </t>
+                              <t t-if="line.amount &gt;= 0">
+                                <t t-esc="line.amount"/>
+                              </t>
+                            </t>
+                            <t t-if="not line.rubric_id.paylip_rubric_conf_id.mouvement and line.amount &lt; 0">
+                              <t t-if="line.amount &lt; 0">
+                                <t t-esc="o.set_decimal(-line.amount)"/>
+                              </t>
+                              <t t-if="line.amount &gt;= 0">
+                                <t t-esc="line.amount"/>
+                              </t>
+                            </t>
+                          </td>
+                        </t>
+                      </tr>
+                    </t>
+                    <tr t-foreach="o.line_ids" t-as="line">
+                      <t t-if="line.code_rubric=='ST3'">
+                        <td class="bordered-copefrito">
+                          <span style="font-weight: bold;">
+                            ST3
+                          </span>
+                        </td>
+                        <td class="bordered-copefrito" align="center" colspan="5">
+                          <span style="font-size:12px; font-weight: bold;">
+                            Net à payer
+                          </span>
+                        </td>
+                        <td class="bordered-copefrito" align="right" colspan="2">
+                          <span t-field="line.amount"
+                                style="font-size:12px; font-weight: bold;"/>
+                        </td>
+                      </t>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

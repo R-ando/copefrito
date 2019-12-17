@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="hr.payslip.rubric.config" id="RUBRIC_202">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_ELM_VAR_CONTR"/>
+            <field name="code_temp">02</field>
+            <field name="code">202</field>
+            <field name="name">Jour supplémentaire</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_203">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_ELM_VAR_CONTR"/>
+            <field name="code_temp">03</field>
+            <field name="code">203</field>
+            <field name="name">Jour de repos marin</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_204">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_ELM_VAR_CONTR"/>
+            <field name="code_temp">04</field>
+            <field name="code">204</field>
+            <field name="name">Congé marin</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_302">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_HSUP_ABS_CNG"/>
+            <field name="code_temp">02</field>
+            <field name="code">302</field>
+            <field name="name">Prime de tonnage</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_303">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_HSUP_ABS_CNG"/>
+            <field name="code_temp">03</field>
+            <field name="code">303</field>
+            <field name="name">Prime empotage</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_304">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_HSUP_ABS_CNG"/>
+            <field name="code_temp">04</field>
+            <field name="code">304</field>
+            <field name="name">Prime de conditionnement et traitement</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_305">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_HSUP_ABS_CNG"/>
+            <field name="code_temp">05</field>
+            <field name="code">305</field>
+            <field name="name">Indemnité de nourriture (Marin)</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_306">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_HSUP_ABS_CNG"/>
+            <field name="code_temp">06</field>
+            <field name="code">306</field>
+            <field name="name">Prime chambre froide</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_307">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_HSUP_ABS_CNG"/>
+            <field name="code_temp">07</field>
+            <field name="code">307</field>
+            <field name="name">Prime variable de tonnage algue</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_402">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_VRB_PLUS"/>
+            <field name="code_temp">02</field>
+            <field name="code">402</field>
+            <field name="name">Prime de rotation</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_403">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_VRB_PLUS"/>
+            <field name="code_temp">03</field>
+            <field name="code">403</field>
+            <field name="name">Prime de jour terrain</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">permanent</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_522">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_VRB_OCC"/>
+            <field name="code_temp">22</field>
+            <field name="code">522</field>
+            <field name="name">Gratification</field>
+            <field name="type">normal</field>
+            <field name="mouvement">+</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_802">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_DED_DVRS"/>
+            <field name="code_temp">02</field>
+            <field name="code">802</field>
+            <field name="name">Avance sur terrain</field>
+            <field name="type">normal</field>
+            <field name="mouvement">-</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_803">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_DED_DVRS"/>
+            <field name="code_temp">03</field>
+            <field name="code">803</field>
+            <field name="name">Avance sur cession</field>
+            <field name="type">normal</field>
+            <field name="mouvement">-</field>
+            <field name="status">mixte</field>
+        </record>
+        <record model="hr.payslip.rubric.config" id="RUBRIC_804">
+            <field name="classe_id" ref="hr_copefrito_paie.CLASS_DED_DVRS"/>
+            <field name="code_temp">04</field>
+            <field name="code">804</field>
+            <field name="name">Consommation téléphone</field>
+            <field name="type">normal</field>
+            <field name="mouvement">-</field>
+            <field name="status">permanent</field>
+        </record>
+    </data>
+</openerp>

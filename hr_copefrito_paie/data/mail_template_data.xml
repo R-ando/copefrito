@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+      <record id="email_template_notification_trial_expired" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_contract"/>
+          <field name="subject"><![CDATA[Avis pour expiration de la période d'essai]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                        <p>La durée de période d'essai d'un contrat a expiré </p>
+
+                        <p style="border-left: 2px solid #25548A; margin-left: 30px;">
+                           &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+                           &nbsp;&nbsp;Numéro et réference du contrat: <strong>${object.num_contract}</strong><br />
+                           &nbsp;&nbsp;Matricule de l'employé: <strong>${object.employee_id.identification_cdi_id}</strong><br />
+                           &nbsp;&nbsp;Nom de l'employé: <strong>${object.employee_id.name}</strong><br />
+                           &nbsp;&nbsp;Date début de la période d'essai: ${object.trial_date_start}<br />
+                           &nbsp;&nbsp;Date fin de la période d'essai: <font color="red">${object.trial_date_end}</font><br />
+                        </p>  
+
+                        <p>Ce <a href="${object.current_url}">lien</a> vous rédirige vers la fiche contrat</p>
+                         
+
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+            <record id="email_template_notification_allaitement_expired_reminder" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_contract"/>
+          <field name="subject"><![CDATA[Rappel d'expiration de date d'allaitement]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                        <p>Pour rappel, la durée d'allaitement d'un employé a expiré. </p>
+
+                        <p style="border-left: 2px solid #25548A; margin-left: 30px;">
+                           &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+                           &nbsp;&nbsp;Réference du contrat: <strong>${object.num_contract}</strong><br />
+                           &nbsp;&nbsp;Matricule de l'employé: <strong>${object.employee_id.identification_cdi_id}</strong><br />
+                           &nbsp;&nbsp;Nom de l'employé: <strong>${object.employee_id.name}</strong><br />
+                           &nbsp;&nbsp;Date début allaitement: ${object.allaitement_date_start}<br />
+                           &nbsp;&nbsp;Date fin allaitement: <font color="red">${object.allaitement_date_end}</font><br />
+                        </p>  
+
+                  <p> Cliquez sur ce <a href="${object.cancel_url}">lien</a> pour ne plus recevoir cette notification. </p>
+
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+      <record id="email_template_notification_trial_expired_reminder" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_contract"/>
+          <field name="subject"><![CDATA[Rappel d'expiration de la période d'essai]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                        <p>Pour rappel, la durée de période d'essai d'un contrat a expiré </p>
+
+                        <p style="border-left: 2px solid #25548A; margin-left: 30px;">
+                           &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+                           &nbsp;&nbsp;Numéro et réference du contrat: <strong>${object.num_contract}</strong><br />
+                           &nbsp;&nbsp;Matricule de l'employé: <strong>${object.employee_id.identification_cdi_id}</strong><br />
+                           &nbsp;&nbsp;Nom de l'employé: <strong>${object.employee_id.name}</strong><br />
+                           &nbsp;&nbsp;Date début de la période d'essai: ${object.trial_date_start}<br />
+                           &nbsp;&nbsp;Date fin de la période d'essai: <font color="red">${object.trial_date_end}</font><br />
+                        </p>  
+                        <p> Cliquez sur ce <a href="${object.cancel_url}">lien</a> pour ne plus recevoir cette notification. </p>
+                         
+
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+      <record id="email_template_notification_renew_trial_expired_reminder" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_contract"/>
+          <field name="subject"><![CDATA[Rappel d'expiration du renouvellement de la période d'essai]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                        <p>Pour rappel, la durée de renouvellement de période d'essai d'un contrat a expiré. </p>
+
+                        <p style="border-left: 2px solid #25548A; margin-left: 30px;">
+                           &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+                           &nbsp;&nbsp;Réference du contrat: <strong>${object.num_contract}</strong><br />
+                           &nbsp;&nbsp;Matricule de l'employé: <strong>${object.employee_id.identification_cdi_id}</strong><br />
+                           &nbsp;&nbsp;Nom de l'employé: <strong>${object.employee_id.name}</strong><br />
+                           &nbsp;&nbsp;Date début de renouvellement de la période d'essai: ${object.renew_trial_date_start}<br />
+                           &nbsp;&nbsp;Date fin de renouvellement de la période d'essai: <font color="red">${object.renew_trial_date_end}</font><br />
+                        </p>  
+                      <p> Cliquez sur ce <a href="${object.cancel_url}">lien</a> pour ne plus recevoir cette notification. </p>
+
+    
+
+
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+
+      <record id="email_template_notification_renew_trial_expired" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_contract"/>
+          <field name="subject"><![CDATA[Avis pour expiration du renouvellement de la période d'essai]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                        <p>La durée de renouvellement de période d'essai d'un contrat a expiré. </p>
+
+                        <p style="border-left: 2px solid #25548A; margin-left: 30px;">
+                           &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+                           &nbsp;&nbsp;Réference du contrat: <strong>${object.num_contract}</strong><br />
+                           &nbsp;&nbsp;Matricule de l'employé: <strong>${object.employee_id.identification_cdi_id}</strong><br />
+                           &nbsp;&nbsp;Nom de l'employé: <strong>${object.employee_id.name}</strong><br />
+                           &nbsp;&nbsp;Date début de renouvellement de la période d'essai: ${object.renew_trial_date_start}<br />
+                           &nbsp;&nbsp;Date fin de renouvellement de la période d'essai: <font color="red">${object.renew_trial_date_end}</font><br />
+                        </p> 
+
+
+                        <p>Ce <a href="${object.current_url}">lien</a> vous rédirige vers la fiche contrat.</p>
+                        
+
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+      
+      
+    <record id="email_template_notification_allaitement_expired" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_contract"/>
+          <field name="subject"><![CDATA[Avis pour expiration de date d'allaitement]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                        <p>La durée d'allaitement d'un employé a expiré. </p>
+
+                        <p style="border-left: 2px solid #25548A; margin-left: 30px;">
+                           &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+                           &nbsp;&nbsp;Réference du contrat: <strong>${object.num_contract}</strong><br />
+                           &nbsp;&nbsp;Matricule de l'employé: <strong>${object.employee_id.identification_cdi_id}</strong><br />
+                           &nbsp;&nbsp;Nom de l'employé: <strong>${object.employee_id.name}</strong><br />
+                           &nbsp;&nbsp;Date début allaitement: ${object.allaitement_date_start}<br />
+                           &nbsp;&nbsp;Date fin allaitement: <font color="red">${object.allaitement_date_end}</font><br />
+                        </p>  
+
+                        <p>Ce <a href="${object.current_url}">lien</a> vous rédirige vers la fiche contrat.</p>
+                       
+
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+      
+      <record id="email_template_notification_payslip_run" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_payslip_run"/>
+          <field name="subject"><![CDATA[Nouvelles rubriques]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                    &nbsp;&nbsp;<p>Des nouvelles rubriques sont à traiter </p>
+                    &nbsp;&nbsp;<p>Période de paie: ${object.name}</p>
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification période de paie</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+      
+        <record id="email_template_notification_payslip_run_validate" model="mail.template">
+          <field name="auto_delete" eval="False"/>
+          <field name="user_signature" eval="False"/>
+          <field name="model_id" ref="hr_copefrito_paie.model_hr_payslip_run"/>
+          <field name="subject"><![CDATA[Période de paie validée]]></field>
+          <field name="body_html">
+                <![CDATA[
+                    <p>Bonjour,</p>
+                    &nbsp;&nbsp;<p>Une période de paie a été validée </p>
+                    &nbsp;&nbsp;<p>Période de paie: ${object.name}</p>
+                ]]>
+          </field>
+          <!--<field name="email_to">${object.partner_id.email}</field>-->
+          <!--<field name="copyvalue">${object.access_token}</field>-->
+          <field name="name">copefrito notification période de paie</field>
+          <!--<field name="report_name">copefrito_devis_${object.name}</field>-->
+          <field name="use_default_to" eval="False"/>
+<!--          <field name="email_from">${object.employee_id.company_id.email}</field>-->
+      </record>
+      
+      <!-- Notification mail when a rubric have to be validated-->
+      <record id="email_template_notification_payslip_rubric_to_validate" model="mail.template">
+        <field name="auto_delete" eval="False"/>
+        <field name="user_signature" eval="False"/>
+        <field name="model_id" ref="hr_copefrito_paie.model_hr_payslip_rubric"/>
+        <field name="subject"><![CDATA[Rubrique à valider]]></field>
+        <field name="body_html">
+            <![CDATA[
+                <p>Bonjour,</p>
+                &nbsp;&nbsp;<p>Une nouvelle rubrique est à <strong>Valider</strong> </p>
+                &nbsp;&nbsp;<p>Période de paie: ${object.payslip_run.name}</p>
+                &nbsp;&nbsp;<p>Rubrique: <a href="${object.current_url}">${object.paylip_rubric_conf_id.name}</a></p>
+            ]]>
+        </field>
+        <field name="name">copefrito notification rubrique en attente de validation</field>
+        <field name="use_default_to" eval="False"/>
+      </record>
+      
+      <!-- Notification mail when a rubric have is validated-->
+      <record id="email_template_notification_payslip_rubric_is_validated" model="mail.template">
+        <field name="auto_delete" eval="False"/>
+        <field name="user_signature" eval="False"/>
+        <field name="model_id" ref="hr_copefrito_paie.model_hr_payslip_rubric"/>
+        <field name="subject"><![CDATA[Rubrique validée]]></field>
+        <field name="body_html">
+            <![CDATA[
+                <p>Bonjour,</p>
+                &nbsp;&nbsp;<p>Une nouvelle rubrique a été <strong>Validé</strong> </p>
+                &nbsp;&nbsp;<p>Période de paie: ${object.payslip_run.name}</p>
+                &nbsp;&nbsp;<p>Rubrique: <a href="${object.current_url}">${object.paylip_rubric_conf_id.name}</a></p>
+            ]]>
+        </field>
+        <field name="name">copefrito notification rubrique valide</field>
+        <field name="use_default_to" eval="False"/>
+      </record>
+    </data>
+</openerp>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record model="type.log.cron" id="info">
+            <field name="name">INFO</field>            
+        </record>
+        <record model="type.log.cron" id="error">
+            <field name="name">ERROR</field>
+        </record>
+        <record model="type.log.cron" id="info_error">
+            <field name="name">INFO + ERROR</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_timesheet_sheet_form_h0" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[@name='button_box']/button[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="total_difference" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//notebook/page[1]/widget[@type='weekly_timesheet']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[3]" position="attributes">
+                    <attribute name="autofocus">autofocus</attribute>
+                    <attribute name="name">attendances</attribute>
+                </xpath>
+                <button name="attendance_action_change" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_hr_timesheet_sheet_sheet_tree_h0" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.tree</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified"/>
+            <field name="arch" type="xml">
+                <field name="total_timesheet" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="total_difference" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- hide unused menu in timesheet -->
+        <record id="new_group_hidden_id" model="res.groups">
+            <field name="name">Hidden Menu</field>
+        </record>
+        <record model="ir.ui.menu" id="hr_timesheet.menu_hr_working_hours">
+            <field name="groups_id" eval="[(6,0,[ref('new_group_hidden_id')])]"/>
+        </record>
+        <record model="ir.ui.menu" id="hr_timesheet.menu_timesheets_reports">
+            <field name="groups_id" eval="[(6,0,[ref('new_group_hidden_id')])]"/>
+        </record>
+        <record model="ir.ui.menu" id="hr_timesheet.menu_hr_timesheet_config">
+            <field name="groups_id" eval="[(6,0,[ref('new_group_hidden_id')])]"/>
+        </record>
+        <record model="ir.ui.menu" id="hr_attendance.menu_hr_attendance_report">
+            <field name="parent_id" eval="ref('hr_attendance.menu_hr_time_tracking')"/>
+        </record>
+
+    </data>
+</openerp>

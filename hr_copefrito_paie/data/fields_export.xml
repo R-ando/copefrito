@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!--OSTIE-->
+        <record model="ir.exports.line" id="org_med_matricule">
+            <field name="name">matricule</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_employee">
+            <field name="name">employee</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_gender">
+            <field name="name">employee_id/gender</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_birthday">
+            <field name="name">employee_id/birthday</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_embauche">
+            <field name="name">date_start</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_debauche">
+            <field name="name">date_end</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_fonction">
+            <field name="name">job_name</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_num_cnaps">
+            <field name="name">num_cnaps</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_cin">
+            <field name="name">employee_id/num_cin</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_netapayer">
+            <field name="name">net_a_payer</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_bulletin">
+            <field name="name">slip_date_from</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_pat">
+            <field name="name">org_medicaux_pat</field>            
+        </record>
+        <record model="ir.exports.line" id="org_med_emp">
+            <field name="name">org_medicaux_emp</field>            
+        </record>
+        
+        <record model="ir.exports" id="org_med">
+            <field name="name">Organismes médicaux</field>
+            <field name="resource">hr.payslip.paid.state</field>
+            <field name="export_fields" eval="[(6,0,[ref('org_med_matricule'),ref('org_med_employee'),ref('org_med_gender'),ref('org_med_birthday'),ref('org_med_embauche'),ref('org_med_debauche'),ref('org_med_fonction'),ref('org_med_num_cnaps'),ref('org_med_cin'),ref('org_med_netapayer'),ref('org_med_bulletin'),ref('org_med_pat'),ref('org_med_emp')])]"/>
+        </record>
+        
+        <record model="ir.exports.line" id="org_med_matricule">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_employee">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_gender">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_birthday">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_embauche">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_debauche">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_fonction">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_cin">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_netapayer">
+            <field name="export_id" ref="org_med"/>            
+        </record>          
+        <record model="ir.exports.line" id="org_med_bulletin">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_pat">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_emp">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        <record model="ir.exports.line" id="org_med_num_cnaps">
+            <field name="export_id" ref="org_med"/>            
+        </record>
+        
+        
+        <!--CNAPS-->
+        <record model="ir.exports.line" id="cnaps_date">
+            <field name="name">slip_date</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_employee">
+            <field name="name">employee</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_gender">
+            <field name="name">employee_id/gender</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_birthday">
+            <field name="name">employee_id/birthday</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_embauche">
+            <field name="name">date_start</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_debauche">
+            <field name="name">date_end</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_num_cnaps">
+            <field name="name">num_cnaps</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_cin">
+            <field name="name">employee_id/num_cin</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_netapayer">
+            <field name="name">net_a_payer</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_avantage">
+            <field name="name">somme_avantage</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_prime">
+            <field name="name">somme_prime</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_work">
+            <field name="name">working_hours</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_bulletin">
+            <field name="name">slip_date_from</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_emp">
+            <field name="name">cnaps_emp</field>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_pat">
+            <field name="name">cnaps_pat</field>            
+        </record>
+        <record model="ir.exports" id="cnaps">
+            <field name="name">CNAPS</field>
+            <field name="resource">hr.payslip.paid.state</field>
+            <field name="export_fields" eval="[(6,0,[ref('cnaps_date'),ref('cnaps_employee'),ref('cnaps_gender'),ref('cnaps_birthday'),ref('cnaps_embauche'),ref('cnaps_debauche'),ref('cnaps_num_cnaps'),ref('cnaps_cin'),ref('cnaps_netapayer'),ref('cnaps_avantage'),ref('cnaps_prime'),ref('cnaps_work'),ref('cnaps_bulletin'),ref('cnaps_emp'),ref('cnaps_pat')])]"/>
+        </record>
+        
+        <record model="ir.exports.line" id="cnaps_date">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_employee">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_gender">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_birthday">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_embauche">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_debauche">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_cin">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_netapayer">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_work">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_bulletin">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_netapayer">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_emp">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_pat">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_num_cnaps">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        <record model="ir.exports.line" id="cnaps_avantage">
+            <field name="export_id" ref="cnaps"/>            
+        </record>
+        
+        <!--IRSA-->
+        <record model="ir.exports.line" id="irsa_employee">
+            <field name="name">employee</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_gender">
+            <field name="name">employee_id/gender</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_matricule">
+            <field name="name">matricule</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_num_cnaps">
+            <field name="name">num_cnaps</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_birthday">
+            <field name="name">employee_id/birthday</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_embauche">
+            <field name="name">date_start</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_debauche">
+            <field name="name">date_end</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_fonction">
+            <field name="name">job_name</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_netapayer">
+            <field name="name">net_a_payer</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_bulletin">
+            <field name="name">slip_date_from</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_pat">
+            <field name="name">cnaps_pat</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_emp">
+            <field name="name">cnaps_emp</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_work">
+            <field name="name">working_hours</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_cot_irsa">
+            <field name="name">cot_irsa</field>            
+        </record>
+        <record model="ir.exports.line" id="irsa_cin">
+            <field name="name">employee_id/num_cin</field>            
+        </record>
+
+        
+        <record model="ir.exports" id="irsa">
+            <field name="name">IRSA</field>
+            <field name="resource">hr.payslip.paid.state</field>
+            <field name="export_fields" eval="[(6,0,[ref('irsa_matricule'),ref('irsa_employee'),ref('irsa_gender'),ref('irsa_birthday'),ref('irsa_embauche'),ref('irsa_debauche'),ref('irsa_fonction'),ref('irsa_num_cnaps'),ref('irsa_cin'),ref('irsa_netapayer'),ref('irsa_bulletin'),ref('irsa_pat'),ref('irsa_emp'),ref('irsa_work'),ref('irsa_cot_irsa')])]"/>
+        </record>
+        
+        <record model="ir.exports.line" id="irsa_matricule">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_employee">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_gender">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_birthday">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_embauche">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_debauche">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_fonction">
+            <field name="export_id" ref="irsa"/>            
+        </record>          
+        <record model="ir.exports.line" id="irsa_netapayer">
+            <field name="export_id" ref="irsa"/>            
+        </record>          
+        <record model="ir.exports.line" id="irsa_bulletin">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_pat">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_emp">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_work">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_cin">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_cot_irsa">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        <record model="ir.exports.line" id="irsa_num_cnaps">
+            <field name="export_id" ref="irsa"/>            
+        </record>
+        
+        <!--Etat de paie-->
+        <record model="ir.exports.line" id="etat_lots">
+            <field name="name">name</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_date_deb">
+            <field name="name">slip_date_from</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_date_fin">
+            <field name="name">slip_date_to</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_matricule">
+            <field name="name">matricule</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_employee">
+            <field name="name">employee</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_job">
+            <field name="name">job_name</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hc">
+            <field name="name">hc</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_cat">
+            <field name="name">cat</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_ag">
+            <field name="name">agence</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_emb">
+            <field name="name">date_start</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_sb">
+            <field name="name">salaire_base</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_sm">
+            <field name="name">salaire_mens</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_th">
+            <field name="name">taux_h</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_tj">
+            <field name="name">taux_j</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_ht">
+            <field name="name">ht</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_pap">
+            <field name="name">pre_a_payer</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_prd">
+            <field name="name">pre_deduc</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hs">
+            <field name="name">h_supp</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hs30">
+            <field name="name">h_supp_30</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hs50">
+            <field name="name">h_supp_50</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hmj">
+            <field name="name">h_maj_nuit</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hmd">
+            <field name="name">h_maj_dim</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_absded">
+            <field name="name">abs_ded</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_hmf">
+            <field name="name">h_maj_fer</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_pdl">
+            <field name="name">paid_leave</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_rap">
+            <field name="name">rappel</field>            
+        </record>
+        
+        <record model="ir.exports.line" id="etat_sbrut">
+            <field name="name">salaire_brut</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_cnaps_emp">
+            <field name="name">cnaps_emp</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_cnaps_pat">
+            <field name="name">cnaps_pat</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_med_emp">
+            <field name="name">org_medicaux_emp</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_met_pat">
+            <field name="name">org_medicaux_pat</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_imposable">
+            <field name="name">imposable</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_ded_enfant">
+            <field name="name">ded_enfant</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_irsa">
+            <field name="name">cot_irsa</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_avance15">
+            <field name="name">m_avance15</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_au_ded">
+            <field name="name">au_ded</field>
+        </record>
+        <record model="ir.exports.line" id="etat_avance_spe">
+            <field name="name">avance_spe</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_ret_total">
+            <field name="name">ret_total</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_net1">
+            <field name="name">net1</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_net2">
+            <field name="name">net2</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_ecart_arr">
+            <field name="name">ecart_arr</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_net">
+            <field name="name">net</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_alloc">
+            <field name="name">alloc</field>   
+        </record>
+        <record model="ir.exports.line" id="etat_net_a_payer">
+            <field name="name">net_a_payer</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_s_avantage">
+            <field name="name">somme_avantage</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_s_prime">
+            <field name="name">somme_prime</field>            
+        </record>
+        <record model="ir.exports.line" id="etat_msa">
+            <field name="name">msa</field>            
+        </record>
+        
+        <record model="ir.exports" id="etat">
+            <field name="name">Etat de paie</field>
+            <field name="resource">hr.payslip.paid.state</field>
+            <field name="export_fields" eval="[(6,0,[  ref('etat_lots'),ref('etat_date_deb'),ref('etat_date_fin'),ref('etat_matricule'),ref('etat_employee'),ref('etat_job'),ref('etat_hc'),ref('etat_cat'),ref('etat_ag'),ref('etat_emb'),ref('etat_sb'),ref('etat_sm'),ref('etat_th'),ref('etat_tj'),ref('etat_ht'),ref('etat_pap'),ref('etat_prd'),ref('etat_hs'),ref('etat_hs30'),ref('etat_hs50'),ref('etat_hmj'),ref('etat_hmd'),ref('etat_absded'),ref('etat_hmf'),ref('etat_pdl'),ref('etat_rap'),ref('etat_sbrut'),ref('etat_cnaps_emp'),ref('etat_cnaps_pat'),ref('etat_med_emp'),ref('etat_met_pat'),ref('etat_imposable'),ref('etat_ded_enfant'),ref('etat_irsa'),ref('etat_avance15'),ref('etat_au_ded'),ref('etat_avance_spe'),ref('etat_ret_total'),ref('etat_net1'),ref('etat_ecart_arr'),ref('etat_net2'),ref('etat_net'),ref('etat_alloc'),ref('etat_net_a_payer'),ref('etat_s_avantage'),ref('etat_s_prime'),ref('etat_msa')])]"/>
+        </record>
+        
+        <record model="ir.exports.line" id="etat_lots">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_date_deb">
+            <field name="export_id" ref="etat"/> 
+        </record>
+        <record model="ir.exports.line" id="etat_date_fin">
+            <field name="export_id" ref="etat"/> 
+        </record>
+        <record model="ir.exports.line" id="etat_matricule">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_employee">
+            <field name="export_id" ref="etat"/>           
+        </record>
+        <record model="ir.exports.line" id="etat_job">
+            <field name="export_id" ref="etat"/>           
+        </record>
+        <record model="ir.exports.line" id="etat_hc">
+            <field name="export_id" ref="etat"/>     
+        </record>
+        <record model="ir.exports.line" id="etat_cat">
+            <field name="export_id" ref="etat"/>      
+        </record>
+        <record model="ir.exports.line" id="etat_ag">
+            <field name="export_id" ref="etat"/>         
+        </record>
+        <record model="ir.exports.line" id="etat_emb">
+            <field name="export_id" ref="etat"/>             
+        </record>
+        <record model="ir.exports.line" id="etat_sb">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_sm">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_th">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_tj">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_pap">
+            <field name="export_id" ref="etat"/> 
+        </record>
+        <record model="ir.exports.line" id="etat_prd">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_hs">
+            <field name="export_id" ref="etat"/>         
+        </record>
+        <record model="ir.exports.line" id="etat_hs30">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_hs50">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_hmj">
+            <field name="export_id" ref="etat"/>             
+        </record>
+        <record model="ir.exports.line" id="etat_hmd">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_absded">
+            <field name="export_id" ref="etat"/>          
+        </record>
+        <record model="ir.exports.line" id="etat_hmf">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_pdl">
+            <field name="export_id" ref="etat"/>             
+        </record>
+        <record model="ir.exports.line" id="etat_rap">
+            <field name="export_id" ref="etat"/>         
+        </record>
+        <record model="ir.exports.line" id="etat_sb">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_cnaps_emp">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_cnaps_pat">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_med_emp">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_met_pat">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_imposable">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_ded_enfant">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_irsa">
+            <field name="export_id" ref="etat"/>           
+        </record>
+        <record model="ir.exports.line" id="etat_avance15">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_au_ded">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_avance_spe">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_ret_total">
+            <field name="export_id" ref="etat"/>            
+        </record>
+        <record model="ir.exports.line" id="etat_net">
+            <field name="export_id" ref="etat"/>      
+        </record>
+        <record model="ir.exports.line" id="etat_alloc">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_net_a_payer">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_s_avantage">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_s_prime">
+            <field name="export_id" ref="etat"/>
+        </record>
+        <record model="ir.exports.line" id="etat_net1">
+            <field name="export_id" ref="etat"/>       
+        </record>
+        <record model="ir.exports.line" id="etat_net2">
+            <field name="export_id" ref="etat"/>       
+        </record>
+        <record model="ir.exports.line" id="etat_msa">
+            <field name="export_id" ref="etat"/>       
+        </record>
+        <record model="ir.exports.line" id="etat_ecart_arr">
+            <field name="export_id" ref="etat"/>       
+        </record>
+        
+        <!--  Export Entrées -->
+        <record model="ir.exports" id="entree">
+            <field name="name">Entrée</field>
+            <field name="resource">hr.payslip.input</field>
+        </record>
+        
+         <record model="ir.exports.line" id="code_rubric1">
+         	<field name="name">code_rubric</field> 
+         	<field name="export_id" ref="entree" />
+         </record>
+         
+         <record model="ir.exports.line" id="service">
+         	<field name="name">service/name</field> 
+         	<field name="export_id" ref="entree" />
+         </record>
+         
+         <record model="ir.exports.line" id="job">
+         	<field name="name">job/name</field> 
+         	<field name="export_id" ref="entree" />
+         </record>
+         
+         <record model="ir.exports.line" id="matricule">
+         	<field name="name">matricule</field> 
+         	<field name="export_id" ref="entree" />
+         </record>
+        
+         <record model="ir.exports.line" id="name_employee_id">
+         	<field name="name">name_employee_id</field> 
+         	<field name="export_id" ref="entree" />
+         </record> 
+         
+         <record model="ir.exports.line" id="surname_employee">
+         	<field name="name">surname_employee</field> 
+         	<field name="export_id" ref="entree" />
+         </record> 
+         
+         <record model="ir.exports.line" id="quantity">
+         	<field name="name">quantity</field> 
+         	<field name="export_id" ref="entree" />
+         </record> 
+         
+         <record model="ir.exports.line" id="product_uom">
+         	<field name="name">product_uom/display_name</field> 
+         	<field name="export_id" ref="entree" />
+         </record> 
+         
+         <record model="ir.exports.line" id="amount">
+         	<field name="name">amount</field> 
+         	<field name="export_id" ref="entree" />
+         </record> 
+         
+         
+        <!--  Export Ligne de paie -->
+        <record model="ir.exports" id="lignepaie">
+            <field name="name">Ligne de paie</field>
+            <field name="resource">hr.payslip.line</field>
+        </record>
+        
+         <record model="ir.exports.line" id="code_rubric">
+         	<field name="name">code_rubric</field> 
+         	<field name="export_id" ref="lignepaie" />
+         </record>
+         
+         <record model="ir.exports.line" id="namepaie">
+         	<field name="name">name</field> 
+         	<field name="export_id" ref="lignepaie" />
+         </record>
+         
+         <record model="ir.exports.line" id="service1">
+         	<field name="name">employee_id/code_service/service_id</field> 
+         	<field name="export_id" ref="lignepaie" />
+         </record>
+         
+         <record model="ir.exports.line" id="job1">
+         	<field name="name">employee_id/code_poste/job_id</field> 
+         	<field name="export_id" ref="lignepaie" />
+         </record>
+         
+         <record model="ir.exports.line" id="name1">
+         	<field name="name">employee_id/name</field> 
+         	<field name="export_id" ref="lignepaie" />
+         </record>
+        
+        <record model="ir.exports.line" id="total_paie">
+         	<field name="name">total</field> 
+         	<field name="export_id" ref="lignepaie" />
+         </record> 
+        
+         
+    </data>
+</openerp>

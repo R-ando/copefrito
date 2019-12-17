@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="copefrito" default="ci" basedir=".">
+    <property name="version" value="0.1"/>
+
+    <property name="IP_CLIENT" value="154.126.32.90"/>
+    <property name="USER_PREPROD" value="copefrito"/>
+    <property name="MDP_PREPROD" value="22UpUh2F5i8pB"/>
+    <property name="USER_PROD" value="copefrito.dev"/>
+    <property name="MDP_PROD" value="bElvxfg400O8Q"/>
+    <property name="PATH_ADDONS" value="copefrito-addons/"/>
+	<property name="PACKAGE_NAME" value="copefrito_addons" />
+	<property name="DOSSIER_TMP" value="copefrito" />
+
+    <target name="ci"
+            description="Tâche principale d'intégration continue"
+            depends="clean"/>
+ 
+    <target name="clean" description="Vide les répertoires d'artefacts">
+        <delete dir="${project.basedir}/prepare-build/build/api" />
+        <delete dir="${project.basedir}/prepare-build/build/code-browser" />
+        <delete dir="${project.basedir}/prepare-build/build/coverage" />
+        <delete dir="${project.basedir}/prepare-build/build/logs" />
+        <delete dir="${project.basedir}/prepare-build/build/pdepend" />
+        <delete dir="${project.basedir}/prepare-build/build/package" />
+        <delete dir="${project.basedir}/prepare-build/build/test" />
+        <delete dir="${project.basedir}/prepare-build/exports" />
+        <delete dir="${project.basedir}/prepare-build/helpers/jobs" />
+	 
+        <mkdir dir="${project.basedir}/prepare-build/build/api" />
+        <mkdir dir="${project.basedir}/prepare-build/build/code-browser" />
+        <mkdir dir="${project.basedir}/prepare-build/build/coverage" />
+        <mkdir dir="${project.basedir}/prepare-build/build/logs" />
+        <mkdir dir="${project.basedir}/prepare-build/build/pdepend" />
+        <mkdir dir="${project.basedir}/prepare-build/build/package" />
+        <mkdir dir="${project.basedir}/prepare-build/build/test" />
+        <mkdir dir="${project.basedir}/prepare-build/exports" />
+        <mkdir dir="${project.basedir}/prepare-build/helpers/jobs" />
+    </target>
+		   		
+		<target name="package">
+		
+		<!-- suppression du dossier temporaire avant création -->
+		<echo msg="supprimer le dossier /tmp/${DOSSIER_TMP}/" />
+		<exec command="rm -rf /tmp/${DOSSIER_TMP}/" logoutput="true" />
+		
+		<!-- création du dossier temporaire -->
+		<echo msg="créer le dossier /tmp/${DOSSIER_TMP}/" />
+		<exec command="mkdir -p /tmp/${DOSSIER_TMP}/" logoutput="true" />
+							
+				
+		<!-- compression des modules à déployer -->
+		<echo msg="compresser les différents modules concernés" />
+		<tar destfile="${project.basedir}/prepare-build/build/package/${PACKAGE_NAME}.tar.gz" compression="gzip" 
+			excludes=".svn/**" basedir="${project.basedir}/"/>
+		
+				
+		<!-- Copie des fichiers compressés -->
+		<echo msg="copier le(s) fichiers tar.gz dans le répertoire temporaire" />	
+		<copy file="${project.basedir}/prepare-build/build/package/${PACKAGE_NAME}.tar.gz" todir="/tmp/${DOSSIER_TMP}/"/>		
+		
+		<!-- décompression des fichiers tar.gz -->
+		
+		<echo msg="detarrer la source" />
+		<untar  file="/tmp/${DOSSIER_TMP}/${PACKAGE_NAME}.tar.gz" todir="/tmp/${DOSSIER_TMP}/" />
+				
+		
+		<!-- supression des fichiers zippés -->
+		
+		<echo msg="supprimer les fichiers zippés" />
+		<exec command="rm /tmp/${DOSSIER_TMP}/${PACKAGE_NAME}.tar.gz" logoutput="true" />
+				
+		<!-- supression des dossiers build et utils -->
+		
+		<echo msg="supprimer les dossier build et utils dans /tmp/${DOSSIER_TMP}/" />
+		<exec command="rm -rf /tmp/${DOSSIER_TMP}/prepare-build" logoutput="true" />
+		<exec command="rm -rf /tmp/${DOSSIER_TMP}/build" logoutput="true" />
+		<exec command="rm -rf /tmp/${DOSSIER_TMP}/utils" logoutput="true" />
+		
+    </target>
+
+    <!-- déployer sur PREPROD -->
+    <target name="deploy-copefrito-preprod">
+        <echo msg="envoyer le contenu du dossier tmp vers le FTP"/>
+        <exec command="cd /tmp/${DOSSIER_TMP}/; lftp ftp://${USER_PREPROD}:${MDP_PREPROD}@${IP_CLIENT}/custom_addons -e 'mirror -R -P8; quit;'"
+              logoutput="true"/>
+        <echo msg="supprimer le dossier /tmp/${DOSSIER_TMP}/"/>
+        <exec command="rm -rf /tmp/${DOSSIER_TMP}/" logoutput="true"/>
+        <echo msg="redemarrer"/>
+    </target>
+
+    <!-- déployer sur PROD -->
+    <target name="deploy-copefrito-prod">
+        <echo msg="envoyer le contenu du dossier tmp vers le FTP"/>
+        <exec command="cd /tmp/${DOSSIER_TMP}/; lftp ftp://${USER_PROD}:${MDP_PROD}@${IP_CLIENT}/copefrito-addons -e 'mirror -R -P8; quit;'"
+              logoutput="true"/>
+        <echo msg="supprimer le dossier /tmp/${DOSSIER_TMP}/"/>
+        <exec command="rm -rf /tmp/${DOSSIER_TMP}/" logoutput="true"/>
+        <echo msg="redemarrer"/>
+    </target>
+
+</project>

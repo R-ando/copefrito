@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="paperformat_copefrito_landscape1" model="report.paperformat">
+      <field name="name">European A4 Landscape</field>
+      <field name="default" eval="True"/>
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Landscape</field>
+      <field name="margin_top">5</field>
+      <field name="margin_bottom">20</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False"/>
+      <field name="header_spacing">1000</field>
+      <field name="dpi">90</field>
+    </record>
+
+    <!-- report menu -->
+    <report
+        id="copefrito_report_STC"
+        model="hr.payslip"
+        string="Fiche STC"
+        report_type="qweb-pdf"
+        name="hr_copefrito_paie.report_STC"
+        file="hr_copefrito_paie.report_STC"
+        paperformat="paperformat_copefrito_landscape1"
+    />
+
+
+    <template id="report_STC" inherit_id="hr_copefrito_paie.report_fiche_paie_copefrito">
+    </template>
+
+  </data>
+</odoo>

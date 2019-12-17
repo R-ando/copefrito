@@ -1,0 +1,33 @@
+<openerp>
+    <data>
+        <record id="edit_holiday_form_inherit" model="ir.ui.view">
+            <field name="name">hr.holidays.inherit.form</field>
+            <field name="model">hr.holidays</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group/div/div[2]" position="replace">
+                    <field name="number_of_days_temp" class="oe_inline"/> jours
+                    <group>
+                        <field name="addhalfday" invisible="1"/>
+                        <field name="halfdayposition" attrs="{'invisible': ['|',('addhalfday', '=', False),('type','=','add')]}" string="Demi-journée"/>     
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='payslip_status']" position="after">
+                    <field name="visible_payslip" attrs="{'invisible':[('type','=','add')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='payslip_status']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='holiday_status_id']" position="attributes">
+                    <attribute name="options">{'no_create':1}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='employee_id']" position="attributes">
+                    <attribute name="options">{'no_create':1}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="options">{'no_create':1}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

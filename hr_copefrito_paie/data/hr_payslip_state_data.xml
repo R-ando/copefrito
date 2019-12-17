@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record model="hr.payslip.state" id="state_payslip_run">
+            <field name="name">Lot de bulletin</field>
+        </record>
+        
+    </data>
+</openerp>

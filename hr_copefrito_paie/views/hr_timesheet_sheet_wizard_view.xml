@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>   
+
+    <record model="ir.ui.view" id="view_hr_timesheet_sheet_wizard_form">
+        <field name="name">hr.timesheet.sheet.wizard.form</field>
+        <field name="model">hr.timesheet.sheet.wizard</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Approuver feuilles de temps">
+                <p class="oe_grey">
+                    Ces données seront modifiables si nécessaire avant la validation
+                    de la feuille de temps. Une fois que les feuilles de temps
+                    en confirmés sont approuvés, vous ne serez plus capable de les 
+                    modifier.
+                </p>                
+                <footer>
+                    <button string="Fermer" special="cancel" class="oe_link"/>
+                    ou
+                    <button type="object" name="sheet_confirm" string="Approuver" class="oe_highlight" icon="fa-check"/>
+                </footer>
+            </form>
+        </field>
+    </record>        
+
+    </data>
+</openerp>

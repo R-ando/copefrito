@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="hr.holidays.status" id="hs_absence_deductible">
+            <field name="name">Absence déductible</field>
+            <field name="limit" eval="False"/>
+            <field name="color_name">red</field>
+            <field name="deductible" eval="True"/>
+        </record>
+        
+        <record model="hr.holidays.status" id="hs_absence_non_deductible">
+            <field name="name">Absence non déductible</field>
+            <field name="limit" eval="False"/>
+            <field name="color_name">red</field>
+            <field name="deductible" eval="False"/>
+        </record>
+        
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_cl">
+            <field name="deductible" eval="False"/>
+        </record>
+        
+  <!--      <delete model="hr.holidays.status" search="[('id','=',ref('hr_holidays.holiday_status_sl'))]"/>
+        <delete model="hr.holidays.status" search="[('id','=',ref('hr_holidays.holiday_status_comp'))]"/>
+        <delete model="hr.holidays.status" search="[('id','=',ref('hr_holidays.holiday_status_unpaid'))]"/>-->
+        
+    </data>
+</openerp>

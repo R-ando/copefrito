@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record model="agency.default.data" id="TVE">
+            <field name="name">TVE</field>            
+        </record>
+        <record model="agency.default.data" id="TNR">
+            <field name="name">TNR</field>
+        </record>
+        <record model="agency.default.data" id="MJG">
+            <field name="name">MJG</field>
+        </record>
+        <record model="agency.default.data" id="TMV">
+            <field name="name">TMV</field>
+        </record>
+    </data>
+</openerp>

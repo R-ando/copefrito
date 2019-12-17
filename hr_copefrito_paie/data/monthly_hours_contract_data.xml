@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>        
+        <record model="monthly.hours.contract.data" id="240_heures">
+            <field name="name">240 heures</field>
+            <field name="hours">240</field>
+            <field name="code">HC_240</field>
+        </record>
+        <record model="monthly.hours.contract.data" id="312_heures">
+            <field name="name">312 heures</field>
+            <field name="hours">312</field>
+            <field name="code">HC_312</field>
+        </record>
+        <record model="monthly.hours.contract.data" id="173_heures">
+            <field name="name">173,33 heures</field>
+            <field name="hours">173.33</field>
+            <field name="code">HC_173</field>
+        </record>
+    </data>
+</openerp>

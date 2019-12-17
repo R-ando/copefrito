@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="ir_ui_menu_configurations_r0" name="Configurations" parent="hr_attendance.timesheet_menu_root" sequence="100"/>
+        <!--  <menuitem id="ir_ui_menu_pointages_r0" name="Pointages" parent="ir_ui_menu_configurations_r0" sequence="10" action="ir_actions_act_window_pointages_r0"/>
+          -->
+        <!-- next line commented because the field is not used on contract form view : modified to invisible -->
+
+        <!--menuitem id="ir_ui_menu_heures_de_travail_r0" name="Heures de travail" parent="hr.menu_human_resources_configuration" sequence="10" action="ir_actions_act_window_heures_de_travail_r0"/ -->
+
+        <!-- <menuitem id="ir_ui_menu_feuilles_de_temps_r0" name="Feuilles de temps" parent="ir_ui_menu_configurations_r0" sequence="10" action="ir_actions_act_window_feuilles_de_temps_r0"/>
+        <menuitem id="ir_ui_menu_generate_timesheet_r0" name="Generate Timesheet" parent="ir_ui_menu_configurations_r0" sequence="10" action="ir_actions_act_window_timesheet_generator_r0"/>
+         -->
+
+
+        <!-- Menu for report in xls -->
+
+        <menuitem
+                action="hr_copefrito_paie.action_view_copefrito_report"
+                id="menu_copefrito_report"
+                parent="hr_payroll.menu_hr_payroll_root" sequence="6" groups="hr_copefrito_paie.invisible_group"/>
+
+        <menuitem
+                action="hr_copefrito_paie.action_view_copefrito_report_2"
+                id="menu_copefrito_report_recap"
+                parent="hr_payroll.menu_hr_payroll_root" sequence="4" groups="hr_copefrito_paie.group_pay_manager,hr_copefrito_paie.group_direction,hr_copefrito_paie.group_pay_operateur"/>
+
+        <!-- Menu for report in xls 2 -->
+
+        <!--menuitem
+            action="hr_copefrito_paie.action_view_dirickx_report_2"
+            id="menu_dirickx_report_2"
+            parent="hr_payroll.menu_hr_payroll_root" sequence="13"/-->
+
+        <!-- Menu for payslip payment mode -->
+
+        <menuitem
+                action="hr_copefrito_paie.action_hr_payslip_payment_mode"
+                id="menu_hr_payslip_payment_mode"
+                parent="menu_general_setting" sequence="4"/>
+
+      <!--  <menuitem 
+            action="hr_copefrito_paie.action_decimal_precision"
+            id="hr_copefrito_paie.hr_decimal_precision"
+            parent="menu_general_setting" sequence="1" groups="base.group_user" />  -->
+
+        
+
+        <!-- Menu for hr contract qualifiation -->
+
+        <!--<menuitem -->
+        <!--action="hr_copefrito_paie.action_hr_contract_qualification" -->
+        <!--id="menu_hr_contract_qualification" -->
+        <!--name="CSP"-->
+        <!--parent="hr.menu_human_resources_configuration" sequence="9"/>-->
+
+        <menuitem
+                action="hr_copefrito_paie.action_hr_contract_qualification"
+                id="menu_hr_contract_qualification"
+                name="Catégories socio-professionnelles"
+                parent="menu_general_setting" sequence="1"/>
+
+        <!-- Menu for payslip paid state -->
+
+        <!--<menuitem-->
+        <!--action="hr_copefrito_paie.action_hr_payslip_analysis"-->
+        <!--id="menu_paid_state"-->
+        <!--parent="hr_payroll.menu_hr_payroll_root" sequence="2" groups="hr_copefrito_paie.group_pay_manager"/>-->
+
+
+        <!-- Menu of category of salary rule on config for direction and pay manager -->
+        <record id="action_hr_salary_rule_category" model="ir.actions.act_window">
+            <field name="name">Catégories de règles pour le salaire</field>
+            <field name="res_model">hr.salary.rule.category</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="hr_payroll.hr_salary_rule_category_tree"/>
+            <field name="search_view_id" ref="hr_payroll.view_hr_salary_rule_category_filter"/>
+        </record>
+        <menuitem
+                id="hr_payroll.menu_hr_salary_rule_category"
+                action="action_hr_salary_rule_category"
+                parent="menu_general_configuration"
+                sequence="3"
+                groups="base.group_hr_manager,hr_copefrito_paie.group_direction"
+        />
+
+
+        <record id="action_hr_salary_rule_category_tree_view" model="ir.actions.act_window">
+            <field name="name">Hiérarchie des catégories de règles salariales</field>
+            <field name="res_model">hr.salary.rule.category</field>
+            <field name="view_type">tree</field>
+            <field name="domain">[('parent_id','=',False)]</field>
+            <field name="view_id" ref="hr_payroll.hr_salary_rule_category_tree_view"/>
+        </record>
+        <menuitem
+                id="hr_payroll.menu_hr_salary_rule_category_tree_view"
+                action="action_hr_salary_rule_category_tree_view"
+                parent="hr_payroll.menu_hr_payroll_configuration"
+                sequence="3"
+                icon="STOCK_INDENT"
+                groups="base.group_hr_manager"
+        />
+
+        <!-- Hide Menu Apps in Odoo -->
+        <record id="base.menu_management" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.hidden_group')] )]"/>
+        </record>
+
+        <!--Group parametrage des employés-->
+        <!--<record id="hr_days_off.holiday_period_user_mi" model="ir.ui.menu">-->
+        <!--<field name="parent_id" ref="menu_employee_setting"/>-->
+        <!--</record>-->
+        <menuitem id="hr_days_off.holiday_period_user_mi" groups="hr_copefrito_paie.invisible_group"/>
+        <record id="hr_days_off.holiday_mi" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_setting"/>
+            <field name="sequence" eval="6"/>
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.invisible_group')])]"/>
+        </record>
+        <record id="hr_contract.hr_menu_contract_type" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_employee_setting"/>
+        </record>
+        <record id="hr_contract.hr_menu_contract" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+        <record id="hr.menu_view_employee_category_form" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_employee_setting"/>
+        </record>
+        <!--Group parametrage de paie-->
+        <record id="hr_payroll.menu_hr_payroll_global_settings" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_configuration"/>
+            <field name="sequence" eval="7"/>
+        </record>
+        <record id="hr_payroll.menu_hr_salary_rule_category_tree_view" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_configuration"/>
+        </record>
+        <record id="hr_payroll.menu_action_hr_contribution_register_form" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_configuration"/>
+        </record>
+
+        <menuitem id="parent_menu_hr_payslip_run" parent="hr_payroll.menu_hr_payroll_root" groups="hr_copefrito_paie.group_pay_operateur,hr_copefrito_paie.group_direction" name="Période de paie" sequence="0"/>
+
+        <!--    hide menu Payslip run for Input operator-->
+        <!--<menuitem id="hr_payroll.menu_hr_payslip_run" parent="hr_payroll.menu_hr_payroll_root" groups="hr_copefrito_paie.group_pay_manager"/>-->
+        <menuitem id="hr_payroll.menu_hr_payslip_run" groups="hr_copefrito_paie.invisible_group"/>
+
+
+        <!--Hide menu Payslip for Input operator   -->
+        <record id="hr_payroll.menu_department_tree" model="ir.ui.menu">
+            <field name="sequence" eval="5"/>
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_payroll.action_view_hr_payslip_form" model="ir.actions.act_window">
+            <field name="context">{'default_is_stc': False, 'search_default_company_id':1}</field>
+            <field name="domain">[('is_stc', '=', False)]</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record id="action_view_hr_payslip_stc_form" model="ir.actions.act_window">
+            <field name="name">Saisie du STC</field>
+            <field name="res_model">hr.payslip</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="hr_payroll.view_hr_payslip_tree"/>
+            <field name="search_view_id" ref="hr_payroll.view_hr_payslip_filter"/>
+            <field name="context">{'default_is_stc': True, 'search_default_company_id':1}</field>
+            <field name="domain">[('is_stc', '=', True)]</field>
+        </record>
+        <menuitem action="action_view_hr_payslip_stc_form" id="menu_stc_tree" parent="hr_payroll.menu_hr_payroll_root" groups="hr_copefrito_paie.group_pay_operateur,hr_copefrito_paie.group_direction" sequence="3"/>
+
+        <record id="hr_attendance.timesheet_menu_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager')])]"/>
+        </record>
+
+        <record id="hr_holidays.menu_hr_holidays_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.invisible_group')])]"/>
+        </record>
+
+        <record id="hr_attendance.menu_hr_attendance_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager')])]"/>
+        </record>
+
+        <record id="mail.menu_contacts" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager')])]"/>
+        </record>
+
+        <record id="hr.menu_hr_department_tree" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction')])]"/>
+        </record>
+
+        <!--set menu configuration at first-->
+        <menuitem
+                id="base.menu_administration"
+                sequence="2"
+                groups="hr_copefrito_paie.group_pay_manager"
+        />
+
+        <menuitem
+                id="hr.menu_hr_root"
+                sequence="3"
+        />
+        <menuitem
+                id="hr_payroll.menu_hr_payroll_root"
+                sequence="4"
+        />
+        <menuitem
+                id="base.menu_board_root"
+                sequence="1"
+        />
+        <menuitem
+                id="mail.mail_channel_menu_root_chat"
+                sequence="5"
+        />
+        <menuitem
+                id="calendar.mail_menu_calendar"
+                sequence="6"
+        />
+        <!--hide menu Feuille de temps/ Comptabilité/ Présence/ Contacts-->
+        <record id="hr_attendance.timesheet_menu_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.invisible_group')])]"/>
+        </record>
+
+        <record id="account.menu_finance" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.invisible_group')])]"/>
+        </record>
+
+        <record id="hr_attendance.menu_hr_attendance_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.invisible_group')])]"/>
+        </record>
+
+        <record id="mail.menu_contacts" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('hr_copefrito_paie.invisible_group')])]"/>
+        </record>
+
+        <!--<record id="base.menu_users" model="ir.ui.menu">-->
+        <!--<field name="sequence" eval="9"/>-->
+        <!--</record>-->
+        <menuitem id="base.menu_action_res_company_form" parent="menu_general_setting" sequence="0"/>
+        <menuitem id="web_settings_dashboard.web_dashboard_menu" parent="menu_general_setting" sequence="19"/>
+        <!--Add kanban view in company menu-->
+        <record id="base.action_res_company_form" model="ir.actions.act_window">
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <menuitem id="base.menu_action_res_groups" parent="menu_general_setting" groups="base.group_system" sequence="9"/>
+        <menuitem id="base.menu_action_res_users" parent="menu_general_setting" groups="base.group_system" sequence="10"/>
+        <!--<menuitem id="base.menu_action_res_users" parent="menu_general_setting" sequence="0"/>-->
+
+        <!--Configuration système-->
+        <menuitem
+                id="hr_payroll.menu_hr_payroll_structure_view"
+                parent="menu_general_configuration"
+                sequence="1"
+        />
+        <menuitem
+                id="hr_payroll.menu_hr_payroll_structure_tree"
+                parent="menu_general_configuration"
+                sequence="2"
+        />
+        <menuitem id="hr_payroll.menu_action_hr_salary_rule_form" parent="menu_general_configuration" sequence="6"/>
+
+        <record id="act_hr_payslip_payment_mobile" model="ir.actions.act_window">
+            <field name="res_model">hr.payslip.payment.mobile</field>
+            <field name="view_type">form</field>
+            <field name="name">Mobile banking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--Configuration de paie-->
+        <menuitem id="hr.menu_hr_department_tree" parent="menu_company_setting" sequence="0"/>
+        <menuitem action="" id="menu_finance_institution" parent="menu_company_setting" sequence="4" name="Institution financière"/>
+        <menuitem  action="base.action_res_bank_form" id="menu_bank" parent="menu_company_setting" sequence="3" name="Banque"/>
+        <menuitem  action="base.action_res_partner_bank_account_form" id="menu_bank_account" parent="menu_company_setting" sequence="4" name="Compte bancaire"/>
+        <menuitem action="act_hr_payslip_payment_mobile" id="menu_mobile_bank" parent="menu_company_setting" sequence="5" name="Mobile banking"/>
+        <menuitem id="menu_level_hierar" parent="menu_general_configuration" sequence="2" name="Niveau hierrarchique"/>
+
+        <record id="action_hr_payslip_run_pending_tree" model="ir.actions.act_window">
+            <field name="name">En cours de traitement</field>
+            <field name="res_model">hr.payslip.run</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="view_id" ref="hr_payroll.hr_payslip_run_tree"/>
+            <field name="search_view_id" ref="hr_payroll.hr_payslip_run_filter"/>
+            <field name="domain">[('state', 'in', ['draft', 'pending', 'instance'])]</field>
+            <field name="context">{'search_default_group_company':1}</field>
+        </record>
+
+        <menuitem action="action_hr_payslip_run_pending_tree" id="menu_hr_payslip_run_pending" parent="parent_menu_hr_payslip_run" groups="hr_copefrito_paie.group_pay_operateur,hr_copefrito_paie.group_direction"/>
+
+        <record id="action_hr_payslip_run_validate_tree" model="ir.actions.act_window">
+        <field name="name">Validées</field>
+        <field name="res_model">hr.payslip.run</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_id" ref="hr_payroll.hr_payslip_run_tree"/>
+        <field name="search_view_id" ref="hr_payroll.hr_payslip_run_filter"/>
+        <field name="domain">[('state', 'not in', ['draft', 'pending', 'instance'])]</field>
+        <field name="context">{'search_default_group_company':1, 'validate_run': True}</field>
+    </record>
+
+    <menuitem action="action_hr_payslip_run_validate_tree" id="menu_hr_payslip_run_validate" parent="parent_menu_hr_payslip_run" groups="hr_copefrito_paie.group_pay_manager,hr_copefrito_paie.group_direction"/>
+
+    <record id="menu_finance_institution" model="ir.ui.menu">
+        <field name="action" eval="False"/>
+    </record>
+
+    <record id="decimal_precision.menu_decimal_precision_form" model="ir.ui.menu">
+        <field name="parent_id" ref="hr_copefrito_paie.menu_general_setting"/>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    
+       <!--  <record id="hr_copefrito_paie.decimal_precision" model="ir.ui.menu">
+            <field name="name">Decimales</field>
+            <field name="parent_id" ref="menu_general_setting"/>
+            <field name="sequence" eval="1"/>
+        </record> -->
+         
+
+        <menuitem
+                action="hr_copefrito_paie.action_menu_mail_reminder"
+                id="menu_reminder_configuration"
+                name="Configuration notifications de rappel"
+                parent="menu_general_setting" sequence="1"/>
+                
+    </data> 
+</openerp>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <!-- Tree view hr_payslip_payment_mode -->
+        <record model="ir.ui.view" id="hr_payslip_payment_mode_tree">
+            <field name="name">Modes de paiement</field>
+            <field name="model">hr.payslip.payment.mode</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="note" />
+                <!--<field name="mobile" />-->
+                <field name="payment_type" />
+            </tree>
+            </field>
+        </record>
+
+        <!-- Form view hr_payslip_payment_mode -->
+
+        <record model="ir.ui.view" id="hr_payslip_payment_mode_form">
+            <field name="name">Modes de paiement</field>
+            <field name="model">hr.payslip.payment.mode</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Payment mode">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="note" />
+                            <!--<field name="mobile" />-->
+                            <field name="payment_type" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_payment_mode_filter" model="ir.ui.view">
+            <field name="name">hr.payment.mode.filter</field>
+            <field name="model">hr.payslip.payment.mode</field>
+            <field name="arch" type="xml">
+                <search string="Search Payement Mode">
+                    <filter string="Type" name="group_type" icon="terp-folder-orange" context="
+                        {'group_by':'payment_type'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_payslip_payment_mode" model="ir.actions.act_window">
+            <field name="name">Modes de paiement</field>
+            <field name="res_model">hr.payslip.payment.mode</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="hr_copefrito_paie.hr_payment_mode_filter"/>
+            <field name="context">{'search_default_group_type': 1}</field>
+        </record>
+
+    </data>
+</odoo>

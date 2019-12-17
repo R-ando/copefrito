@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>       
+        <record id="view_partner_bank_form_inherit" model="ir.ui.view">
+            <field name="name">view.partner.bank.form.inherit</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">         
+                <data>
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="gab_code"/>
+                        <field name="rib_key"/>
+                    </xpath>
+                    <field name="partner_id" position="replace">
+                        <field name="employee_id" domain="[('bank_account_id', '=', False)]" options="{'no_create_edit': 1, 'no_quick_create': True}"/>
+                    </field>
+                    <field name="bank_id" position="attributes">
+                        <attribute name="options">{'no_quick_create':1, 'no_create_edit':1}</attribute>
+                    </field>
+                </data>
+            </field>
+         </record>
+
+        <record id="view_partner_bank_tree_inherit" model="ir.ui.view">
+            <field name="name">partner.bank.tree</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="partner_id" position="replace">
+                        <field name="employee_id" string="Titulaire de compte"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

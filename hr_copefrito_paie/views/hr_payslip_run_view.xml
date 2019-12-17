@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="act_hr_payslip_class_2_hr_payslip_run" model="ir.actions.act_window">
+      <field name="res_model">hr.payslip.class</field>
+      <field name="view_type">form</field>
+      <field name="name">Classes</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('payslip_run','=', active_id)]</field>
+    </record>
+    <record id="act_hr_payslip_run_2_hr_payslip" model="ir.actions.act_window">
+      <field name="res_model">hr.payslip</field>
+      <field name="view_type">form</field>
+      <field name="name">Bulletins</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('payslip_run_id','=', active_id)]</field>
+    </record>
+    <record id="hr_payslip_run_form_inherit" model="ir.ui.view">
+      <field name="name">hr.payslip.run.form.inherit</field>
+      <field name="model">hr.payslip.run</field>
+      <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+      <field name="priority" eval="16"/>
+      <field name="arch" type="xml">
+        <xpath expr="//label[1]" position="before">
+          <div name="button_box" class="oe_button_box">
+            <!-- states="validate" -->
+
+            <button name="%(act_hr_payslip_run_2_hr_payslip)d"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    type="action"
+                    context="{'from_run': True}">
+              <field name="nb_slip_ids" widget="statinfo" string="Les bulletins"/>
+            </button>
+
+            <button name="%(act_hr_payslip_class_2_hr_payslip_run)d"
+                    class="oe_stat_button"
+                    icon="fa-bars"
+                    type="action"
+                    string="Gérer les classes">
+              <!--                            <field name="nb_classes" widget="statinfo" string="Gérer les classes"/>-->
+            </button>
+          </div>
+        </xpath>
+
+        <xpath expr="//group" position="inside">
+          <field name="company_id" options="{'no_create_edit': 1, 'no_quick_create': True}"
+                 groups="base.group_multi_company"/>
+          <field name="is_verified" invisible="1"/>
+        </xpath>
+        <field name="credit_note" position="replace">
+        </field>
+
+        <xpath expr="//header/button[2]" position="after">
+          <field name="computed_payslips" invisible="1"/>
+          <button name="compute_sheet_generate" string="Générer les bulletins" type="object"
+                  class="oe_highlight"
+                  attrs="{'invisible':['|',('total_payslip', '=', 0),('state', 'not in', ['draft', 'pending'])]}"
+                  groups="hr_copefrito_paie.group_pay_manager"/>
+
+
+          <button name="refresh" string="Actualiser" type="object" class="oe_highlight"
+                  attrs="{'invisible':['|',('total_payslip', '=', 0), ('state', 'not in', ['draft', 'pending', 'instance'])]}"
+                  groups="hr_copefrito_paie.group_pay_manager"/>
+          <button name="compute_all" string="Calculer" type="object" class="oe_highlight"
+                  attrs="{'invisible':['&amp;', ('state', 'not in', ['instance']), '|', ('total_payslip', '=', 0), ('is_verified', '=', False), ('computed_payslips', '=', False)]}"
+                  groups="hr_copefrito_paie.group_pay_manager"/>
+          <button name="make_close" string="Clôturer" type="object" class="oe_highlight" states="waiting"
+                  groups="hr_copefrito_paie.group_pay_manager"/>
+          <button name="make_waiting" string="Mise en attente" type="object" class="oe_highlight"
+                  states="validate" groups="hr_copefrito_paie.group_pay_manager"/>
+          <button string="Remettre à brouillon" name="set_draft" type="object"
+                  attrs="{'invisible':[('button_draft_visibility', '=', False)]}"
+                  groups="hr_copefrito_paie.group_pay_manager"/>
+          <!--<button string="Valider tout" name="validate_all" type="object" groups="base.group_no_one"/>-->
+          <!--                    <button name="color_to_orange" string="Rendre orange" type="object" class="oe_highlight" states="draft"/>-->
+        </xpath>
+        <xpath expr="//button[@name='refresh']" position="after">
+          <button string="Dévalider" name="invalidate" groups="hr_copefrito_paie.group_system_admin" type="object"
+                  class="oe_highlight" states="validate"/>
+        </xpath>
+        <xpath expr="//header/button[2]" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//button[@name='close_payslip_run']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//button[@name='draft_payslip_run']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//sheet/separator" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <field name="slip_ids" position="replace">
+          <notebook>
+            <!--
+                                    <page string="Bulletin de paies">
+                                        <field name="slip_ids">
+                                            <tree>
+                                                <field name="service"/>
+                                                <field name="matricule"/>
+                                                <field name="employee_id"/>
+                                                <field name="number"/>
+                                                <field name="date_from"/>
+                                                <field name="date_to"/>
+                                                <field name="state"/>
+                                                <field name="company_id"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+            -->
+            <page string="Classes" attrs="{'invisible' : [('total_payslip', '=', 0)]}">
+              <field name="class_ids" readonly="1">
+                <tree create="false">
+                  <field name="code"/>
+                  <field name="name"/>
+                  <field name="state"/>
+                  <!--
+                                                      <button class="oe_stat_button" type="object" name="view_class"
+                                                         icon="fa-external-link"/>
+                  -->
+                </tree>
+              </field>
+            </page>
+            <page string="Statistiques">
+              <group>
+                <group string="Bulletins">
+                  <field name="nb_slip_ids_draft"/>
+                  <field name="nb_slip_ids_verify"/>
+                  <field name="nb_slip_ids_instance"/>
+                  <field name="nb_slip_ids_validate"/>
+                  <field name="nb_slip_ids_waiting"/>
+                  <field name="nb_slip_ids_done"/>
+                  <field name="nb_slip_ids_cancel"/>
+                </group>
+                <group string="Classes">
+                  <field name="nb_classes"/>
+                  <field name="nb_classes_draft"/>
+                  <field name="nb_classes_pending"/>
+                  <field name="nb_classes_instance"/>
+                  <field name="nb_classes_validate"/>
+                  <field name="nb_classes_closed"/>
+                  <field name="mail_is_sent" invisible="1"/>
+                  <field name="is_waiting" invisible="1"/>
+                  <field name="button_draft_visibility" invisible="1"/>
+                </group>
+              </group>
+            </page>
+          </notebook>
+        </field>
+
+        <field name="company_id" position="after">
+          <field name="date_payement"/>
+          <field name="responsable_employee_id" options="{'no_create_edit': 1, 'no_quick_create': 1}"
+                 domain="[('user_id', '!=', False)]" string="Responsable"/>
+          <field name="total_payslip"/>
+          <field name="around_value"/>
+          <field name="alert_signature" invisible="1"/>
+          <field name="responsable" invisible="1"/>
+          <label string="La signature du responsable n'est pas configurée" class="oe_red_text" colspan="3"
+                 attrs="{'invisible': [('alert_signature', '=', False)]}"/>
+        </field>
+
+
+        <!--<xpath expr="//group" position="after">-->
+        <!--<group>-->
+        <!--<group string="Bulletins">-->
+        <!--<field name="nb_slip_ids_draft"/>-->
+        <!--<field name="nb_slip_ids_verify"/>-->
+        <!--<field name="nb_slip_ids_instance"/>-->
+        <!--<field name="nb_slip_ids_validate"/>-->
+        <!--<field name="nb_slip_ids_waiting"/>-->
+        <!--<field name="nb_slip_ids_done"/>-->
+        <!--<field name="nb_slip_ids_cancel"/>-->
+        <!--</group>-->
+        <!--<group string="Classes">-->
+        <!--<field name="nb_classes"/>-->
+        <!--<field name="nb_classes_draft"/>-->
+        <!--<field name="nb_classes_pending"/>-->
+        <!--<field name="nb_classes_instance"/>-->
+        <!--<field name="nb_classes_validate"/>-->
+        <!--<field name="nb_classes_closed"/>-->
+        <!--<field name="mail_is_sent" invisible="1"/>-->
+        <!--<field name="is_waiting" invisible="1"/>-->
+        <!--<field name="button_draft_visibility" invisible="1"/>-->
+        <!--</group>-->
+        <!--</group>-->
+        <!--</xpath>-->
+      </field>
+    </record>
+
+    <record id="hr_payslip_run_tree_inherit" model="ir.ui.view">
+      <field name="name">hr.payslip.run.tree.inherit</field>
+      <field name="model">hr.payslip.run</field>
+      <field name="inherit_id" ref="hr_payroll.hr_payslip_run_tree"/>
+      <field name="priority" eval="16"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="company_id" groups="base.group_multi_company"/>
+        </xpath>
+        <field name="credit_note" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </field>
+      </field>
+    </record>
+
+    <record id="hr_payslip_state_form" model="ir.ui.view">
+      <field name="name">hr.payslip.state.form</field>
+      <field name="model">hr.payslip.state</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name"/>
+            <!-- <group>
+                <label for="legend_normal" string=" " class="oe_kanban_status oe_project_kanban_legend"/>
+                <field name="legend_normal" nolabel="1"/>
+                <label for="legend_done" string=" " class="oe_kanban_status oe_kanban_status_green oe_project_kanban_legend"/>
+                <field name="legend_done" nolabel="1"/>
+                <label for="legend_blocked" string=" " class="oe_kanban_status oe_kanban_status_red oe_project_kanban_legend"/>
+                <field name="legend_blocked" nolabel="1"/>
+            </group> -->
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record model='ir.ui.view' id='hr_payslip_run_pivot'>
+      <field name="name">hr.payslip.run.pivot</field>
+      <field name="model">hr.payslip.run</field>
+      <field name="type">pivot</field>
+      <field name='arch' type='xml'>
+        <pivot string='Analyses de période des employés' disable_linking="True">
+          <!--<field name="company_id" type="col" groups="base.group_multi_company"/>-->
+          <field name="state" type="col"/>
+          <!--<field name="name" type="row"/>-->
+        </pivot>
+      </field>
+    </record>
+
+    <record id="action_view_hr_payslip_state_form" model="ir.actions.act_window">
+      <field name="name">Etat</field>
+      <field name="res_model">hr.payslip.state</field>
+      <field name="view_type">form</field>
+    </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_hr_payslip_run_filter_inherit" model="ir.ui.view">
+      <field name="name">hr.payslip.run.filter</field>
+      <field name="model">hr.payslip.run</field>
+      <field name="inherit_id" ref="hr_payroll.hr_payslip_run_filter"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//filter[@name='done_filter']" position="after">
+          <!-- <filter string="Société" name="group_company" icon="terp-folder-orange" context="{'group_by':'company_id'}"/> -->
+        </xpath>
+
+      </field>
+    </record>
+
+
+  </data>
+</openerp>

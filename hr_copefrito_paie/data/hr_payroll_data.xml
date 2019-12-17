@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--  DELETE DEFAULT SALARY STRUCTURE -->
+        <!--<delete model="hr.payroll.structure" id="hr_payroll.structure_base"/>-->
+
+        <!-- HR SALARY RULE CATEGORIES-->
+        <record id="contrib_register_employees" model="hr.contribution.register">
+            <field name="name">Employees</field>
+            <field name="partner_id" eval="False"/>
+        </record>
+
+        <record id="DEFAULT_BASIC" model="hr.salary.rule.category">
+            <field name="name">DEFAULT_BASIC</field>
+            <field name="code">DEFAULT_BASIC</field>
+        </record>
+
+        <record id="hr_payroll.BASIC" model="hr.salary.rule.category">
+            <field name="name">BASIC</field>
+            <field name="code">BASIC</field>
+        </record>
+
+        <record id="S_CONTRACT" model="hr.salary.rule.category">
+            <field name="name">Salaire sur Contrat</field>
+            <field name="code">S_CONTRACT</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="ELM_VAR_CONTRACT" model="hr.salary.rule.category">
+            <field name="name">ELM_VAR_CONTRACT</field>
+            <field name="code">ELM_VAR_CONTRACT</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="NON_IMPOSABLE" model="hr.salary.rule.category">
+            <field name="name">NON_IMPOSABLE</field>
+            <field name="code">NON_IMPOSABLE</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="HSUP_ABS_CNG" model="hr.salary.rule.category">
+            <field name="name">HSUP_ABS_CNG</field>
+            <field name="code">HSUP_ABS_CNG</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="VRB_PLUS" model="hr.salary.rule.category">
+            <field name="name">Variable en plus</field>
+            <field name="code">VRB_PLUS</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="VRB_OCC" model="hr.salary.rule.category">
+            <field name="name">Variable Occassionnelle</field>
+            <field name="code">VRB_OCC</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="BONIF" model="hr.salary.rule.category">
+            <field name="name">BONIF</field>
+            <field name="code">BONIF</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+        <record id="TOTAL_DED" model="hr.salary.rule.category">
+            <field name="name">TOTAL_DED</field>
+            <field name="code">TOTAL_DED</field>
+        </record>
+
+        <record id="TDV" model="hr.salary.rule.category">
+            <field name="name">TDV</field>
+            <field name="code">TDV</field>
+        </record>
+
+
+        <record id="INDMNT" model="hr.salary.rule.category">
+            <field name="name">INDMNT</field>
+            <field name="code">INDMNT</field>
+            <field name="parent_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+
+        <record id="hr_payroll.GROSS" model="hr.salary.rule.category">
+            <field name="name">GROSS</field>
+            <field name="code">GROSS</field>
+        </record>
+
+        <record id="INFO" model="hr.salary.rule.category">
+            <field name="name">INFO</field>
+            <field name="code">INFO</field>
+        </record>
+
+        <record id="INFO_RUBR" model="hr.salary.rule.category">
+            <field name="name">INFO Rubrique</field>
+            <field name="code">INFO_RUBR</field>
+        </record>
+
+        <!--<record id="hr_payroll.DED" model="hr.salary.rule.category">-->
+            <!--<field name="name">RETENUE</field>-->
+            <!--<field name="code">DED</field>-->
+            <!--<field name="parent_id" ref="hr_copefrito_paie.TOTAL_DED"/>-->
+        <!--</record>-->
+
+        <record id="DED_REGLE" model="hr.salary.rule.category">
+            <field name="name">DED_REGLE</field>
+            <field name="code">DED_REGLE</field>
+            <field name="parent_id" ref="hr_copefrito_paie.TOTAL_DED"/>
+        </record>
+
+        <record id="DED_DVRS" model="hr.salary.rule.category">
+            <field name="name">DED_DVRS</field>
+            <field name="code">DED_DVRS</field>
+            <field name="parent_id" ref="hr_copefrito_paie.TOTAL_DED"/>
+        </record>
+
+        <record id="hr_payroll.NET" model="hr.salary.rule.category">
+            <field name="name">NET</field>
+            <field name="code">NET</field>
+        </record>
+
+        <record id="CNAPS_PAT" model="hr.salary.rule.category">
+            <field name="name">CNAPS_PAT</field>
+            <field name="code">CNAPS_PAT</field>
+        </record>
+
+
+        <record id="TOTAL_DED" model="hr.salary.rule.category">
+            <field name="name">TOTAL_DED</field>
+            <field name="code">TOTAL_DED</field>
+        </record>
+
+        <record id="H_BASIC" model="hr.salary.rule.category">
+            <field name="name">H_BASIC</field>
+            <field name="code">H_BASIC</field>
+        </record>
+
+        <record id="IMPOSABLE" model="hr.salary.rule.category">
+            <field name="name">IMPOSABLE</field>
+            <field name="code">IMPOSABLE</field>
+        </record>
+
+        <record id="NETAPAYER" model="hr.salary.rule.category">
+            <field name="name">NETAPAYER</field>
+            <field name="code">NETAPAYER</field>
+        </record>
+
+        <record id="hr_payroll.RET_ORG" model="hr.salary.rule.category">
+            <field name="name">RETENUE_ORGANISME</field>
+            <field name="code">RET_ORG</field>
+        </record>
+
+        <record id="hr_payroll.ORG_PAT" model="hr.salary.rule.category">
+            <field name="name">ORGANISME_PATRONAL</field>
+            <field name="code">ORG_PAT</field>
+        </record>
+
+        <record id="RET_TOTAL" model="hr.salary.rule.category">
+            <field name="name">RET_TOTAL</field>
+            <field name="code">RET_TOTAL</field>
+        </record>
+
+        <record id="NET1" model="hr.salary.rule.category">
+            <field name="name">NET1</field>
+            <field name="code">NET1</field>
+        </record>
+
+        <record id="SS_TOTAL" model="hr.salary.rule.category">
+            <field name="name">SS_TOTAL</field>
+            <field name="code">SS_TOTAL</field>
+        </record>
+
+        <record id="SUM_RUB" model="hr.salary.rule.category">
+            <field name="name">SUM_RUB</field>
+            <field name="code">SUM_RUB</field>
+        </record>
+
+        <record id="SUM_CLASS" model="hr.salary.rule.category">
+            <field name="name">SUM_CLASS</field>
+            <field name="code">SUM_CLASS</field>
+        </record>
+
+        <record id="REPORT" model="hr.salary.rule.category">
+            <field name="name">REPORT</field>
+            <field name="code">REPORT</field>
+        </record>
+
+        <!-- Contribution Register -->
+        <record id="hr_CNAPS_register" model="hr.contribution.register">
+            <field name="name">CNAPS(Caisse Nationale de Prévoyance Sociale)</field>
+        </record>
+
+        <record id="hr_OSTIE_register" model="hr.contribution.register">
+            <field name="name">OSTIE(Organisme Médical)</field>
+        </record>
+
+        <!-- HR RULE -->
+        <record id="hr_rule_SBA_INFO" model="hr.salary.rule">
+            <field name="code">INFO_100</field>
+            <field name="sequence">0</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Salaire de Base</field>
+            <field name="amount_python_compute">
+rub = contract.rubric_ids.filtered(lambda r: str(r.rubric_conf.code) == '100')
+
+res = (inputs.INFO_100.amount if inputs.INFO_100 and inputs.INFO_100.amount else 0)
+
+resultat = 0
+
+is_incomplete = contract.check_incomplete_month(payslip.date_from, payslip.date_to)[0][0]
+
+if rub and contract.status != 'journalier' and not is_incomplete: resultat = rub.montant
+else : resultat = res
+
+result = resultat
+            </field>
+            <field name="category_id" ref="INFO_RUBR"/>
+        </record>
+
+        <record id="hr_rule_SBA" model="hr.salary.rule">
+            <field name="code">Salaire de Base</field>
+            <field name="sequence">100</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Salaire de Base</field>
+            <field name="amount_python_compute">result = +(INFO_100 or 0)
+            </field>
+            <field name="category_id" ref="S_CONTRACT"/>
+        </record>
+
+        <record id="hr_rule_NT" model="hr.salary.rule">
+            <field name="code">Heures Supp. inf. ou égal à 20h</field>
+            <field name="sequence">221</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Heures Supp. inf. ou égal à 20h</field>
+            <field name="amount_python_compute">result = +(INFO_221 or 0)
+            </field>
+            <field name="category_id" ref="ELM_VAR_CONTRACT"/>
+        </record>
+
+        <record id="hr_rule_HC" model="hr.salary.rule">
+            <field name="code">HC</field>
+            <field name="sequence">100</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Heures Contrat</field>
+            <field name="amount_python_compute">result = 173
+            </field>
+            <field name="category_id" ref="INFO"/>
+        </record>
+
+        <record id="hr_rule_basic_H_BASIC" model="hr.salary.rule">
+            <field name="code">H_BASIC</field>
+            <field name="sequence">102</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est l'horaire de travail mensuel.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="active" eval="True"/>
+            <field name="name">Taux horaire</field>
+            <field name="amount_python_compute">
+res = 0
+if contract.status == 'journalier':
+  res = SB / (inputs.INFO_100.quantity if inputs.INFO_100 and inputs.INFO_100.quantity else 0)
+else:
+  res = SB / HC
+result = SB / HC
+            </field>
+            <field name="category_id" ref="INFO"/>
+        </record>
+
+        <record id="hr_salary_rule_TJ" model="hr.salary.rule">
+            <field name="code">TJ</field>
+            <field name="sequence">102</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est l'horaire de travail mensuel.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Taux Journalier</field>
+            <field name="amount_python_compute">result = SB / 30</field>
+            <field name="category_id" ref="INFO"/>
+        </record>
+
+        <record id="hr_salary_rule_HT" model="hr.salary.rule">
+            <field name="code">HT</field>
+            <field name="sequence">102</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Heures Travaillées</field>
+            <field name="amount_python_compute">result = (inputs.HT.amount if inputs.HT and inputs.HT.amount else HC)
+            </field>
+            <field name="category_id" ref="INFO"/>
+        </record>
+
+        <record id="hr_rule_NT_INFO" model="hr.salary.rule">
+            <field name="code">INFO_221</field>
+            <field name="sequence">2</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Heures Supp. inf. ou égal à 20h INFO</field>
+            <field name="amount_python_compute">
+res = (inputs.INFO_221.amount if inputs.INFO_221 and inputs.INFO_221.amount else 0)
+result = res
+            </field>
+            <field name="category_id" ref="INFO_RUBR"/>
+        </record>
+
+        <record id="hr_rule_non_taxable" model="hr.salary.rule">
+            <field name="code">INFO_NT</field>
+            <field name="sequence">740</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Non imposable</field>
+            <field name="amount_python_compute">
+result = - payslip.non_taxable_amount
+            </field>
+            <field name="category_id" ref="NON_IMPOSABLE"/>
+        </record>
+
+        <record id="hr_salary_rule_BRUT" model="hr.salary.rule">
+            <field name="code">BRUT</field>
+            <field name="sequence">699</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Total Salaire Brut</field>
+            <field name="amount_python_compute">result = round(categories.BASIC)</field>
+            <field name="category_id" ref="hr_payroll.GROSS"/>
+        </record>
+
+        <record id="hr_salary_rule_DED_TOTAL" model="hr.salary.rule">
+            <field name="code">DED_TOTAL</field>
+            <field name="sequence">800</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Total Salaire Brut</field>
+            <field name="amount_python_compute">result = BRUT</field>
+            <field name="category_id" ref="hr_payroll.GROSS"/>
+        </record>
+
+        <record id="hr_rule_basic_RPA" model="hr.salary.rule">
+            <field name="code">RPA</field>
+            <field name="sequence">122</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est le Montant Rappel sur période antérieur.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Rappel sur période antérieur</field>
+            <field name="amount_python_compute">
+taux_rpa = (inputs.TRPA.amount if inputs.TRPA and inputs.TRPA.amount else 0)
+j_rpa = (inputs.JRPA.amount if inputs.JRPA and inputs.JRPA.amount else 0)
+result = taux_rpa*j_rpa
+            </field>
+            <field name="category_id" ref="hr_payroll.BASIC"/>
+        </record>
+
+
+        <record id="hr_payroll_rules_CNAPS_EMP" model="hr.salary.rule">
+            <field name="code">CNAPS</field>
+            <field name="sequence">731</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est la valeur de CNAPS de chaque salarié , qui s'appuit sur la valeur du salaire "Brut"
+                calculé.
+            </field>
+            <field name="condition_select">none</field>
+            <field name="register_id" ref="hr_copefrito_paie.hr_CNAPS_register"/>
+            <field name="amount_select">code</field>
+            <field name="name">Retenue CNAPS Employé</field>
+            <field name="condition_python">result = True if contract.type_id.code == 'CDI' else False</field>
+            <field name="amount_python_compute">
+if contract.employee_id.company_id.use_parent_param is True  :
+	res = ((BRUT * contract.employee_id.company_id.parent_id.cotisation_cnaps_emp/100) if BRUT &lt;= contract.employee_id.company_id.parent_id.plafond_cnaps else (contract.employee_id.company_id.parent_id.plafond_cnaps*contract.employee_id.company_id.parent_id.cotisation_cnaps_emp)/100)
+if contract.employee_id.company_id.use_parent_param is False  :
+	res = ((BRUT * contract.employee_id.company_id.cotisation_cnaps_emp/100) if BRUT &lt;= contract.employee_id.company_id.plafond_cnaps else (contract.employee_id.company_id.plafond_cnaps*contract.employee_id.company_id.cotisation_cnaps_emp)/100)
+#result = res if contract.type_id.code == 'CDI' else 0
+result = - round(res,2) if BRUT > 0 else 0
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.DED_REGLE"/>
+        </record>
+
+        <record id="hr_payroll_rules_CNAPS_PAT" model="hr.salary.rule">
+            <field name="code">CNAPS_PAT</field>
+            <field name="sequence">3033</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est la valeur de CNAPS de l'employeur , qui s'appuit sur la valeur du salaire "Brut"
+                calculé.
+            </field>
+            <field name="condition_select">python</field>
+            <field name="register_id" ref="hr_copefrito_paie.hr_CNAPS_register"/>
+            <field name="amount_select">code</field>
+            <field name="name">CNAPS Patronal</field>
+            <field name="condition_python">result = True if contract.type_id.code == 'CDI' else False</field>
+            <field name="amount_python_compute">
+res = 0
+if  contract.employee_id.company_id.use_parent_param is True  : res=contract.employee_id.company_id.parent_id.cotisation_cnaps_patr*categories.GROSS/100
+if  contract.employee_id.company_id.use_parent_param is False  : res=contract.employee_id.company_id.cotisation_cnaps_patr*categories.GROSS/100
+result = res if contract.type_id.code == 'CDI' else 0
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.CNAPS_PAT"/>
+        </record>
+
+
+        <record id="hr_payroll_rules_RET_ORGM_EMP" model="hr.salary.rule">
+            <field name="code">RET_ORGM_EMP</field>
+            <field name="sequence">732</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est la valeur de la cotisation médical de chaque salarié qui se base sur la valeur de
+                salaire "de Base".
+            </field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Retenue Organisme médical Employé</field>
+            <field name="amount_python_compute">
+res = BRUT*contract.org_sante_id.taux_salarial/100
+result = - round(res,2) if BRUT > 0 else 0
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.DED_REGLE"/>
+        </record>
+
+        <record id="hr_payroll_rules_ORGM_PAT" model="hr.salary.rule">
+            <field name="code">ORGM_PAT</field>
+            <field name="sequence">2334</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est la valeur de la cotisation médical de chaque salarié qui se base sur la valeur de
+                salaire "de Base". Elle doit être réglée chaque trimestre .
+            </field>
+            <field name="condition_select">none</field>
+            <field name="register_id" ref="hr_copefrito_paie.hr_OSTIE_register"/>
+            <field name="amount_select">code</field>
+            <field name="name">Charge Patronal Organisme Médical</field>
+            <field name="amount_python_compute">
+res = contract.org_sante_id.taux_patronal*categories.GROSS/100
+result = res if contract.type_id.code == 'CDI' else 0
+            </field>
+            <field name="category_id" ref="hr_payroll.ORG_PAT"/>
+        </record>
+
+        <record id="hr_payroll_rules_IMPOSABLE_BRUT" model="hr.salary.rule">
+            <field name="code">IMPOSABLE_BRUT</field>
+            <!--<field name="sequence">3039</field>-->
+            <field name="sequence">743</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est le montant du salaire imposable sans arrondi.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Montant imposable Brut (non arrondi)</field>
+            <!--<field name="amount_python_compute">result = categories.GROSS - CNAPS - RET_ORGM_EMP</field>-->
+            <field name="amount_python_compute">result = BRUT + categories.DED_REGLE + categories.NON_IMPOSABLE</field>
+            <field name="category_id" ref="INFO"/>
+        </record>
+
+        <record id="hr_payroll_rules_IMPOSABLE" model="hr.salary.rule">
+            <field name="code">IMPOSABLE</field>
+            <!--<field name="sequence">3040</field>-->
+            <field name="sequence">744</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est le montant du salaire imposable.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <!--<field name="name">Montant imposable (Arrondi)</field>-->
+            <field name="name">Montant imposable</field>
+            <field name="amount_python_compute">
+#result = int(IMPOSABLE_BRUT/100)*100 if IMPOSABLE_BRUT and contract.type_id.code == 'CDI' else 0
+result = int(IMPOSABLE_BRUT/100)*100
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.IMPOSABLE"/>
+        </record>
+
+        <record id="hr_payroll_rules_IRSA_DED" model="hr.salary.rule">
+            <field name="code">IGR</field>
+            <!--<field name="sequence">3042</field>-->
+            <field name="sequence">745</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est la valeur de l'IRSA de chaque salarié , qui s'appuit sur la valeur du salaire
+                "Imposable" calculé avec deduction enfant.
+            </field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Retenue IRSA Deduction</field>
+            <field name="amount_python_compute">
+res = 0
+irsa =( contract.employee_id.company_id.taux_irsa *(IMPOSABLE - contract.employee_id.company_id.abat_irsa)/100)
+if  contract.employee_id.company_id.use_parent_param is True  :
+	res = contract.employee_id.company_id.parent_id.seuil_irsa  if irsa &lt;= contract.employee_id.company_id.parent_id.seuil_irsa else irsa
+
+if  contract.employee_id.company_id.use_parent_param is False  :
+	res = contract.employee_id.company_id.seuil_irsa  if irsa &lt;= contract.employee_id.company_id.seuil_irsa else irsa
+
+result = - res if BRUT > 0 else 0
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.INFO"/>
+        </record>
+
+
+        <record id="hr_rule_TDR" model="hr.salary.rule">
+            <field name="code">TDR</field>
+            <field name="sequence">999</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">Total Déduction</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Total Déduction</field>
+            <field name="amount_python_compute">result = categories.TOTAL_DED</field>
+            <field name="category_id" ref="TOTAL_DED"/>
+        </record>
+
+        <record id="hr_rule_basic_AVANCE15" model="hr.salary.rule">
+            <field name="code">AVANCE15</field>
+            <field name="sequence">801</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est le Montant avance quinzaine.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Montant avance quinzaine</field>
+            <field name="amount_python_compute">result = (inputs.AVANCE15.amount if inputs.AVANCE15 and
+                inputs.AVANCE15.amount else 0)
+            </field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="rubric_id" eval="False"/>
+            <field name="category_id" ref="hr_copefrito_paie.DED_DVRS"/>
+        </record>
+
+        <record id="hr_rule_TDV" model="hr.salary.rule">
+            <field name="code">TDV</field>
+            <field name="sequence">4099</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">Total Deductions Diverses.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Total Deduction Diverses.</field>
+            <field name="amount_python_compute">result = categories.DED_DVRS</field>
+            <field name="category_id" ref="TDV"/>
+        </record>
+
+        <record id="hr_rule_net1" model="hr.salary.rule">
+            <field name="code">NET</field>
+            <field name="sequence">1100</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">C'est le salaire Net qui est le salaire Brut - toutes les retenues</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Salaire Net</field>
+            <field name="amount_python_compute">result = BRUT + categories.TOTAL_DED + IGR</field>
+            <!--<field name="amount_python_compute">result = IMPOSABLE - IGR</field>-->
+            <field name="category_id" ref="hr_payroll.NET"/>
+        </record>
+
+        <record id="hr_rule_report" model="hr.salary.rule">
+            <field name="code">REPORT</field>
+            <field name="sequence">1110</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Report</field>
+            <field name="amount_python_compute">
+payslip_pred = payslip.payslip_link_id
+
+line_id = False
+if payslip_pred:
+	line_id = payslip_pred.line_ids.filtered(lambda l: str(l.code_rubric ) == '910')
+
+result = - line_id.total if line_id else 0
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.REPORT"/>
+        </record>
+
+        <record id="hr_rule_to_report" model="hr.salary.rule">
+            <field name="code">TO_REPORT</field>
+            <field name="sequence">1120</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">A reporter</field>
+            <field name="amount_python_compute">
+somme_net = categories.NET + REPORT
+around_value = payslip.around_value
+result = - (somme_net % around_value) if around_value > 0 else 0
+            </field>
+            <field name="category_id" ref="hr_copefrito_paie.REPORT"/>
+        </record>
+
+        <record id="hr_rule_basic_NETAPAYER" model="hr.salary.rule">
+            <field name="code">NETAPAYER</field>
+            <field name="sequence">1199</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="note">Net à payer Ar.</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="name">Net à payer</field>
+            <field name="amount_python_compute">result = categories.NET + REPORT + TO_REPORT</field>
+            <field name="category_id" ref="hr_copefrito_paie.NETAPAYER"/>
+        </record>
+
+        <record id="hr_rule_payroll_employee" model="hr.salary.rule">
+            <field name="code">MSA</field>
+            <field name="sequence">5000</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="active" eval="True"/>
+            <field name="name">Masse Salariale</field>
+            <field name="amount_python_compute">result = categories.NETAPAYER + CNAPS + categories.CNAPS_PAT + categories.ORG_PAT + IGR + AVANCE15 + RET_ORGM_EMP</field>
+            <field name="category_id" ref="hr_copefrito_paie.NETAPAYER"/>
+        </record>
+
+
+        <!-- Rule Input -->
+        <record id="hr_rule_input_AVANCE15" model="hr.rule.input">
+            <field name="code">AVANCE15</field>
+            <field name="name">Montant Avance quinzaine</field>
+            <field name="input_id" ref="hr_copefrito_paie.hr_rule_basic_AVANCE15"/>
+        </record>
+
+        <record id="hr_rule_input_SBA" model="hr.rule.input">
+            <field name="code">INFO_100</field>
+            <field name="name">Salaire de Base</field>
+            <field name="input_id" ref="hr_copefrito_paie.hr_rule_SBA"/>
+        </record>
+
+        <record id="hr_rule_input_NT" model="hr.rule.input">
+            <field name="code">INFO_221</field>
+            <field name="name">Heures Supp. inf. ou égal à 20h</field>
+            <field name="input_id" ref="hr_copefrito_paie.hr_rule_NT_INFO"/>
+        </record>
+
+        <!-- Structure Payroll -->
+        <record id="hr_payroll_structure_structure_cdi_r0" model="hr.payroll.structure">
+            <field name="code">SSM</field>
+            <field name="name">Structure Salariale Malagasy</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id" eval="False"/>
+            <field name="rule_ids" eval="[
+	     (4 , ref('hr_rule_SBA_INFO')),
+	     (4,  ref('hr_rule_SBA')), (4, ref('hr_payroll_rules_CNAPS_EMP')), (4, ref('hr_payroll_rules_CNAPS_EMP')), (4, ref('hr_payroll_rules_RET_ORGM_EMP')),
+	     (4, ref('hr_payroll_rules_IRSA_DED')), (4, ref('hr_payroll_rules_IMPOSABLE_BRUT')), (4, ref('hr_payroll_rules_IMPOSABLE')), (4, ref('hr_payroll_rules_IRSA_DED')), 
+	     (4, ref('hr_rule_TDV')), (4, ref('hr_salary_rule_BRUT')),
+	     (4, ref('hr_payroll_rules_CNAPS_PAT')), (4, ref('hr_payroll_rules_ORGM_PAT')), (4, ref('hr_rule_basic_AVANCE15')),
+	     (4, ref('hr_rule_net1')),  (4, ref('hr_rule_basic_NETAPAYER')), (4, ref('hr_rule_payroll_employee')), (4, ref('hr_rule_report')), (4, ref('hr_rule_to_report')), (4, ref('hr_rule_NT')), (4, ref('hr_rule_NT_INFO')), (4, ref('hr_rule_non_taxable'))
+	     ]"/>
+        </record>
+
+    </data>
+</openerp>

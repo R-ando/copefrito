@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Rubric Config -->
+        <record id="RUBRIC_100" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_SCONTRACT"/>
+            <field name="name">Salaire de base</field>
+            <field name="code_temp">00</field>
+            <field name="code">100</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="type">regle</field>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_rule_SBA"/>
+            <field name="rule_info_id" ref="hr_copefrito_paie.hr_rule_SBA_INFO"/>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_hour"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_111" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_SCONTRACT"/>
+            <field name="name">Primes fixe</field>
+            <field name="code_temp">10</field>
+            <field name="code">111</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">fixe</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_hour"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_199" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_SCONTRACT"/>
+            <field name="name">Salaire sur contrat</field>
+            <field name="mouvement">+</field>
+            <field name="type">total</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_201" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_ELM_VAR_CONTR"/>
+            <field name="name">Heures supplémentaires</field>
+            <field name="code_temp">01</field>
+            <field name="code">201</field>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_hour"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_221" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_ELM_VAR_CONTR"/>
+            <field name="name">Heures Supp. inf. ou égal à 20h</field>
+            <field name="code_temp">2</field>
+            <field name="code">221</field>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_rule_NT"/>
+            <field name="rule_info_id" ref="hr_copefrito_paie.hr_rule_NT_INFO"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_hour"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_211" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_ELM_VAR_CONTR"/>
+            <field name="name">Absence</field>
+            <field name="code_temp">11</field>
+            <field name="code">211</field>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_hour"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_301" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_HSUP_ABS_CNG"/>
+            <field name="name">Autres primes</field>
+            <field name="code_temp">01</field>
+            <field name="code">301</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <!--<record id="RUBRIC_302" model="hr.payslip.rubric.config">-->
+        <!--<field name="classe_id" ref="CLASS_HSUP_ABS_CNG" />-->
+        <!--<field name="name">Prime de tonnage</field>-->
+        <!--<field name="code_temp">02</field>-->
+        <!--<field name="code">302</field>-->
+        <!--<field name="rubric_link" eval="False" />-->
+        <!--<field name="mouvement">+</field>-->
+        <!--<field name="hr_department_ids" eval="False" />-->
+        <!--<field name="type">normal</field>-->
+        <!--<field name="status">mixte</field>
+<field name="product_uom" eval="False"/>-->
+        <!--</record>-->
+
+        <record id="RUBRIC_401" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_VRB_PLUS"/>
+            <field name="name">Prime de mission</field>
+            <field name="code_temp">01</field>
+            <field name="code">401</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_501" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_VRB_OCC"/>
+            <field name="name">Autres primes variable</field>
+            <field name="code_temp">01</field>
+            <field name="code">501</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_521" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_VRB_OCC"/>
+            <field name="name">Autres primes exceptionnelles</field>
+            <field name="code_temp">21</field>
+            <field name="code">521</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_601" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_INDMNT"/>
+            <field name="name">Rappel de salaire</field>
+            <field name="code_temp">01</field>
+            <field name="code">601</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_621" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_INDMNT"/>
+            <field name="name">Indemnité de licenciement</field>
+            <field name="code_temp">21</field>
+            <field name="code">621</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_651" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_INDMNT"/>
+            <field name="name">Préavis de licenciement</field>
+            <field name="code_temp">51</field>
+            <field name="code">651</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_day"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_659" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_INDMNT"/>
+            <field name="name">Préavis de démission</field>
+            <field name="code_temp">59</field>
+            <field name="code">659</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" ref="product.product_uom_day"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <record id="RUBRIC_671" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_INDMNT"/>
+            <field name="name">Indemnité de congé non jouis</field>
+            <field name="code_temp">71</field>
+            <field name="code">671</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" ref="product.product_uom_day"/>
+            <field name="invisible_qty" eval="False"/>
+        </record>
+
+        <!--<record id="RUBRIC_800" model="hr.payslip.rubric.config">-->
+        <!--<field name="classe_id" ref="CLASS_BRUT" />-->
+        <!--<field name="name">Salaire Brut</field>-->
+        <!--<field name="code_temp">00</field>-->
+        <!--<field name="code">2000</field>-->
+        <!--<field name="rubric_link" eval="False" />-->
+        <!--<field name="rule_id" ref="hr_copefrito_paie.hr_salary_rule_BRUT" />-->
+        <!--<field name="mouvement">+</field>-->
+        <!--<field name="hr_department_ids" eval="False" />-->
+        <!--<field name="is_readonly" eval="True" />-->
+        <!--<field name="type">regle</field>-->
+        <!--</record>-->
+
+        <record id="RUBRIC_731" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_REG"/>
+            <field name="name">CNAPS</field>
+            <field name="code_temp">31</field>
+            <field name="code">731</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_payroll_rules_CNAPS_EMP"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_732" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_REG"/>
+            <field name="name">OSIE</field>
+            <field name="code_temp">32</field>
+            <field name="code">732</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_payroll_rules_RET_ORGM_EMP"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_745" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_REG"/>
+            <field name="name">IRSA</field>
+            <field name="code_temp">45</field>
+            <field name="code">745</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_payroll_rules_IRSA_DED"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_799" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_REG"/>
+            <field name="name">Sous total retenues</field>
+            <field name="mouvement" eval="False"/>
+            <field name="type">total</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_801" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_DVRS"/>
+            <field name="name">Avance quinzaine</field>
+            <field name="code_temp">01</field>
+            <field name="code">801</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <!--<field name="rule_id" ref="hr_copefrito_paie.hr_rule_basic_AVANCE15" />-->
+            <field name="is_readonly" eval="True"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_811" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_DVRS"/>
+            <field name="name">Avance spéciale</field>
+            <field name="code_temp">11</field>
+            <field name="code">811</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_831" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_DVRS"/>
+            <field name="name">Opposition sur salaire</field>
+            <field name="code_temp">31</field>
+            <field name="code">831</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">permanent</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_851" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_DVRS"/>
+            <field name="name">Allocation diverse</field>
+            <field name="code_temp">51</field>
+            <field name="code">851</field>
+            <field name="rubric_link" eval="False"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">normal</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_899" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_DED_DVRS"/>
+            <field name="name">Sous total autres retenues et allocations</field>
+            <field name="mouvement" eval="False"/>
+            <field name="type">total</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_905" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_REPORT"/>
+            <field name="name">Ancien appoint</field>
+            <field name="code_temp">5</field>
+            <field name="code">905</field>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_rule_report"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_910" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_REPORT"/>
+            <field name="name">Nouvel appoint</field>
+            <field name="code_temp">10</field>
+            <field name="code">910</field>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_rule_to_report"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="mouvement">-</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+        <!--<record id="RUBRIC_800" model="hr.payslip.rubric.config">-->
+        <!--<field name="classe_id" ref="CLASS_BRUT" />-->
+        <!--<field name="name">Salaire Brut</field>-->
+        <!--<field name="code_temp">00</field>-->
+        <!--<field name="code">2000</field>-->
+        <!--<field name="rubric_link" eval="False" />-->
+        <!--<field name="rule_id" ref="hr_copefrito_paie.hr_salary_rule_BRUT" />-->
+        <!--<field name="mouvement">+</field>-->
+        <!--<field name="hr_department_ids" eval="False" />-->
+        <!--<field name="is_readonly" eval="True" />-->
+        <!--<field name="type">regle</field>-->
+        <!--</record>-->
+
+        <record id="RUBRIC_ST1" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_SS_TOTAL"/>
+            <field name="name">Total Salaire Brut</field>
+            <field name="code_temp">1</field>
+            <field name="code">ST1</field>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_salary_rule_BRUT"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_ST2" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_SS_TOTAL"/>
+            <field name="name">Salaire Net</field>
+            <field name="code_temp">2</field>
+            <field name="code">ST2</field>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_rule_net1"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <record id="RUBRIC_ST3" model="hr.payslip.rubric.config">
+            <field name="classe_id" ref="CLASS_SS_TOTAL"/>
+            <field name="name">Net à payer</field>
+            <field name="code_temp">3</field>
+            <field name="code">ST3</field>
+            <field name="rule_id" ref="hr_copefrito_paie.hr_rule_basic_NETAPAYER"/>
+            <field name="is_readonly" eval="True"/>
+            <field name="mouvement">+</field>
+            <field name="hr_department_ids" eval="False"/>
+            <field name="type">regle</field>
+            <field name="status">mixte</field>
+            <field name="product_uom" eval="False"/>
+            <field name="invisible_qty" eval="True"/>
+        </record>
+
+        <!--<record id="RUBRIC_ST3" model="hr.payslip.rubric.config">-->
+        <!--<field name="classe_id" ref="CLASS_SS_TOTAL" />-->
+        <!--<field name="name">Net à payer</field>-->
+        <!--<field name="code_temp">3</field>-->
+        <!--<field name="code">ST3</field>-->
+        <!--<field name="mouvement">+</field>-->
+        <!--<field name="hr_department_ids" eval="False" />-->
+        <!--<field name="type">total</field>-->
+        <!--</record>-->
+
+        <!-- UPDATE RULE BASED IN RUBRIC -->
+        <record id="hr_rule_SBA_INFO" model="hr.salary.rule">
+            <field name="rubric_id" ref="RUBRIC_100"/>
+        </record>
+
+        <record id="hr_rule_SBA" model="hr.salary.rule">
+            <field name="rubric_id" ref="RUBRIC_100"/>
+        </record>
+
+        <record id="hr_rule_NT_INFO" model="hr.salary.rule">
+            <field name="rubric_id" ref="RUBRIC_221" />
+        </record>
+
+        <record id="hr_rule_NT" model="hr.salary.rule">
+            <field name="rubric_id" ref="RUBRIC_221" />
+        </record>
+
+        <function model="hr.payslip.rubric.config" name="set_product_uom_name"/>
+        <!--<function model="hr.payslip.run" name="get_sorted_slip_ids"/>-->
+
+    </data>
+</openerp>

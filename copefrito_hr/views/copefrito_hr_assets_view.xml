@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="copefrito_hr_assets" name="copefrito_hr assets" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <script type="text/javascript" src="/copefrito_hr/static/src/js/form_view.js"></script>
+      </xpath>
+    </template>
+  </data>
+</openerp>

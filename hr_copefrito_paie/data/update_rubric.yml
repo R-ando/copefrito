@@ -1,0 +1,81 @@
+-
+  Update avance quinzaine rubric
+-
+  !python {model: res.lang} : |
+    rub_801 = self.pool.get('ir.model.data').xmlid_to_object(cr, uid, 'hr_copefrito_paie.RUBRIC_801')
+    rule_id = self.pool.get('ir.model.data').xmlid_to_res_id(cr, uid, 'hr_copefrito_paie.hr_rule_basic_AVANCE15')
+    if rub_801.type == 'regle':
+      if rub_801.rule_info_id.id == rule_id:
+        vals = {
+          'classe_id': rub_801.classe_id.id,
+          'name': rub_801.name,
+          'code': rub_801.code,
+          'type': rub_801.type,
+          'company_ids': [(6, 0, rub_801.company_ids.ids)] if rub_801.company_ids else False,
+          'rubric_link_ids': [(6, 0, rub_801.rubric_link_ids.ids)] if rub_801.rubric_link_ids else False,
+        }
+        rub_801._create_rule(vals, rub_801)
+      rub_801.write({
+        'type': 'normal'
+      })
+
+    rub_899 = self.pool.get('ir.model.data').xmlid_to_object(cr, uid, 'hr_copefrito_paie.RUBRIC_899')
+    list_sum = []
+    code_to_sum = rub_899.rule_id.amount_python_compute
+    for rub in rub_899.summed_rubric:
+      if rub != rub_899:
+        if rub.type == 'regle':
+            list_sum.append(rub.rule_id.code)
+        else:
+            list_sum.append("%s%s" % (rub.mouvement, rub.rule_info_id.code))
+    if list_sum:
+      code_to_sum = "sum((%s))" % (','.join(list_sum),)
+      amount_python_compute = """result = %s """ % code_to_sum
+      rub_899.rule_id.write({
+        'amount_python_compute': amount_python_compute
+      })
+
+    rub_799 = self.pool.get('ir.model.data').xmlid_to_object(cr, uid, 'hr_copefrito_paie.RUBRIC_799')
+    list_sum = []
+    code_to_sum = rub_799.rule_id.amount_python_compute
+    for rub in rub_799.summed_rubric:
+      if rub != rub_799:
+        if rub.type == 'regle':
+            list_sum.append(rub.rule_id.code)
+        else:
+            list_sum.append("%s%s" % (rub.mouvement, rub.rule_info_id.code))
+    if list_sum:
+      code_to_sum = "sum((%s))" % (','.join(list_sum),)
+      amount_python_compute = """result = %s """ % code_to_sum
+      rub_799.rule_id.write({
+        'amount_python_compute': amount_python_compute
+      })
+
+    #rub_302 = self.pool.get('ir.model.data').xmlid_to_object(cr, uid, 'hr_copefrito_paie.RUBRIC_302')
+    #rule_ids = [rub_302.rule_id.id, rub_302.rule_info_id.id]
+    #line_ids = self.pool.get('hr.payslip.line').search(cr, uid, [('salary_rule_id', 'in', rule_ids)])
+    #self.pool.get('hr.payslip.line').unlink(cr, uid, line_ids)
+    #rub_302.unlink()
+
+    rub_801 = self.pool.get('ir.model.data').xmlid_to_object(cr, uid, 'hr_copefrito_paie.RUBRIC_801')
+    #rule_801 = self.pool.get('hr.salary.rule').search(cr, uid, [('sequence', '=', 801), ('code', '!=', 'AVANCE15')], order="create_date asc", limit=1)
+    rule_801 = rub_801.rule_id
+    all_rule_801 = self.pool.get('hr.salary.rule').search(cr, uid, [('sequence', '=', 801), ('code', '!=', 'AVANCE15')])
+    rule_list_info_ids  = set(all_rule_801)  - set([rule_801.id])
+    rule_list_info  = self.pool.get('hr.salary.rule').browse(cr, uid, list(rule_list_info_ids))
+    for r in rule_list_info:
+      r.input_ids.unlink()
+    line_ids = self.pool.get('hr.payslip.line').search(cr, uid, [('salary_rule_id', 'in', list(rule_list_info_ids))])
+    self.pool.get('hr.payslip.line').unlink(cr, uid, line_ids)
+    rule_list_info.unlink()
+
+    #rule_801_info = self.pool.get('hr.salary.rule').search(cr, uid, [('code', '=', 'INFO_801')], order="sequence asc", limit=1)
+    rule_801_info = rub_801.rule_info_id
+    all_rule_801_info  = self.pool.get('hr.salary.rule').search(cr, uid, [('code', '=', 'INFO_801')])
+    rule_list_info_ids  = set(all_rule_801_info)  - set([rule_801_info.id])
+    rule_list_info  = self.pool.get('hr.salary.rule').browse(cr, uid, list(rule_list_info_ids))
+    for r in rule_list_info:
+      r.input_ids.unlink()
+    line_ids = self.pool.get('hr.payslip.line').search(cr, uid, [('salary_rule_id', 'in', list(rule_list_info_ids))])
+    self.pool.get('hr.payslip.line').unlink(cr, uid, line_ids)
+    rule_list_info.unlink()

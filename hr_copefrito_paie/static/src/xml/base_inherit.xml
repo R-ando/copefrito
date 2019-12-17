@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <!-- Remove the div which wrapping <t t-if="column.tag !== 'button'"><t t-esc="column.string"/></t> -->
+    <t t-extend="ListView">
+        <t t-jquery="th[t-att-data-id='column.id']" t-operation="replace">
+            <th t-if="!column.meta and column.invisible !== '1'" t-att-data-id="column.id"
+                t-attf-class="oe_list_header_#{column.widget or column.type} #{((options.sortable and column.tag !== 'button') ? 'oe_sortable' : null)}">
+                <t t-if="column.tag !== 'button'"><t t-esc="column.string"/></t>
+            </th>
+        </t>
+    </t>
+    <t t-extend="One2Many.listview">
+        <t t-jquery="th[t-att-data-id='column.id']" t-operation="replace">
+            <th t-if="!column.meta and column.invisible !== '1'" t-att-data-id="column.id"
+                t-attf-class="oe_list_header_#{column.widget or column.type} #{((options.sortable and column.tag !== 'button') ? 'oe_sortable' : null)}">
+                <t t-if="column.tag !== 'button'"><t t-esc="column.string"/></t>
+            </th>
+        </t>
+    </t>
+
+    <t t-extend="ListView.row">
+        <t t-jquery="td[t-att-title='column.help']" t-operation="replace">
+            <td t-if="!column.meta and column.invisible !== '1'" t-att-title="render_title_tooltips(record, column)"
+                t-attf-class="oe_list_field_cell oe_list_field_#{column.widget or column.type} #{number ? 'oe_number' : ''} #{column.tag === 'button' ? 'oe-button' : ''} #{modifiers.readonly ? 'oe_readonly' : ''} #{modifiers.required ? 'oe_required' : ''}"
+                t-att-data-field="column.id"
+                ><t t-raw="render_cell(record, column)"/></td>
+        </t>
+    </t>
+
+</template>

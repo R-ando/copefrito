@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>    
+        <!--<record id="no_edit_by_default" model="ir.rule">
+            <field name="name">No Edit in timesheet sheet by default for Dirickx</field>
+            <field name="model_id" ref="model_hr_timesheet_sheet_sheet"/>
+            <field name="groups" eval="[(4, ref('hr_copefrito_paie.group_system_admin')),(4, ref('hr_copefrito_paie.group_pay_manager'))]"/>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">
+                [('state','=','new'),('state','=','confirm'),('state','=','done')]
+            </field>
+        </record>-->
+
+        <delete id="hr_payroll.property_rule_employee_payslip" model="ir.rule"/>
+
+        <record id="hr_payroll.property_rule_employee_payslip" model="ir.rule">
+            <field name="name">Employee Payslip</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="groups" eval="[(4, ref('hr_copefrito_paie.group_system_admin')),(4, ref('hr_copefrito_paie.group_pay_manager'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="active" eval="False"/>
+            <field name="domain_force">
+                ['|', ('employee_id.user_id', '=', user.id), ('employee_id.department_id.manager_id.user_id', '=', user.id)]
+            </field>
+        </record>
+    </data>
+</openerp>

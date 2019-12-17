@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mt_contract_trial_date_end" model="mail.message.subtype">
+            <field name="name">Période d'essai expiré</field>
+            <field name="res_model">hr.contract</field>
+            <field name="description">Période d'essai expiré</field>
+        </record>
+
+        <function model="hr.employee" name="unlink_duplicate_employee" />
+    </data>
+</openerp>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="copefrito_settings" model="ir.ui.view">
+            <field name="name">Copefrito contrat</field>
+            <field name="model">copefrito.settings</field>
+            <field name="arch" type="xml">
+                <form string="Copefrito Settings" class="oe_form_configuration">
+                    <header>
+                        <button string="Appliquer" type="object" name="execute" class="oe_highlight"/>
+                        ou
+                        <button string="Annuler" type="object" name="cancel" class="oe_link"/>
+                    </header>
+
+                    <separator string="Configuration de cron de notification"/>
+
+                    <!-- STORE ID -->
+                    <group>
+                        <field name="interval_type" class="oe_inline"/>
+                        <field name="interval_number" class="oe_inline"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_copefrito_setting" model="ir.actions.act_window">
+            <field name="name">Copefrito settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">copefrito.settings</field>
+            <field name="view_id" ref="copefrito_settings"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem action="action_copefrito_setting" id="copefrito_setting_menu" parent="hr_copefrito_paie.menu_general_setting"
+                  sequence="19" name="Configuration contrat"/>
+
+    </data>
+</openerp>

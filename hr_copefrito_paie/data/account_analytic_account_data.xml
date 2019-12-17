@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record model="account.analytic.account" id="works_at_day">
+            <field name="name">Travail de Jour</field>            
+        </record>
+        <record model="account.analytic.account" id="works_at_night">
+            <field name="name">Travail de Nuit</field>
+        </record>
+    </data>
+</openerp>

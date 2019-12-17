@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		
+		<!-- Chargement Image DIRICKX -->
+		<!-- 
+        <record id="base.main_partner" model="res.partner">
+            <field name="image" type="base64" file="hr_copefrito_paie/static/src/img/logo.png"/>
+        </record>        
+     -->
+        <record id="res_company_form_dirickx_paie" model="ir.ui.view">
+            <field name="name">res.company.form.dirickx.paie</field>
+            <field name="model">res.company</field>
+            <field name="priority">20</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+            <data>
+<!--
+                 <xpath expr="//group[@name='account_grp']" position="after">
+                    
+                 </xpath>
+-->
+<!--
+                 <xpath expr="//group[@name='timesheets_grp']" position="replace">
+                     <field name="additional_hours_authorized"/>
+                    <field name="hours_right"/> 
+                    
+                 </xpath>
+                 -->
+
+                 <xpath expr="//field[@name='email']" position="after">
+                    <field name="nif" string="NIF"/>
+                 </xpath>
+                 <xpath expr="//field[@name='vat']" position="replace">
+                    <field name="vat" string="NIF" invisible="1"/>
+                 </xpath>                 
+                 <xpath expr="//field[@name='company_registry']" position="replace">
+                    <field name="company_registry" string="RCS"/>
+                 </xpath>
+                 <xpath expr="//field[@name='vat']" position="after">
+                    <field name="stat" string="STAT"/>
+                 </xpath>
+                 <xpath expr="//page[@name='configuration']" position="after">
+                    <page name="organismes_medicaux" string="Configuration paie">
+                        <group>
+                            <field name="use_parent_param" attrs="{'invisible': [('parent_id','=', False)]}"/>
+                        </group>
+                        <group attrs="{'invisible': [('use_parent_param','=', True)]}">
+                            <group string="Paie">
+                                <field name="seuil_irsa"/>
+                                <field name="taux_irsa"/>
+                                <field name="abat_irsa"/>
+                                <newline/>
+                                <field name="plafond_cnaps"/>
+                                <field name="cotisation_cnaps_patr"/>
+                                <field name="cotisation_cnaps_emp"/>
+                                <field name="automatic_compute_payslip_input" invisible="0"/>
+                                <field name="compute_base_salary" widget="radio" options="{'horizontal': true}"/>
+                                <!--<newline/>
+                                <field name="cotisation_sante_patr"/>
+                                <field name="cotisation_sante_emp"/>-->
+                                <newline/>
+                                <!--<field name="ded_enfant_emp"/>-->
+                                <newline/>
+                                <!--<field name="conge_mens"/>-->
+                                <!--<field name="automatic_compute_payslip_input" invisible="1"/>-->
+                            </group>
+                            <group name="timesheets_grp" string="Feuilles de temps">
+                                 <!--
+                                <field name="timesheet_range" required="1"/>
+                                <field name="timesheet_max_difference" required="1"/> -->
+                                <field name="monthly_hours_amount_id" options="{'no_create':1}"/>
+                                <field name="conge_mens"/>
+                                <field name="ded_enfant_emp"/>
+                                <!--<separator string="Calcul automatique du salaire de base" colspan="3"/>-->
+                                <!--<field name="compute_base_salary" widget="radio" options="{'horizontal': true}" nolabel="1"/>-->
+                                <!--<field name="automatic_compute_payslip_input" invisible="0"/>-->
+                                <!--<separator string="Calcul automatique du salaire de base" colspan="3"/>-->
+                                <!--<field name="compute_base_salary" widget="radio" options="{'horizontal': true}" nolabel="1"/>-->
+                            </group>
+                        </group>
+                        <group>
+                            <group colspan="4" string='Organismes médicaux' 
+                                               attrs="{'invisible': [('use_parent_param','=', True)]}">
+                                <field colspan="4" name="organisme_ids" context="{'default_property_id': active_id}" nolabel="1">
+                                    <tree string="Organismes médicaux" editable="top">
+                                        <field name="name"/>
+                                        <field name="plafond_organisme"/>
+                                        <field name="taux_salarial"/>
+                                        <field name="taux_patronal"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                 </xpath>
+                <xpath expr="//notebook//page[5]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!--COPEFRITO 2.0-->
+                <xpath expr="//div[@class='oe_title']" position="replace">
+                    <div class="oe_title">
+                        <label for="trade_name" class="oe_edit_only"/>
+                        <h3>
+                            <field name="trade_name"/>
+                        </h3>
+                        <label for="name" class="oe_edit_only" string="Raison sociale"/>
+                        <h3>
+                            <field name="name" class="oe_inline"/>
+                        </h3>
+                    </div>
+                </xpath>
+                <xpath expr="//label[@for='street']" position="replace">
+                    <!--<attribute name="invisible">1</attribute>-->
+                </xpath>
+                <xpath expr="//div[@class='o_address_format']" position="replace">
+                    <!--<field name="street" placeholder="Street..." class="o_address_street"/>-->
+                    <!--<field name="street2" placeholder="Street 2..." class="o_address_street"/>-->
+                    <!--<field name="city" placeholder="City" class="o_address_city"/>-->
+                    <!--<field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}' on_change="onchange_state(state_id)"/>-->
+                    <!--<field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True}' on_change="on_change_country(country_id)"/>-->
+                    <field name="street"/>
+                    <!--<field name="street2"/>-->
+                    <!--<div>-->
+                        <!--<label for="city" string="Ville"/>-->
+                        <!--<field name="city"/>-->
+                        <!--<label for="zip" string="Code postal"/>-->
+                        <!--<field name="zip"/>-->
+                    <!--</div>-->
+                    <field name="city"/>
+                    <field name="zip"/>
+                    <!--<field name="state_id" options='{"no_open": True}' on_change="onchange_state(state_id)"/>-->
+                    <!--<field name="zip"/>-->
+                    <field name="country_id" options='{"no_open": True, "no_create":1}' on_change="on_change_country(country_id)"/>
+                    <field name="legal_form"/>
+                </xpath>
+                <!--<field name="partner_id" position="after">-->
+                    <!--<field name="status"/>-->
+                <!--</field>-->
+                <field name="parent_id" position="attributes">
+                    <attribute name="options">{'no_create':1}</attribute>
+                </field>
+                <field name="currency_id" position="attributes">
+                    <attribute name="options">{'no_create':1}</attribute>
+                </field>
+                <field name="paperformat_id" position="attributes">
+                    <attribute name="options">{'no_create':1}</attribute>
+                </field>
+            </data>
+            </field>
+        </record>
+                <!-- Partner Kanban View -->
+        <record model="ir.ui.view" id="res_company_kanban_view">
+            <field name="name">res.company.kanban</field>
+            <field name="model">res.company</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <field name="trade_name"/>
+                    <field name="logo"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <div class="o_kanban_image">
+                                    <t t-if="record.logo.raw_value">
+                                        <img t-att-src="kanban_image('res.company', 'logo', record.id.value)"/>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_partner_heading"><field name="name"/></strong>
+                                    <ul>
+                                        <li t-if="record.trade_name"><field name="trade_name"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</openerp>

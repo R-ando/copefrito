@@ -1,0 +1,12 @@
+-
+  Comment
+-
+  !python {model: res.partner} : |
+    domain = ['|', ('email', 'like', '@example.com'), ('email', 'like', '@test.com')]
+    rec_ids = self.search(cr, uid, domain)
+    for rec_id in rec_ids:
+      rec = self.browse(cr, uid, rec_id)
+      email = rec.email
+      email = email.replace('@example.com', '@copefrito.com')
+      email = email.replace('@test.com', '@copefrito.com')
+      rec.write({'email': email})

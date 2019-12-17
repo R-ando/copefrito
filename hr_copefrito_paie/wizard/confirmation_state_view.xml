@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="confirm_state_view" model="ir.ui.view">
+      <field name="name">confirm.state.form</field>
+      <field name="model">confirm.state</field>
+      <field name="arch" type="xml">
+        <form string="Confirmation">
+          <p>
+            Voulez-vous archiver les éléments sélectionnées?
+          </p>
+          <footer>
+            <button string="OK" name="action_confirm" type="object" default_focus="1" class="btn-primary"/>
+            <button string="Annuler" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="active_state_view" model="ir.ui.view">
+      <field name="name">confirm.state.form</field>
+      <field name="model">confirm.state</field>
+      <field name="arch" type="xml">
+        <form string="Confirmation">
+          <p>
+            Voulez-vous activer les éléments sélectionnées?
+          </p>
+          <footer>
+            <button string="OK" name="action_active" type="object" default_focus="1" class="btn-primary"/>
+            <button string="Annuler" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <act_window id="action_confirm_state_view_multi"
+                multi="True"
+                name="Archiver"
+                view_id="confirm_state_view"
+                res_model="confirm.state" src_model="hr.payslip.run"
+                view_mode="form" target="new" view_type="form"/>
+
+    <act_window id="action_confirm_state_view_form"
+                multi="False"
+                name="Archiver"
+                view_id="confirm_state_view"
+                res_model="confirm.state" src_model="hr.payslip.run"
+                view_mode="form" target="new" view_type="form"/>
+
+    <!--<act_window id="action_confirm_active_view_multi"-->
+    <!--multi="False"-->
+    <!--name="Activer"-->
+    <!--view_id="active_state_view"-->
+    <!--res_model="confirm.state" src_model="hr.payslip.run"-->
+    <!--view_mode="form" target="new" view_type="form" />-->
+
+    <!--<act_window id="action_confirm_active_view_form"-->
+    <!--multi="True"-->
+    <!--name="Activer"-->
+    <!--view_id="active_state_view"-->
+    <!--res_model="confirm.state" src_model="hr.payslip.run"-->
+    <!--view_mode="form" target="new" view_type="form" />-->
+
+
+    <record id="contract_confirm_state_view" model="ir.ui.view">
+      <field name="name">contract.confirm.state.form</field>
+      <field name="model">confirm.state</field>
+      <field name="arch" type="xml">
+        <form string="Confirmation">
+          <p>
+            Voulez-vous actualiser le salaire de base?
+          </p>
+          <footer>
+            <button string="Oui" name="action_refresh" type="object" default_focus="1" class="btn-primary"/>
+            <button string="Non" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="contract_base_salary_update_view" model="ir.ui.view">
+      <field name="name">contract.base.salary.update.form</field>
+      <field name="model">confirm.salary.base</field>
+      <field name="arch" type="xml">
+        <form string="Confirmation">
+          <p>
+            Voulez-vous mettre à jour le salaire de base?
+          </p>
+          <footer>
+            <button string="Oui" name="action_base_salary_update" type="object" default_focus="1" class="btn-primary"/>
+            <button string="Non" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <act_window id="action_contract_confirm_state_view_multi"
+                multi="True"
+                name="Actualiser"
+                view_id="contract_confirm_state_view"
+                res_model="confirm.state" src_model="hr.contract"
+                view_mode="form" target="new" view_type="form"
+                groups="hr_copefrito_paie.group_pay_manager"/>
+
+    <act_window id="action_contract_salary_base_update_multi"
+                multi="True"
+                name="Mettre à jour Salaire de base"
+                view_id="contract_base_salary_update_view"
+                res_model="confirm.salary.base" src_model="hr.contract"
+                view_mode="form" target="new" view_type="form"
+                groups="hr_copefrito_paie.group_pay_manager"/>
+
+    <act_window id="action_contract_confirm_state_view_form"
+                multi="False"
+                name="Actualiser"
+                view_id="contract_confirm_state_view"
+                res_model="confirm.state" src_model="hr.contract"
+                view_mode="form" target="new" view_type="form"
+                groups="hr_copefrito_paie.group_pay_manager"/>
+
+    <act_window id="action_contract_salary_base_update_form"
+                multi="False"
+                name="Mettre à jour Salaire de base"
+                view_id="contract_base_salary_update_view"
+                res_model="confirm.salary.base" src_model="hr.contract"
+                view_mode="form" target="new" view_type="form"
+                groups="hr_copefrito_paie.group_pay_manager"/>
+  </data>
+</odoo>

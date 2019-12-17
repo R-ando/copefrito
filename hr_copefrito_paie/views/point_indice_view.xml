@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="point_indice_form" model="ir.ui.view">
+			<field name="name">point.indice.form</field>
+			<field name="model">point.indice</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="amount"/>
+                                <field name="effective_date"/>
+                                <field name="application_date"/>
+                            </group>
+                            <group></group>
+						</group>
+						<group>
+							<field name="reference_decree" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		 
+		<record id="point_indice_tree" model="ir.ui.view">
+			<field name="name">point.indice.tree</field>
+			<field name="model">point.indice</field>
+			<field name="arch" type="xml">
+				<tree>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="amount"/>
+                    <field name="effective_date"/>
+                    <field name="application_date"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_view_point_indice" model="ir.actions.act_window">
+            <field name="name">Valeur des points d'indice</field>
+            <field name="res_model">point.indice</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--<menuitem-->
+            <!--id="menu_point_indice_view"-->
+            <!--action="action_view_point_indice"-->
+            <!--parent="hr.menu_human_resources_configuration"-->
+            <!--sequence="20"-->
+        <!--/>-->
+		<menuitem
+            id="menu_point_indice_view"
+            action="action_view_point_indice"
+            parent="menu_general_setting"
+            sequence="7"
+			name="Valeur des points d'indice"
+        />
+        
+	</data>
+</openerp>

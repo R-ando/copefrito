@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+	<!--This will create some default records if they do not exist yet. We will always need these so these are auto-rendered. -->
+        <record id="dir_dirg" model="hr.job">
+            <field name="name">Directeur général</field>
+            <field name="code_poste">DIR-DIRG</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_ctrg" model="hr.job">
+            <field name="name">Contrôleur de gestion</field>
+            <field name="code_poste">ADM-CTRG</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>         
+        <record id="adm_radf" model="hr.job">
+            <field name="name">Responsable administratif et financier</field>
+            <field name="code_poste">ADM-RADF</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_rach" model="hr.job">
+            <field name="name">Responsabe des achats</field>
+            <field name="code_poste">ADM-RACH</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_rrhm" model="hr.job">
+            <field name="name">Responsable des ressources humaines</field>
+            <field name="code_poste">ADM-RRHM</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>         
+        <record id="adm_ctgc" model="hr.job">
+            <field name="name">Contrôleur de gestion/comptable</field>
+            <field name="code_poste">ADM-CTGC</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_cccg" model="hr.job">
+            <field name="name">Chef comptable - Contrôleur de gestion</field>
+            <field name="code_poste">ADM-CCCG</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>         
+        <record id="adm_coms" model="hr.job">
+            <field name="name">Commissionnaire</field>
+            <field name="code_poste">ADM-COMS</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_trst" model="hr.job">
+            <field name="name">Transitaire</field>
+            <field name="code_poste">ADM-TRST</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_actg" model="hr.job">
+            <field name="name">Assistant du contrôleur de gestion</field>
+            <field name="code_poste">ADM-ACTG</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_comp" model="hr.job">
+            <field name="name">Comptable</field>
+            <field name="code_poste">ADM-COMP</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_asad" model="hr.job">
+            <field name="name">Assistante administrative</field>
+            <field name="code_poste">ADM-ASAD</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_acom" model="hr.job">
+            <field name="name">Aide comptable</field>
+            <field name="code_poste">ADM-ACOM</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_scrt" model="hr.job">
+            <field name="name">Secrétaire</field>
+            <field name="code_poste">ADM-SCRT</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_opsa" model="hr.job">
+            <field name="name">Opérateur de saisie administration</field>
+            <field name="code_poste">ADM-OPSA</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>         
+        <record id="adm_tinq" model="hr.job">
+            <field name="name">Technicien informatique</field>
+            <field name="code_poste">ADM-TINQ</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="adm_fmng" model="hr.job">
+            <field name="name">Femme de ménage</field>
+            <field name="code_poste">ADM-FMNG</field>
+            <field name="service_id" ref="hr_copefrito_paie.adm"/>
+        </record>
+        <record id="alg_rdpa" model="hr.job">
+            <field name="name">Responsable developpement local et promotion algoculture</field>
+            <field name="code_poste">ALG-RDPA</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>         
+        <record id="alg_ardp" model="hr.job">
+            <field name="name">Assistant tehcnique algoculture</field>
+            <field name="code_poste">ALG-ARDP</field>   
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_rsfq" model="hr.job">
+            <field name="name">Responsable scientifique</field>
+            <field name="code_poste">ALG-RSFQ</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_cpro" model="hr.job">
+            <field name="name">Chargé de production</field>
+            <field name="code_poste">ALG-CPRO</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_apro" model="hr.job">
+            <field name="name">Assistant de production</field>
+            <field name="code_poste">ALG-APRO</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_csev" model="hr.job">
+            <field name="name">Chargé de suivi évaluation</field>
+            <field name="code_poste">ALG-CSEV</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_alaa" model="hr.job">
+            <field name="name">Assistant logistique et administration</field>
+            <field name="code_poste">ALG-ALAA</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_chcr" model="hr.job">
+            <field name="name">Chauffeur coursier</field>
+            <field name="code_poste">ALG-CHCR</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_cola" model="hr.job">
+            <field name="name">Collecteur Algue (baie des assassins)</field>
+            <field name="code_poste">ALG-COLA</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_cfsc" model="hr.job">
+            <field name="name">Chef de secteur</field>
+            <field name="code_poste">ALG-CFSC</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="alg_mgcc" model="hr.job">
+            <field name="name">Magasinier chargé de conditionnement</field>
+            <field name="code_poste">ALG-MGCC</field>
+            <field name="service_id" ref="hr_copefrito_paie.alg"/>
+        </record>
+        <record id="mar_mar" model="hr.job">
+            <field name="name">Marin</field>
+            <field name="code_poste">MAR-MAR</field>
+            <field name="service_id" ref="hr_copefrito_paie.mar"/>
+            <field name="hol_per_month" eval="6.0"/>
+        </record>
+
+        
+        <!-- Code poste-->
+<!--
+        <record id="dir_dirg_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.dir_dirg"/>
+            <field name="name">DIR-DIRG</field>            
+        </record>
+        <record id="adm_ctrg_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_ctrg"/>
+            <field name="name">ADM-CTRG</field>            
+        </record>         
+        <record id="adm_radf_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_radf"/>
+            <field name="name">ADM-RADF</field>            
+        </record>
+        <record id="adm_rach_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_rach"/>
+            <field name="name">ADM-RACH</field>            
+        </record>
+        <record id="adm_rrhm_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_rrhm"/>
+            <field name="name">ADM-RRHM</field>            
+        </record>         
+        <record id="adm_ctgc_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_ctgc"/>
+            <field name="name">ADM-CTGC</field>            
+        </record>
+        <record id="adm_cccg_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_cccg"/>
+            <field name="name">ADM-CCCG</field>            
+        </record>         
+        <record id="adm_coms_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_coms"/>
+            <field name="name">ADM-COMS</field>            
+        </record>
+        <record id="adm_trst_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_trst"/>
+            <field name="name">ADM-TRST</field>            
+        </record>
+        <record id="adm_actg_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_actg"/>
+            <field name="name">ADM-ACTG</field>            
+        </record>
+        <record id="adm_comp_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_comp"/>
+            <field name="name">ADM-COMP</field>            
+        </record>
+        <record id="adm_asad_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_asad"/>
+            <field name="name">ADM-ASAD</field>            
+        </record>
+        <record id="adm_acom_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_acom"/>
+            <field name="name">ADM-ACOM</field>
+        </record>
+        <record id="adm_scrt_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_scrt"/>
+            <field name="name">ADM-SCRT</field>
+        </record>
+        <record id="adm_opsa_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_opsa"/>
+            <field name="name">ADM-OPSA</field>
+        </record>         
+        <record id="adm_tinq_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_tinq"/>
+            <field name="name">ADM-TINQ</field>
+        </record>
+        <record id="adm_fmng_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.adm_fmng"/>
+            <field name="name">ADM-FMNG</field>
+        </record>
+        <record id="alg_rdpa_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_rdpa"/>
+            <field name="name">ALG-RDPA</field>
+        </record>         
+        <record id="alg_ardp_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_ardp"/>
+            <field name="name">ALG-ARDP</field>   
+        </record>
+        <record id="alg_rsfq_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_rsfq"/>
+            <field name="name">ALG-RSFQ</field>
+        </record>
+        <record id="alg_cpro_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_cpro"/>
+            <field name="name">ALG-CPRO</field>
+        </record>
+        <record id="alg_apro_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_apro"/>
+            <field name="name">ALG-APRO</field>
+        </record>
+        <record id="alg_csev_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_csev"/>
+            <field name="name">ALG-CSEV</field>
+        </record>
+        <record id="alg_alaa_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_alaa"/>
+            <field name="name">ALG-ALAA</field>
+        </record>
+        <record id="alg_chcr_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_chcr"/>
+            <field name="name">ALG-CHCR</field>
+        </record>
+        <record id="alg_cola_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_cola"/>
+            <field name="name">ALG-COLA</field>
+        </record>
+        <record id="alg_cfsc_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_cfsc"/>
+            <field name="name">ALG-CFSC</field>
+        </record>
+        <record id="alg_mgcc_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.alg_mgcc"/>
+            <field name="name">ALG-MGCC</field>
+        </record>
+        <record id="mar_mar_code" model="hr.code.poste">
+            <field name="job_id" ref="hr_copefrito_paie.mar_mar"/>
+            <field name="name">MAR-MAR</field>
+        </record>
+        
+        assign code for each poste
+        <record id="dir_dirg" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.dir_dirg_code"/>
+        </record>
+        <record id="adm_ctrg" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_ctrg_code"/>
+        </record>         
+        <record id="adm_radf" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_radf_code"/>
+        </record>
+        <record id="adm_rach" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_rach_code"/>
+        </record>
+        <record id="adm_rrhm" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_rrhm_code"/>
+        </record>         
+        <record id="adm_ctgc" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_ctgc_code"/>
+        </record>
+        <record id="adm_cccg" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_cccg_code"/>
+        </record>         
+        <record id="adm_coms" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_coms_code"/>
+        </record>
+        <record id="adm_trst" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_trst_code"/>
+        </record>
+        <record id="adm_actg" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_actg_code"/>
+        </record>
+        <record id="adm_comp" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_comp_code"/>
+        </record>
+        <record id="adm_asad" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_asad_code"/>
+        </record>
+        <record id="adm_acom" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_acom_code"/>
+        </record>
+        <record id="adm_scrt" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_scrt_code"/>
+        </record>
+        <record id="adm_opsa" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_opsa_code"/>
+        </record>         
+        <record id="adm_tinq" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_tinq_code"/>
+        </record>
+        <record id="adm_fmng" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.adm_fmng_code"/>
+        </record>
+        <record id="alg_rdpa" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_rdpa_code"/>
+        </record>         
+        <record id="alg_ardp" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_ardp_code"/>
+        </record>
+        <record id="alg_rsfq" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_rsfq_code"/>
+        </record>
+        <record id="alg_cpro" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_cpro_code"/>
+        </record>
+        <record id="alg_apro" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_apro_code"/>
+        </record>
+        <record id="alg_csev" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_csev_code"/>
+        </record>
+        <record id="alg_alaa" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_alaa_code"/>
+        </record>
+        <record id="alg_chcr" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_chcr_code"/>
+        </record>
+        <record id="alg_cola" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_cola_code"/>
+        </record>
+        <record id="alg_cfsc" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_cfsc_code"/>
+        </record>
+        <record id="alg_mgcc" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.alg_mgcc_code"/>
+        </record>
+        <record id="mar_mar" model="hr.job">
+            <field name="code" ref="hr_copefrito_paie.mar_mar_code"/>
+        </record>
+-->
+    </data>
+</openerp>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend_new" name="hr_copefrito_paie assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/hr_copefrito_paie/static/src/less/timesheet.less"/>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/timesheet.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

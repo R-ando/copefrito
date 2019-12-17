@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="hr_payslip_rubric_view_form" model="ir.ui.view">
+      <field name="name">hr.payslip.rubric.form</field>
+      <field name="model">hr.payslip.rubric</field>
+      <field name="arch" type="xml">
+        <form>
+          <header attrs="{'invisible': [('state','=','neutre')]}">
+            <button name="make_rectified" string="Rectifier" type="object"
+                    attrs="{'invisible': [('button_rectify_visible', '=', False)]}"/>
+            <button name="make_verified" string="Vérifier" type="object" class="oe_highlight"
+                    attrs="{'invisible': [('button_verify_visible', '=', False)]}"/>
+            <button name="submit_input_ids" string="Soumettre" type="object" class="oe_highlight"
+                    attrs="{'invisible': [('button_submit_visible', '=', False)]}"/>
+            <button name="make_refused" string="Refuser" type="object"
+                    groups="hr_copefrito_paie.group_pay_manager" states="instance"/>
+            <button name="make_validate" string="Valider" type="object" class="oe_highlight"
+                    groups="hr_copefrito_paie.group_pay_manager" states="instance"/>
+            <button name="back_to_instance" string="Retour à instance" type="object"
+                    groups="hr_copefrito_paie.group_pay_manager" states="validate"/>
+            <field name="state" widget="statusbar"
+                   statusbar_visible="draft, pending, instance, validate, closed"/>
+          </header>
+          <sheet>
+            <field name="button_rectify_visible" invisible="1"/>
+            <field name="button_verify_visible" invisible="1"/>
+            <field name="button_submit_visible" invisible="1"/>
+            <field name="is_operator_input" invisible="1"/>
+            <div name="button_box" class="oe_button_box">
+              <button name="open_line_ids"
+                      class="oe_stat_button"
+                      icon="fa-bars"
+                      type="object"
+                      string="Lignes de paie">
+              </button>
+              <button name="open_input_ids"
+                      class="oe_stat_button"
+                      icon="fa-bars"
+                      type="object"
+                      string="Gérer les entrées"
+                      attrs="{'invisible' : [('input_ids', '=', [])]}">
+              </button>
+            </div>
+            <!--
+                                    <div class="oe_left">
+                                        <field name="kanban_state" class="oe_inline" widget="kanban_state_selection_2"/>
+                                    </div>
+                                    <field name="stage_id" invisible="1"/>
+            -->
+            <group>
+              <group>
+                <field name="payslip_run" readonly="1"/>
+                <field name="class_id" readonly="1"/>
+                <field name="code" readonly="1"/>
+                <field name="active" invisible="1"/>
+
+
+                <!--<field name="nb_input"/>-->
+                <!--<field name="nb_input_draft"/>-->
+                <!--<field name="nb_input_waiting"/>-->
+                <!--<field name="nb_input_verified"/>-->
+              </group>
+              <group>
+                <field name="responsable_ids" widget="many2many_tags"
+                       groups="hr_copefrito_paie.group_system_admin"/>
+                <field name="current_url" invisible="1"/>
+                <field name="invisible_qty" invisible="1"/>
+                <!--<separator string="Filtres"/>-->
+                <group string="Filtres" colspan="4" style="font-size: 16px;">
+                  <field name="service"
+                         widget="many2many_tags"
+                         options="{'no_create_edit': True}"
+                         on_change="on_change_filter(service, matricule)"
+                  />
+                  <field name="matricule"
+                         widget="many2many_tags"
+                         options="{'no_create_edit': True}" context="{'test_rubric': True}"
+                         on_change="on_change_filter(service, matricule)"
+                  />
+                </group>
+              </group>
+            </group>
+
+            <!--<separator string="Filtres"/>-->
+            <!--<group>-->
+            <!--<field name="service"-->
+            <!--widget="many2many_tags"-->
+            <!--options="{'no_create_edit': True}"-->
+            <!--on_change="on_change_filter(service, matricule)"-->
+            <!--/>-->
+            <!--<field name="matricule"-->
+            <!--widget="many2many_tags"-->
+            <!--options="{'no_create_edit': True}" context="{'test_rubric': True}"-->
+            <!--on_change="on_change_filter(service, matricule)"-->
+            <!--/>-->
+            <!--</group>-->
+            <notebook>
+              <page name="input_ids" string="Entrées">
+
+                <label for="total_amount_input_ids" string="Montant total :"/>
+                <!-- <div> -->
+                <field name="total_amount_input_ids" nolabel="1" readonly="1" class="oe_inline"/>
+                <!--   /
+                  <field name="total_amount" nolabel="1" readonly="1" class="oe_inline"/>
+              </div> -->
+                <field name="input_ids" readonly="0" attrs="{'invisible': [('invisible_qty', '=', True)]}">
+                  <tree string="Input Data" editable="bottom" create="0" delete="0"
+                        class="extend_name">
+                    <field name="code_rubric" readonly="1" invisible="True"/>
+                    <!--<field name="service" readonly="1"/>-->
+                    <field name="code_service" readonly="1"/>
+                    <field name="job" string="Poste" readonly="1"/>
+                    <field name="matricule" readonly="1"/>
+                    <field name="employee_id" readonly="1" string="Nom"/>
+                    <field name="surname_employee" readonly="1"/>
+                    <field name="quantity"
+                           attrs="{'readonly': ['|', ('is_readonly', '=', True), '&amp;', ('color_button', '=', 'green'), ('is_pay_manager', '=', False)]}"
+                           invisible="context.get('invisible_qty_rub')"/>
+                    <field name="product_uom"
+                           readonly="1"
+                           options="{'no_create':1}"/>
+                    <field name="amount2"
+                           attrs="{'readonly': ['|', ('is_readonly', '=', True), '&amp;', ('color_button', '=', 'green'), ('is_pay_manager', '=', False)]}"
+                           sum="Montant total"/>
+                    <field name="amount" invisible="1"/>
+                    <field name="sequence" invisible="True"/>
+                    <button name="change_color" field_name="color_button" type="object"
+                            widget="toggle_button_2"/>
+                    <field name="color_button" invisible="1"/>
+                    <field name="is_readonly" invisible="1"/>
+                    <field name="is_pay_manager" invisible="1"/>
+                  </tree>
+                </field>
+
+                <field name="input_ids_2" readonly="0" attrs="{'invisible': [('invisible_qty', '!=', True)]}">
+                  <tree string="Input Data" editable="bottom" create="0" delete="0"
+                        class="extend_name">
+                    <field name="code_rubric" readonly="1" invisible="True"/>
+                    <!--<field name="service" readonly="1"/>-->
+                    <field name="code_service" readonly="1"/>
+                    <field name="job" string="Poste" readonly="1"/>
+                    <field name="matricule" readonly="1"/>
+                    <field name="employee_id" readonly="1" string="Nom"/>
+                    <field name="surname_employee" readonly="1"/>
+                    <field name="quantity"
+                           attrs="{'readonly': ['|', ('is_readonly', '=', True), '&amp;', ('color_button', '=', 'green'), ('is_pay_manager', '=', False)]}"
+                           invisible="1"/>
+                    <field name="product_uom"
+                           readonly="1"
+                           options="{'no_create':1}" invisible="1"/>
+                    <field name="amount2"
+                           attrs="{'readonly': ['|', ('is_readonly', '=', True), '&amp;', ('color_button', '=', 'green'), ('is_pay_manager', '=', False)]}"
+                           sum="Montant total"/>
+                    <field name="amount" invisible="1"/>
+                    <field name="sequence" invisible="True"/>
+                    <button name="change_color" field_name="color_button" type="object"
+                            widget="toggle_button_2"/>
+                    <field name="color_button" invisible="1"/>
+                    <field name="is_pay_manager" string="" invisible="1"/>
+                    <field name="is_readonly" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page name="line_ids" string="Résultat">
+                <label for="total_amount_line_ids" string="Montant total :"/>
+                <field name="total_amount_line_ids" nolabel="1" readonly="1" class="oe_inline"/>
+                <field name="line_ids" readonly="1" class="extend_name">
+                  <tree>
+                    <field name="code_rubric"/>
+                    <field name="code_service"/>
+                    <field name="job" string="Poste"/>
+                    <field name="matricule"/>
+                    <field name="employee_id" string="Nom"/>
+                    <field name="surname_employee"/>
+                    <field name="total" sum="Montant total"/>
+                  </tree>
+                </field>
+              </page>
+              <page name="statistics" string="Statistiques">
+                <group>
+                  <group>
+                    <field name="nb_input"/>
+                    <field name="nb_input_draft"/>
+                  </group>
+                  <group>
+                    <field name="nb_input_waiting"/>
+                    <field name="nb_input_verified"/>
+                  </group>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_hr_payslip_rubric_filter" model="ir.ui.view">
+      <field name="name">hr.payslip.rubric.filter</field>
+      <field name="model">hr.payslip.rubric</field>
+      <field name="arch" type="xml">
+        <search string="Search Rubrics">
+          <filter string="Périodes de paie" name="group_payslip_run" icon="terp-folder-orange" context="
+                        {'group_by':'payslip_run'}"/>
+          <filter string="Classes" name="group_payslip_run_classe" icon="terp-folder-orange" context="
+                        {'group_by':'class_id'}"/>
+          <filter string="Rubriques brouillons" name="filter_rub_draft" domain="[('state', '=', 'draft')]"/>
+          <filter string="Rubriques en cours" name="filter_rub_pending" domain="[('state', '=', 'pending')]"/>
+          <filter string="Rubriques instances" name="filter_rub_instance"
+                  domain="[('state', '=', 'instance')]"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="hr_payslip_rubric_tree" model="ir.ui.view">
+      <field name="name">hr.payslip.rubric.tree</field>
+      <field name="model">hr.payslip.rubric</field>
+      <field name="arch" type="xml">
+        <tree create="false">
+          <field name="payslip_run" string="Période de paie"/>
+          <field name="class_id"/>
+          <field name="code"/>
+          <field name="rubric_conf_name"/>
+          <field name="state"/>
+          <field name="active" invisible="1"/> <!--  -->
+          <field name="responsable_ids" groups="hr_copefrito_paie.group_system_admin"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_view_hr_payslip_rubric_list_2">
+      <field name="name">Saisie des rubriques de paie</field>
+      <field name="model_id" ref="model_hr_payslip_rubric"/>
+      <field name="code">action = self.open_rubric_tree(cr, uid, context.get('active_ids', []), context=context)
+      </field>
+    </record>
+    <menuitem
+        id="menu_hr_payslip_rubric_view"
+        action="action_view_hr_payslip_rubric_list_2"
+        parent="hr_payroll.menu_hr_payroll_root"
+        groups="hr_copefrito_paie.group_pay_operateur"
+        sequence="1"
+    />
+    <!--<menuitem-->
+    <!--id="menu_hr_payslip_rubric_view"-->
+    <!--action="action_view_hr_payslip_rubric_list_2"-->
+    <!--parent="menu_pay_setting"-->
+    <!--sequence="2"-->
+    <!--/>-->
+
+
+  </data>
+</openerp>

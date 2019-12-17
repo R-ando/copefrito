@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="hr_contract_model_tree" model="ir.ui.view">
+                <field name="name">hr.contract.model.tree</field>
+                <field name="model">hr.contract.model</field>
+                <field name="arch" type="xml">
+                    <tree string="Modèle de contrat">
+                        <field name="code"/>
+                        <field name="name"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record id="hr_contract_model_form" model="ir.ui.view">
+                <field name="name">hr.contract.model.form</field>
+                <field name="model">hr.contract.model</field>
+                <field name="arch" type="xml">
+                    <form string="Modèle de contrat">
+                        <sheet>
+                            <group>
+                                <field name="code"/>
+                                <field name="name"/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <record id="action_hr_contract_model" model="ir.actions.act_window">
+                <field name="name">Contrat type</field>
+                <field name="res_model">hr.contract.model</field>
+                <field name="view_mode">tree,form</field>
+            </record>
+
+            <menuitem
+                id="menu_hr_contract_model"
+                action="action_hr_contract_model"
+                parent="menu_general_setting"
+                groups="hr_copefrito_paie.group_direction,hr_copefrito_paie.group_system_admin"
+                sequence="3"/>
+        </data>
+    </openerp>

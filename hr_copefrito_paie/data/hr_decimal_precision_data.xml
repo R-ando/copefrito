@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record model="decimal.precision" id="total_amount">
+      <field name="name">Montant général</field>
+      <field name="string">Montant total</field>
+      <field name="readonly">True</field>
+    </record>
+  </data>
+</openerp>

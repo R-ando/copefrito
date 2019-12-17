@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <record id="hr_contract_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="replace">
+                    <button name="make_instance" type="object" string="Soumettre"
+                            confirm="Voulez-vous mettre le contrat à l'état instance?" class="oe_highlight"
+                            attrs="{'invisible': [('computed_state', '!=', 'draft')]}" groups="hr_copefrito_paie.group_pay_operateur"/>
+                    <button name="make_trial" type="object" string="Mettre à l'essai"
+                            confirm="Voulez-vous mettre le contrat à l'état essai?" class="oe_highlight"
+                            attrs="{'invisible': [('computed_state', '!=', 'instance')]}" groups="hr_copefrito_paie.group_pay_manager"/>
+                    <button name="make_renewed" type="object" string="A renouveler"
+                            confirm="Voulez-vous mettre le contrat à l'état essai renouvelé?"
+                            attrs="{'invisible': ['|', ('computed_state', '!=', 'pending'), ('state', '!=', 'open')]}" groups="hr_copefrito_paie.group_pay_manager"/>
+                    <button name="make_active" type="object" string="Confirmer"
+                            confirm="Voulez-vous mettre le contrat à l'état confirmé?" class="oe_highlight"
+                            attrs="{'invisible': [('computed_state', 'not in', ['pending', 'instance'])]}" groups="hr_copefrito_paie.group_pay_manager"/>
+                    <button name="make_closed" type="object" string="Clôturer"
+                            confirm="Voulez-vous clôturer le contrat?" class="oe_highlight"
+                            attrs="{'invisible': [('state', 'in', ['draft', 'instance', 'close'])]}" groups="hr_copefrito_paie.group_pay_manager"/>
+                    <button name="make_draft" type="object" string="Remettre à brouillon"
+                            confirm="Voulez-vous remettre le contrat à l'état brouillon?"
+                            attrs="{'invisible': [('state', '!=', 'instance')]}" groups="hr_copefrito_paie.group_pay_manager"/>
+                    <field name="computed_state" widget="statusbar"
+                           statusbar_visible="draft, instance, open, active, close"/>
+                </field>
+                <xpath expr="//page[@name='information']" position="replace">
+                    <page string="Information" name="information">
+                        <group>
+                            <group name="duration_group">
+                                <group attrs="{'invisible':[('status', '=', 'journalier')]}">
+                                    <separator string="Période d'essai"
+                                               attrs="{'invisible':[('type_id', '!=', %(hr_copefrito_paie.contract_stage)d)]}"
+                                               colspan="3"/>
+                                    <separator string="Durée de contrat"
+                                               attrs="{'invisible':[('type_id', '=', %(hr_copefrito_paie.contract_stage)d)]}"
+                                               colspan="3"/>
+                                    <label for="trial_duration" string="Durée de la période"/>
+                                    <div>
+                                        <field name="trial_duration" class="oe_inline" attrs="{'required':[('status', '!=', 'journalier')]}"/>Mois
+                                    </div>
+                                    <field name="trial_date_start" string="Date début"/>
+                                    <field name="trial_date_end" string="Date fin" readonly="1"/>
+                                    <label string="Date de période d'essai expirée" class="oe_red_text"
+                                           attrs="{'invisible':['|', '|', ('trial_is_end','=',False), ('renew_trial_is_end','=',True), ('computed_state', '!=', 'pending')]}"
+                                           colspan="3"/>
+                                </group>
+                                <group colspan="4" attrs="{'invisible':[('status', '=', 'journalier')]}">
+                                    <separator string="Renouvellement période d'essai"
+                                               attrs="{'invisible':[('type_id', '!=', %(hr_copefrito_paie.contract_stage)d)]}"
+                                               colspan="3"/>
+                                    <separator string="Renouvellement CDD"
+                                               attrs="{'invisible':[('type_id', '=', %(hr_copefrito_paie.contract_stage)d)]}"
+                                               colspan="3"/>
+                                    <field name="to_renew"/>
+                                    <label for="renew_trial_duration" string="Durée de renouvellement"
+                                           attrs="{'invisible': [('to_renew', '=', False)]}"/>
+                                    <div attrs="{'invisible': [('to_renew', '=', False)]}">
+                                        <field name="renew_trial_duration" class="oe_inline"/>Mois
+                                    </div>
+                                    <!--<field name="renew_trial_duration" string="Renouvellement essai (mois)" attrs="{'invisible': [('to_renew', '=', False)]}"/>-->
+                                    <field name="renew_trial_date_start"
+                                           attrs="{'invisible': [('to_renew', '=', False)]}" string="Date début"/>
+                                    <field name="renew_trial_date_end"
+                                           attrs="{'invisible': [('to_renew', '=', False)]}" string="Date fin"/>
+                                    <field name="trial_is_end" invisible="1"/>
+                                    <field name="renew_trial_is_end" invisible="1"/>
+                                </group>
+                                <label string="Date renouvellement de période d'essai expirée" class="oe_red_text"
+                                       attrs="{'invisible': ['|', ('renew_trial_is_end', '=', False), ('computed_state', '!=', 'pending')]}"
+                                       colspan="3"/>
+
+                                <group string="Situation du contrat" colspan="4">
+                                    <field name="date_start" string="Date embauche"/>
+                                    <field name="date_end" string="Date débauche"/>
+                                    <field name="seniority_char" string="Durée"/>
+                                    <field name="working_hours"/>
+                                </group>
+                            </group>
+
+                            <group name="salary_and_advantages">
+                                <group string="Temps de travail" colspan="4">
+                                    <field name="hol_per_month" attrs="{'invisible':[('status', '=', 'journalier')]}"/>
+                                    <field name="is_hc" invisible="1"/>
+                                    <field name="additional_hour"
+                                           attrs="{'invisible':[('status', '=', 'journalier')], 'readonly':[('is_hc', '=', True)]}"/>
+                                    <field name="monthly_hours_amount_id" string="Volume horaire"
+                                           attrs="{'readonly': [('state','=','close')], 'invisible':[('status', '=', 'journalier')], 'required':[('status', '!=', 'journalier')]}"
+                                           options="{'no_create_edit': 1, 'no_quick_create': True}"/>
+                                </group>
+                                <!--<group string="Salaire et avantages" colspan="4"-->
+                                <!--attrs="{'invisible':[('status', '=', 'journalier')]}">-->
+                                <!--<field name="wage"/>-->
+                                <!--<field name="advantages" nolabel="1" placeholder="Advantages..." colspan="2"/>-->
+                                <!--</group>-->
+                                <!--<group name="meducal_group" string="Organisme Médicale" colspan="4">-->
+                                <!--<field name="org_sante_id"/>-->
+                                <!--</group>-->
+                                <group name="allaitement_group" string="Allaitement" colspan="4">
+                                    <field name="allaitement"/>
+                                    <field name="allaitement_date_start" string="Date début"
+                                           attrs="{'invisible': [('allaitement','=',False)], 'required':[('allaitement','=',True)]}"/>
+                                    <field name="allaitement_date_end" string="Date fin"
+                                           attrs="{'invisible': [('allaitement','=',False)], 'required':[('allaitement','=',True)]}"/>
+                                    <field name="allaitement_is_end"  invisible="1"/>
+                                    <label string="Période d'allaitement expirée" class="oe_red_text"
+                                           attrs="{'invisible':[('allaitement_is_end','=',False)]}"
+                                           colspan="3"/>
+                                </group>
+                            </group>
+                        </group>
+                        <separator string="Notes"/>
+                        <field name="notes"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="enable_notifications" />
+                </xpath>
+                <!--  <xpath expr="//label[@for='name']" position="replace">
+                     <label for="num_contract" string="N° Contrat"/>
+                 </xpath> -->
+                <field name="type_id" position="replace"></field>
+                <field name="employee_id" position="replace"></field>
+              
+                <xpath expr="//div[@class='oe_title']" position="replace">
+                    <group>
+                        <group>
+                            <field name="matricule"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="type_id" string="Durée du contrat"/>
+                            <field name="num_contract" placeholder="Numéro du contrat"
+                                   attrs="{'required': [('status', 'not in', ['journalier', 'permanent'])], 'invisible': [('status', 'in', ['journalier', 'permanent'])]}"
+                                  />
+                        </group>
+                    </group>
+                </xpath>
+
+
+                <!-- <field name="name" position="replace">
+                	<group>	
+                		<group>
+	                		<field name="num_contract" placeholder="Numéro du contrat"/>
+                		</group>
+                		<group></group>
+                	</group>
+                	
+                </field> -->
+                <!--<xpath expr="//group[@name='duration_group']" position="replace">-->
+                <!--<group name="duration_group">-->
+                <!--<group string="Période d'essai" attrs="{'invisible':[('status', '=', 'journalier')]}">-->
+                <!--<label for="trial_duration" string="Durée période d'essai (mois)"/>-->
+                <!--<div>-->
+                <!--<field name="trial_duration"/>-->
+                <!--</div>-->
+                <!--<field name="trial_date_start" string="Date début"/>-->
+                <!--<field name="trial_date_end" string="Date fin" readonly="1"/>-->
+                <!--<label string="Date de période d'essai expirée" class="oe_red_text" attrs="{'invisible':['|',('trial_is_end','=',False),('renew_trial_is_end','=',True)]}" colspan="3"/>-->
+                <!--</group>-->
+                <!--<group name="duration_group" string="Renouvellement période d'essai" colspan="4" attrs="{'invisible':[('status', '=', 'journalier')]}">-->
+                <!--<field name="to_renew"/>-->
+                <!--&lt;!&ndash;<label for="renew_trial_duration" string="Renouvellement essai (mois)" attrs="{'invisible': [('to_renew', '=', False)]}"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<field name="renew_trial_duration" attrs="{'invisible': [('to_renew', '=', False)]}"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<field name="renew_trial_duration" string="Renouvellement essai (mois)" attrs="{'invisible': [('to_renew', '=', False)]}"/>-->
+                <!--<field name="renew_trial_date_start" attrs="{'invisible': [('to_renew', '=', False)]}"/>-->
+                <!--<field name="renew_trial_date_end" attrs="{'invisible': [('to_renew', '=', False)]}"/>-->
+                <!--<field name="trial_is_end" invisible="1"/>-->
+                <!--<field name="renew_trial_is_end" invisible="1"/>-->
+                <!--</group>-->
+                <!--<label string="Date renouvellement de période d'essai expirée" class="oe_red_text" attrs="{'invisible':[('renew_trial_is_end','=',False)]}" colspan="3"/>-->
+
+                <!--<group name="duration_group" string="Durée" colspan="4">-->
+                <!--<field name="date_start" string="Date embauche"/>-->
+                <!--<field name="date_end" string="Date débauche"/>-->
+                <!--<field name="working_hours"/>-->
+                <!--</group>-->
+                <!--</group>-->
+                <!--</xpath>-->
+                <xpath expr="//field[@name='type_id']" position="after">
+                    <!--<field name="contract_model" attrs="{'invisible':[('status', '=', 'journalier')]}" options="{'no_create_edit': 1, 'no_quick_create': True}"/>-->
+
+                    <!--<field name="contract_qualification_id" string="Catégorie Professionnelle"/>-->
+                    <!--<field name="indice" attrs="{'invisible':[('status', '=', 'journalier')]}"/>-->
+                    <!--                    <field name="hierar_level"/>-->
+                    <!--<field name="additional_hour" attrs="{'invisible':[('status', '=', 'journalier')]}"/>-->
+
+                    <field name="current_url" invisible="1"/>
+                </xpath>
+                <!--<xpath expr="//group[@name='salary_and_advantages']//group[2]" position="inside">-->
+                <!--<group name="meducal_group" string="Organisme Médicale">-->
+                <!--<field name="org_sante_id"/>-->
+                <!--</group>-->
+                <!--<group name="allaitement_group" string="Allaitement">-->
+                <!--<field name="allaitement"/>-->
+                <!--<field name="allaitement_date_start" attrs="{'invisible': [('allaitement','=',False)]}"/>-->
+                <!--<field name="allaitement_date_end" attrs="{'invisible': [('allaitement','=',False)]}"/>-->
+                <!--</group>                    -->
+                <!--</xpath>                -->
+                <!--<xpath expr="//field[@name='type_id']" position="replace">-->
+
+                <!--</xpath>-->
+                <field name="department_id" position="attributes">
+                    <attribute name="string">Service</attribute>
+                </field>
+                <!--                <field name="department_id" position="attributes">
+                                    <attribute name="readonly">1</attribute>
+                                </field>-->
+                <!--<field name="job_id" position="replace">-->
+                <!--</field>-->
+                <field name="job_id" position="replace">
+                    <field name="state" invisible="1"/>
+                    <field name="status" string="Nature du contrat" required="1"/>
+                    <field name="code_service" options="{'no_create_edit': 1, 'no_quick_create': True}"/>
+                    <field name="code_poste" options="{'no_create_edit': 1, 'no_quick_create': True}"/>
+                </field>
+                <field name="department_id" position="replace">
+                    <field name="contract_model" attrs="{'required':[('status', '!=', 'journalier')], 'invisible':[('status', '=', 'journalier')]}"
+                           options="{'no_create_edit': 1, 'no_quick_create': True}" string="Contrat type"/>
+                    <field name="department_id" required="1"/>
+                    <field name="job_id" string="Poste" required="1"/>
+                </field>
+                <!--<field name="department_id" position="replace"></field>-->
+                <xpath expr="//page[@name='information']" position="after">
+                    <page string="Détails contrat">
+                        <group>
+                            <group string="Classification" attrs="{'invisible':[('status', '=', 'journalier')]}">
+                                <field name="contract_qualification_id" string="CSP"/>
+                                <field name="point_indice" attrs="{'invisible':[('status', '=', 'journalier')]}"
+                                       options="{'no_quick_create': True, 'no_create': True}"/>
+                                <field name="point_indice_val" attrs="{'invisible':[('status', '=', 'journalier')]}"
+                                       options="{'no_quick_create': True}"/>
+                                <field name="indice_start" attrs="{'invisible':[('status', '=', 'journalier')]}"/>
+                                <field name="indice_duration"
+                                       attrs="{'invisible':[('status', '=', 'journalier')]}"/>
+                                <field name="indice_seniority"
+                                       attrs="{'invisible':[('status', '=', 'journalier')]}"/>
+                                <field name="indice" attrs="{'invisible':[('status', '=', 'journalier')]}"
+                                       class="oe_bold_text"/>
+                                <field name="alert_indice" invisible="1"/>
+                                <label string="Indice embauche sur le point d'être expirée" class="oe_yellow_text"
+                                       attrs="{'invisible':[('alert_indice','!=','one_month_left')]}" colspan="3"/>
+                                <label string="Indice embauche a besoin d'être actualisée" class="oe_red_text"
+                                       attrs="{'invisible':[('alert_indice','!=','need_refresh')]}" colspan="3"/>
+                            </group>
+                            <!--<group attrs="{'invisible':[('status', '!=', 'journalier')]}"></group>-->
+                            <group col="4">
+                                <group name="meducal_group" string="Organisme Médicale" colspan="4">
+                                    <field name="org_sante_id"/>
+                                </group>
+                                <group string="Salaire et avantages" colspan="4">
+                                    <field name="base_salary" attrs="{'invisible':[('status', '=', 'journalier')]}"/>
+                                    <field name="wage" invisible="1"/>
+                                    <field name="advantages" nolabel="1" placeholder="Advantages..." colspan="2" attrs="{'invisible':[('status', '=', 'journalier')]}"/>
+                                </group>
+                            </group>
+                        </group>
+                        <separator string="Notes"/>
+                        <field name="notes"/>
+                        <!--<field name="wage" position="attributes">-->
+                        <!--<attribute name="invisible">1</attribute>-->
+                        <!--</field>-->
+                        <!--<field name="wage" position="before">-->
+                        <!--<field name="base_salary"/>-->
+                        <!--</field>-->
+                    </page>
+                    <page string="Salaire sur contrat" attrs="{'invisible': [('status', '=', 'journalier')]}">
+                        <field name="rubric_ids">
+                            <tree editable="bottom" create="0" delete="0">
+                                <field name="code" readonly="1"/>
+                                <field name="rubric_conf" readonly="1" invisible="1"/>
+                                <field name="rubric_conf_name" readonly="1"/>
+                                <field name="montant"
+                                       attrs="{'readonly': [('rubric_conf', '=', %(hr_copefrito_paie.RUBRIC_100)d), ('base_salary_auto', '=', True), ('is_hc', '!=', True), ('hc_indice', '!=', 0)]}"
+                                       sum="Montant total"/>
+                                <field name="base_salary_auto" invisible="1"/>
+                                <field name="is_hc" invisible="1"/>
+                                <field name="hc_indice" invisible="1"/>
+                                <field name="active" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+                <xpath expr="//page[@name='information']/separator[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="notes" position="replace"></field>
+                <xpath expr="//page[4]" position="replace">
+                    <page string="Rubriques de paie variable">
+                        <field name="variable_rubric_ids"
+                               domain="['&amp;', ('type', '=', 'normal'), '|', ('status', '=', status), ('status', '=', 'mixte')]">
+                            <tree>
+                                <field name="code"/>
+                                <field name="name"/>
+                                <button name="do_nothing" field_name="mouvement" widget="toggle_button_mouvement"/>
+                                <field name="mouvement" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <!--<page string="Autorisation de travail">-->
+                    <page string="Permis de travail">
+                        <group>
+                            <group>
+                                <field name="permit_no"/>
+                                <field name="permit_deliver"/>
+                                <field name="permit_expire"/>
+                            </group>
+                            <group>
+                                <field name="visa_no" string="N° Visa"/>
+                                <field name="visa_deliver"/>
+                                <field name="visa_expire" string="Date d'expiration Visa"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <!--
+                                <field name="state" position="before">
+                                    <button name="send_notification" string="Envoyer mail" type="object" class="oe_highlight"/>
+                                </field>
+                -->
+            </field>
+        </record>
+
+        <!-- ADDING FIELDS / MAKE FIELD INVISIBLE / READONLY WHEN STATE = CLOSE -->
+        <record id="hr_contract_form_inherit2" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit2</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='struct_id']" position="after">
+                        <field name="payslip_payment_mode_id" attrs="{'required':[('status', '!=', 'journalier')]}"/>
+                    </xpath>
+                    <xpath expr="//field[@name='working_hours']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='working_hours']" position="after">
+                        <!--<field name="monthly_hours_amount_id"/>-->
+                        <field name="work_night" invisible="1"/>
+                    </xpath>
+
+
+                    <!-- READONLY WHEN STATE = CLOSE -->
+                    <xpath expr="//field[@name='job_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='employee_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True, 'no_create': True}</attribute>
+                        <attribute name="string">Nom et prénoms</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='department_id']" position="attributes">
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                        <attribute name="string">Service</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='type_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [['state', 'in', ['open', 'close','pending']]],
+                            'required':[('status', '!=', 'journalier')], 'invisible': [('status', '=', 'journalier')]}
+                        </attribute>
+                        <attribute name="options">{'no_quick_create': True, 'no_create_edit': True}</attribute>
+                    </xpath>
+                    <!-- <xpath expr="//field[@name='wage']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath> -->
+                    <!--  <xpath expr="//field[@name='type_salaire']" position="attributes">
+                         <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                     </xpath> -->
+                    <xpath expr="//field[@name='struct_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')], 'invisible':[('status', '=', 'journalier')]}</attribute>
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='payslip_payment_mode_id']" position="attributes">
+                        <attribute name="readonly">1</attribute>
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                        <attribute name="required">0</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='trial_date_start']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')], 'required':[('status', '!=', 'journalier')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='trial_date_end']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='date_start']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='date_end']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='working_hours']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='schedule_pay']" position="replace">
+                        <field name="schedule_pay" invisible="1"/>
+                    </xpath>
+                    <xpath expr="//field[@name='notes']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='advantages']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                        <attribute name="placeholder">Avantages...</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='visa_no']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='visa_expire']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='permit_no']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='work_night']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                    </xpath>
+                    <!--<xpath expr="//field[@name='monthly_hours_amount_id']" position="attributes">-->
+                    <!--<attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>-->
+                    <!--<attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>-->
+                    <!--</xpath>-->
+                </data>
+            </field>
+        </record>
+
+        <!-- READONLY WHEN STATE = CLOSE -->
+        <record id="hr_contract_form_inherit3" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit3</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_copefrito_paie.hr_contract_view_form_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//field[@name='contract_qualification_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')], 'required':[('status', '!=',
+                            'journalier')], 'invisible': [('status', '=', 'journalier')]}
+                        </attribute>
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                    </xpath>
+
+                    <xpath expr="//field[@name='org_sante_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state','=','close')]}</attribute>
+                        <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                        <attribute name="required">1</attribute>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <!-- ADD NAME IN FILTER -->
+        <record id="hr_contract_view_search_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.search.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/filter[1]" position="replace">
+                    <filter string="Employee" name="group_employee_id" domain="[]"
+                            context="{'group_by':'employee_id'}"/>
+                    <filter string="Statut" name="group_statut" domain="" context="{'group_by' : 'status'}"/>
+                </xpath>
+                <field name="state" position="after">
+                    <filter string="Non clôturé" name="not_close" domain="[('state', '!=', 'close')]"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_contract_view_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.tree.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name" invisible="1"/>
+                </field>
+                <field name="employee_id" position="before">
+                    <field name="trial_is_end" invisible="1"/>
+                    <field name="allaitement_is_end" invisible="1"/>
+                </field>
+                <xpath expr="//tree" position="attributes">
+                    <!--<attribute name="colors">red:trial_is_end==True</attribute>-->
+                    <attribute name="colors">red:computed_state=='pending' or alert_indice!='no_alert'</attribute>
+                </xpath>
+                <field name="name" position="before">
+                    <field name="num_contract"/>
+                    <field name="alert_indice" invisible="1"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="matricule"/>
+                    <field name="state" invisible="1"/>
+                    <field name="status" invisible="1"/>
+                </field>
+                <field name="employee_id" position="after">
+                    <field name="department_id" string="Services"/>
+                </field>
+                <field name="type_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="date_end" position="after">
+                    <field name="computed_state"/>
+                </field>
+                <field name="working_hours" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+
+        <!-- MAKE MENUITEM "heures de travail" invisible -->
+        <!-- TODO -->
+
+
+        <!-- Menu for configuration of : "Volumes horaires mensuelles" -->
+
+
+        <!-- menuitem action="hr_copefrito_paie.action_hours_contract_form" id="menu_hours_contract" parent="menu_hours_contract_config" sequence="6"/> -->
+        <!--menuitem action="hr_copefrito_paie.action_hours_contract_tree_search" id="menu_view_hours_contract_search" parent="menu_hours_contract_config" sequence="2"/ -->
+        <!-- Inherit Form View to Modify it -->
+        <record id="holiday_period_form_inherit" model="ir.ui.view">
+            <field name="name">training.holiday.period.form.inherit</field>
+            <field name="model">training.holiday.period</field>
+            <field name="inherit_id" ref="hr_days_off.holiday_period_form"/>
+            <field name="arch" type="xml">
+
+                <field name="categ" position="attributes">
+                    <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="hr_contract.act_hr_employee_2_hr_contract" model="ir.actions.act_window">
+            <field name="context">{'search_default_employee_id': [active_id], 'default_employee_id': active_id, 'from_oe_stat_button': True}</field>
+        </record>
+
+        <!--<act_window id="action_hr_contract_refresh_base_salary"-->
+        <!--multi="True"-->
+        <!--name="Mise en attente"-->
+        <!--res_model="hr.payslip.class.confirm" src_model="hr.payslip.input"-->
+        <!--view_mode="form" target="new" view_type="form" />-->
+
+        <!--<record id="hr_contract_view_search_inherit" model="ir.ui.view">-->
+        <!--<field name="name">hr.contract.filter</field>-->
+        <!--<field name="model">hr.contract</field>-->
+        <!--<field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>-->
+        <!--<field name="arch" type="xml">-->
+
+        <!--<xpath expr="//group//filter[3]" position="after">-->
+        <!--<filter string="Société" name="group_company" icon="terp-folder-orange" context="{'group_by':'employee_id.company_id'}"/>-->
+        <!--</xpath>-->
+
+        <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="hr_contract.action_hr_contract" model="ir.actions.act_window">-->
+        <!--<field name="context">{'search_default_current':1, 'search_default_group_company':1}</field>-->
+        <!--</record>-->
+    </data>
+</openerp>

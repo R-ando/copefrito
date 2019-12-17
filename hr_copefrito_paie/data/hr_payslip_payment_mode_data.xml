@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="hr.payslip.payment.mode" id="virement">
+            <field name="name">Virement</field>
+        </record>
+        <record model="hr.payslip.payment.mode" id="cheque">
+            <field name="name">Chèque</field>
+        </record>
+        <record model="hr.payslip.payment.mode" id="mobile">
+            <field name="name">Mobile</field>
+        </record>
+        <record model="hr.payslip.payment.mode" id="espece">
+            <field name="name">Espèces</field>
+        </record>
+        
+        <!--<record model="hr.payslip.payment.mode" id="acces_banque">-->
+            <!--<field name="name">ACCES BANQUE</field>-->
+            <!--<field name="payment_type">bank</field>-->
+        <!--</record>-->
+        <!--<record model="hr.payslip.payment.mode" id="airtel_money">-->
+            <!--<field name="name">AIRTEL MONEY</field>-->
+            <!--<field name="payment_type">mobile</field>-->
+        <!--</record>-->
+        <!--<record model="hr.payslip.payment.mode" id="bfv_sg">-->
+            <!--<field name="name">BFV SG</field>-->
+            <!--<field name="payment_type">bank</field>-->
+        <!--</record>-->
+        <!--<record model="hr.payslip.payment.mode" id="bni">-->
+            <!--<field name="name">BNI</field>-->
+            <!--<field name="payment_type">bank</field>-->
+        <!--</record>-->
+        <!--<record model="hr.payslip.payment.mode" id="bmoi">-->
+            <!--<field name="name">BMOI</field>-->
+            <!--<field name="payment_type">bank</field>-->
+        <!--</record>-->
+        <!--<record model="hr.payslip.payment.mode" id="boa">-->
+            <!--<field name="name">BOA</field>-->
+            <!--<field name="payment_type">bank</field>-->
+        <!--</record>-->
+        <record model="hr.payslip.payment.mobile" id="orange_money">
+            <field name="name">ORANGE MONEY</field>
+        </record>
+        <!--<record model="hr.payslip.payment.mode" id="mcb">-->
+            <!--<field name="name">MCB</field>-->
+            <!--<field name="payment_type">bank</field>-->
+        <!--</record>-->
+        <record model="hr.payslip.payment.mobile" id="mvola">
+            <field name="name">MVOLA</field>
+        </record>
+        <record model="hr.payslip.payment.mobile" id="airtel_money">
+            <field name="name">AIRTEL MONEY</field>
+        </record>
+    </data>
+</odoo>

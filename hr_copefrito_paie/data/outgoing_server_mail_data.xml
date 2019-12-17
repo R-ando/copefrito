@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+        <record id="gmail_server" model="ir.mail_server">
+            <field name="name">Outgoing gmail server</field>
+            <field name="sequence" eval="1"/>
+            <field name="smtp_host">smtp.gmail.com</field>
+            <field name="smtp_port" eval="465"/>
+            <field name="smtp_encryption">ssl</field>
+            <field name="smtp_user">copefritotulear@gmail.com</field>
+            <field name="smtp_pass">copefritocopefrito</field>
+        </record>
+    </data>
+</openerp>

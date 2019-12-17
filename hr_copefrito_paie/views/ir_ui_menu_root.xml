@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--Menu Paramètres système-->
+        <menuitem id="menu_general_setting" parent="base.menu_administration" name="Paramètrages système" sequence="2" groups="base.group_system"/>
+
+        <!--Menu Configuration système-->
+        <menuitem id="menu_general_configuration" parent="base.menu_administration" name="Configuration système" sequence="0" groups="base.group_system"/>
+
+        <!--Menu Sociétés-->
+        <menuitem id="menu_company" parent="base.menu_administration" name="Sociétés" sequence="0" groups="base.group_system"/>
+        <menuitem id="menu_company_setting" parent="base.menu_administration" name="Paramètrage Sociétés" sequence="3" groups="hr_copefrito_paie.group_pay_manager,hr_copefrito_paie.group_direction"/>
+        <menuitem id="menu_pay_setting" parent="menu_general_configuration" name="Paramétrage de paie" sequence="0" groups="base.group_system"/>
+        <menuitem id="menu_employee_setting" parent="menu_general_configuration" name="Paramétrage des employés" sequence="0" groups="base.group_system"/>
+        <menuitem id="ir_ui_menu_hours_contract_config" name="Volumes horaires" parent="menu_general_setting" sequence="5" action = "ir_actions_act_window_hours_contract_data"/>
+
+        <record id="base.menu_config" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_setting"/>
+            <field name="sequence" eval="18"/>
+        </record>
+        <record id="base.menu_translation" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_setting"/>
+            <field name="sequence" eval="20"/>
+        </record>
+        <record id="base.menu_custom" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_general_setting"/>
+            <field name="sequence" eval="21"/>
+        </record>
+    </data>
+</openerp>

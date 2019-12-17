@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="res.organisme.medical" id="organisme_ostie">
+            <field name="name">OSTIE</field>
+            <field name="plafond_organisme" eval="1152024"/>
+            <field name="taux_salarial" eval="1.0"/>
+            <field name="taux_patronal" eval="5.0"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record model="res.organisme.medical" id="organisme_salfa">
+            <field name="name">SALFA</field>
+            <field name="plafond_organisme" eval="1152024"/>
+            <field name="taux_salarial" eval="1.0"/>
+            <field name="taux_patronal" eval="5.0"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record model="res.organisme.medical" id="organisme_smimo">
+            <field name="name">SMIMO</field>
+            <field name="plafond_organisme" eval="1152024"/>
+            <field name="taux_salarial" eval="1.0"/>
+            <field name="taux_patronal" eval="5.0"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record model="res.partner" id="base.main_partner">
+            <!--<field name="name">Copefrito</field>-->
+            <field name="street">Avenue de France Mahavatse II - BP 212 Tuléar 601</field>            
+        </record>
+        <record model="res.company" id="base.main_company">
+            <field name="phone">(261-20) 94 438 02</field>
+            <field name="fax">(261-20) 94 414 02</field>
+            <field name="email">info@copefrito.com</field>
+            <field name="website">http://www.copefrito.com</field>
+            <field name="nif">1 836 664</field>
+            <field name="stat">264 739</field>
+            <field name="company_registry">TOLIARA 2003B00018</field>
+            <field name="seuil_irsa" eval="2000"/>
+            <field name="taux_irsa" eval="20.00"/>
+            <field name="cotisation_cnaps_patr" eval="13.00"/>
+            <field name="cotisation_cnaps_emp" eval="1.00"/>
+            <field name="ded_enfant_emp" eval="2000"/>
+            <field name="conge_mens" eval="2.50"/>
+            <field name="ded_enfant_emp" eval="2000"/>
+            <field name="plafond_cnaps" eval="1152024"/>
+            <field name="abat_irsa" eval="250000.00"/>
+            <field name="timesheet_range">month</field>
+            <field name="currency_id" ref="base.MGA"/>
+            <field name="organisme_ids" eval="[(6,0,[ref('organisme_ostie'),ref('organisme_salfa'),ref('organisme_smimo')])]"/>
+        </record>
+
+    </data>
+</openerp>

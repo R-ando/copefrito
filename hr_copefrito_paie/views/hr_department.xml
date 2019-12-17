@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_department_form_inherit" model="ir.ui.view">
+            <field name="name">view.employee.tree.new.inherit</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Service</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="string">Service parent</attribute>
+                </xpath>
+                <field name="company_id" position="after">
+                    <field name="code_service" required="True"/>
+                    <field name="code" required="False" invisible="1"/>
+                </field>
+                <field name="manager_id" position="attributes">
+                    <attribute name="options">{'no_create_edit': 1, 'no_quick_create': True}</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="view_department_tree_inherit" model="ir.ui.view">
+            <field name="name">view.department.tree.inherit</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">true</attribute>
+                </xpath>
+                <field name="complete_name" position="before">
+                    <field name="code_service"/>
+                </field>
+            </field>
+        </record>
+        <record id="hr.open_module_tree_department" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record id="hr_salary_rule_list_inherit" model="ir.ui.view">
+      <field name="name">hr.salary.rule.list.inherit</field>
+      <field name="model">hr.salary.rule</field>
+      <field name="field_parent">child_ids</field>
+      <field eval="20" name="priority"/>
+      <field name="inherit_id" ref="hr_payroll.hr_salary_rule_list"/>
+      <field name="arch" type="xml">
+        <field name="sequence" position="replace">
+          <field name="sequence"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="hr_salary_rule_form_inherit" model="ir.ui.view">
+      <field name="name">hr.salary.rule.form.inherit</field>
+      <field name="model">hr.salary.rule</field>
+      <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+      <field name="arch" type="xml">
+        <field name="appears_on_payslip" position="after">
+          <field name="rubric_id"/>
+          <field name="non_taxable"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_hr_employee_grade_forminherit" model="ir.ui.view">
+      <field name="name">hr.payroll.structure.form.inherit</field>
+      <field name="model">hr.payroll.structure</field>
+      <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
+      <field name="arch" type="xml">
+        <field name="category_id" position="after">
+          <field name="sequence"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

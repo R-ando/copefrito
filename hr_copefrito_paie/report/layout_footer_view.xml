@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <template id="copefrito_report_layout_footer" inherit_id="account.external_layout_footer"
+              name="Copefrito report footer">
+      <xpath expr="//div[@class='footer']" position="replace">
+        <div class="footer" style="font-size: 65%;">
+          <div class="last-page">
+            <div class="row">
+              <div class="col-xs-3 text-center">
+                Pour <span t-field="company.name"/>,
+              </div>
+              <div class="col-xs-3 text-center">
+                L'employé,
+              </div>
+              <div class="col-xs-3 text-center">
+                Pour <span t-field="company.name"/>,
+              </div>
+              <div class="col-xs-3 text-center">
+                L'employé,
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-1"></div>
+              <div class="col-xs-1 text-center" style="margin-top: 15px;">
+                <span t-field="o.signature" class="img img-responsive"
+                      t-field-options='{"widget": "image"}'/>
+              </div>
+              <div class="col-xs-2 text-center">
+                <h4 style="color: #CCC;">COPIE</h4>
+              </div>
+              <div class="col-xs-2"></div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-1 text-center" style="margin-top: 15px;">
+                <span t-field="o.signature" class="img img-responsive"
+                      t-field-options='{"widget": "image"}'/>
+              </div>
+              <div class="col-xs-2 text-center">
+                <h4 style="color: #CCC;">ORIGINAL</h4>
+              </div>
+              <div class="col-xs-2"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <ul class="list-inline" align="right" style="font-size: 9px; margin-right: 10px; margin-top: 10px">
+                <li>Page :</li>
+                <li>
+                  <span class="page"/>
+                </li>
+                <li>/</li>
+                <li>
+                  <span class="topage"/>
+                </li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul class="list-inline" align="right" style="font-size: 9px; margin-right: 10px; margin-top: 10px">
+                <li>Page :</li>
+                <li>
+                  <span class="page"/>
+                </li>
+                <li>/</li>
+                <li>
+                  <span class="topage"/>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </template>
+
+  </data>
+</openerp>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="operator_card_form" model="ir.ui.view">
+			<field name="name">operator.card.form</field>
+			<field name="model">operator.card</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+                            <group>
+                                <field name="responsable_employee_id" domain="[('user_id', '!=', False)]"/>
+                                <field name="user_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+								<field name="rubric_assigned" invisible="1"/>
+                            </group>
+						</group>
+						<notebook>
+                            <page string="Rubriques">
+                                <field name="rubric_ids"/>
+                            </page>
+                        </notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		 
+		<record id="operator_card_tree" model="ir.ui.view">
+			<field name="name">operator.card.tree</field>
+			<field name="model">operator.card</field>
+			<field name="arch" type="xml">
+				<tree>
+                    <field name="responsable_employee_id"/>
+                    <!--<field name="user_id"/>-->
+                    <field name="rubric_ids"/>
+				</tree>
+			</field>
+		</record>
+		
+		<!--<record id="action_view_operator_card" model="ir.actions.act_window">-->
+            <!--<field name="name">Opérateurs de saisie</field>-->
+            <!--<field name="res_model">operator.card</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+        <!--</record>-->
+
+		<!--<menuitem-->
+            <!--id="menu_operator_card_view"-->
+            <!--action="action_view_operator_card"-->
+            <!--parent="menu_company_setting"-->
+            <!--sequence="8"-->
+        <!--/>-->
+        
+	</data>
+</openerp>

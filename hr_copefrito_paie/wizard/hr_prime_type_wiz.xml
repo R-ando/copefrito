@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_prime_type_wiz_form" model="ir.ui.view">
+            <field name="name">hr.prime.type.wiz.form</field>
+            <field name="model">hr.prime.type.wiz</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Contrats">
+                    <group>
+                        <field name="contract_ids" nolabel="1" options="{'no_create': True}"
+                            context="{'search_default_group_employee_id': 1, 'search_default_not_close': 1}"
+                        />
+                    </group>
+                    <footer>
+                        <button string="Générer" name="action_apply" type="object"  class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_hr_prime_type_wiz" model="ir.actions.act_window">
+            <field name="name">Générer Prime</field>
+            <field name="res_model">hr.prime.type.wiz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_prime_type_wiz_form"/>
+            <field name="target">new</field>
+        </record>
+        
+        <record id="action_hr_prime_type_wiz_adv" model="ir.actions.act_window">
+            <field name="name">Générer Avantage</field>
+            <field name="res_model">hr.prime.type.wiz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_prime_type_wiz_form"/>
+            <field name="target">new</field>
+        </record>
+        
+    </data>
+</openerp>

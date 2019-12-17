@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	<!--This will create some default records if they do not exist yet. We will always need these so these are auto-rendered. -->
+        <record id="employees_employee_tag" model="hr.employee.category">
+            <field name="name">employe</field>
+        </record>
+        <record id="stagiaire_employee" model="hr.employee.category">
+            <field name="name">stagiaire</field>
+        </record>
+        <record id="demissions_employee" model="hr.employee.category">
+            <field name="name">demission</field>
+        </record>
+        <record id="licenciements_employee" model="hr.employee.category">
+            <field name="name">licenciement</field>
+        </record>
+    </data>
+</openerp>

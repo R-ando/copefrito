@@ -1,0 +1,14 @@
+-
+  Set date format, separator for french lang
+-
+  !python {model: res.lang} : |
+    rec_fr = self.search(cr, uid, [('code', '=', 'fr_FR')])
+    if rec_fr:
+      fr_lang = self.browse(cr, uid, rec_fr)
+      fr_lang .write({
+        'date_format': '%d/%m/%Y',
+        'decimal_point': ',',
+        'thousands_sep': ' ',
+      })
+    rec_mga = self.pool.get('ir.model.data').xmlid_to_object(cr, uid, 'base.MGA')
+    rec_mga.write({'active': True})

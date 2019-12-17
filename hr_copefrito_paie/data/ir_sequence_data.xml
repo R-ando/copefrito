@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <record id="journalier_seq_contract" model="ir.sequence">
+            <field name="name">Séquence numéro contrat journalier</field>
+            <field name="code">jr_contract</field>
+            <field name="padding" eval="4"/>
+        </record>
+        <record id="permanent_seq_contract" model="ir.sequence">
+        	<field name="name">Séquence numéro contrat permanent</field>
+        	<field name="code">pr_contract</field>
+        	<field name="padding" eval="4"/>
+        </record>
+    </data>
+</openerp>

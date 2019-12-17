@@ -1,0 +1,177 @@
+@charset "utf-8";
+.openerp .oe_pivot td {
+    border: 1px solid #bfbfb6;
+    text-align: right;
+    width: 1px !important;
+    white-space: nowrap !important;
+}  
+.style-table{
+	border: 1px solid;
+	padding: 1px 5px !important;
+}
+.text-small{
+	font-size: 9pt;
+}
+.no-border-bottom{
+	border-bottom: 1px solid transparent !important;
+}
+.no-border-right{
+	border-right: 1px solid transparent !important;
+}
+.no-border-left{
+	border-left: 1px solid transparent !important;
+}
+.no-border-top{
+	border-top: 1px solid transparent !important;
+}
+.vertical-middle{
+	vertical-align: middle;	
+}
+.horizontal-middle{
+	padding: 10px 5px !important;	
+}
+.horizontal-middle-2{
+	padding: 15px !important;	
+}
+.my-table {
+    border-collapse: collapse !important;
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;    
+  }
+
+.noBorder {
+	font-size: 9pt;   
+  }
+ .style-bold {
+	font-weight: bold; 	
+ }
+
+.openerp .oe_kanban_status_orange {
+  background: orange;
+  background-position: center center;
+  background-image: -webkit-radial-gradient(circle, #ff8f22 0%, #d36800 40%, #b15700 100%);
+  background-image: -moz-radial-gradient(#ff8f22 0%, #d36800 40%, #b15700 100%);
+  background-image: -ms-radial-gradient(#ff8f22 0%, #d36800 40%, #b15700 100%);
+  background-image: radial-gradient(circle, #ff8f22 0%, #d36800 40%, #b15700 100%);
+}
+
+.oe_red_text{
+    color: crimson;
+    font-weight: bold !important;
+}
+
+.oe_red_text:before {
+    content: url(../img/gtk-warning.png) !important;
+}
+
+.oe_yellow_text{
+    color: coral;
+    font-weight: bold !important;
+}
+
+.extend_name th[data-id='name'] {
+  width: 45%; /* using percentage is recommended for responsive design */
+}
+
+.extend_name th[data-id='employee_id'] {
+  width: 40%; /* using percentage is recommended for responsive design */
+}
+
+.extend_name th[data-id='surname_employee'] {
+  width: 15%; /* using percentage is recommended for responsive design */
+}
+
+.extend_name th[data-id='job'] {
+  width: 20%; /* using percentage is recommended for responsive design */
+}
+
+.oe_m2o_cm_button{
+    display: none !important;
+}
+
+/*Set capital all parent menu*/
+.oe_secondary_menu_section{
+    text-transform: uppercase;
+}
+
+.oe_bold_text{
+    font-weight: bold !important;
+}
+
+.extend_employee th[data-id='name']{
+    width: 35%;
+}
+
+.oe_secondary_submenu .oe_menu_toggler{
+    text-transform: uppercase;
+    /*font-weight: bold;*/
+}
+
+/*.openerp .oe_list_content th.oe_sortable div{*/
+    /*height: 22px;*/
+/*}*/
+
+/* cut td */
+.oe_list_content{
+    width: 100%;
+}
+.oe_list_content td{
+    /*max-width: 210px;*/
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap!important;
+}
+
+.oe_title_width {
+    width: 550px!important;
+}
+
+.align_employee{
+    height: 40px;
+    position: relative;
+    /* margin-top: 5px; */
+    width: 290px;
+}
+
+.align_employee span {
+    position: absolute;
+    max-width: 100%;
+}
+.align_employee_name {
+    height: 30px;
+    position: relative;
+    /* width: 680px; */
+    margin-bottom: 20px;
+}
+
+.align_employee_name h2 {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    /*justify-content: center;*/
+    top: 0;
+}
+
+.align_employee_name span.oe_inline{
+    width: calc(40% - 10px)!important;
+}
+
+.align_employee_name span.employee_name{
+    width: 70%!important;
+    margin-right: 10px;
+}
+
+.oe_list_header_float.oe_sortable {
+    text-align: right;
+}
+
+th.oe_list_header_integer.oe_sortable.sortdown {
+    text-align: right;
+}
+
+th.oe_list_header_integer.oe_sortable {
+    text-align: right;
+}
+

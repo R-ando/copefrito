@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+   <!--  <record id="ir_actions_act_window_heures_de_travail_r0" model="ir.actions.act_window">
+      <field name="help">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+      <field name="res_model">resource.calendar</field>
+      <field name="view_type">form</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="auto_refresh">0</field>
+      <field name="view_mode">tree,form</field>
+      one2many field 'view_ids' managed on the ir.actions.act_window.view side
+      <field name="target">current</field>
+      <field name="multi" eval="False"/>
+      <field name="name">Heures de Travail</field>
+      <field name="auto_search" eval="True"/>
+      <field name="res_id">0</field>
+      <field name="filter" eval="False"/>
+      <field name="limit">80</field>
+      <field name="context">{}</field>
+    </record>
+    <record id="ir_actions_act_window_pointages_r0" model="ir.actions.act_window">
+      <field name="help">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+      <field name="res_model">hr.attendance</field>
+      <field name="view_type">form</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="auto_refresh">0</field>
+      <field name="view_mode">tree,form</field>
+      one2many field 'view_ids' managed on the ir.actions.act_window.view side
+      <field name="target">current</field>
+      <field name="multi" eval="False"/>
+      <field name="name">Pointages</field>
+      <field name="auto_search" eval="True"/>
+      <field name="res_id">0</field>
+      <field name="filter" eval="False"/>
+      <field name="limit">80</field>
+      <field name="context">{}</field>
+    </record>
+    <record id="ir_actions_act_window_feuilles_de_temps_r0" model="ir.actions.act_window">
+      <field name="help">&lt;p class='oe_view_nocontent_create'&gt;Cliquez ici pour ajouter un nouveau document&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+      <field name="res_model">hr_timesheet_sheet.sheet</field>
+      <field name="view_type">form</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="auto_refresh">0</field>
+      <field name="view_mode">tree,form</field>
+      one2many field 'view_ids' managed on the ir.actions.act_window.view side
+      <field name="target">current</field>
+      <field name="multi" eval="False"/>
+      <field name="name">Feuilles de temps</field>
+      <field name="auto_search" eval="True"/>
+      <field name="res_id">0</field>
+      <field name="filter" eval="False"/>
+      <field name="limit">80</field>
+      <field name="context">{}</field>
+    </record>
+    <record id="ir_actions_act_window_timesheet_generator_r0" model="ir.actions.act_window">
+      <field name="help">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+      <field name="res_model">hr.timesheet.wiz</field>
+      <field name="view_type">form</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_id" ref="hr_copefrito_paie.view_hr_timesheet_wiz_form"/>
+      <field name="auto_refresh">0</field>
+      <field name="view_mode">tree,form</field>
+      one2many field 'view_ids' managed on the ir.actions.act_window.view side
+      <field name="target">new</field>
+      <field name="multi" eval="False"/>
+      <field name="name">Timesheet Generator</field>
+      <field name="auto_search" eval="True"/>
+      <field name="res_id">0</field>
+      <field name="filter" eval="False"/>
+      <field name="limit">80</field>
+      <field name="context">{}</field>
+    </record>
+ -->
+        <!-- Specified here because of "volume horaire" menu issue of list view fields -->
+        <record id="view_hours_contract_tree" model="ir.ui.view">
+            <field name="name">hours.contract.search</field>
+            <field name="model">monthly.hours.contract.data</field>
+            <field name="arch" type="xml">
+                <tree string="Volumes horaires mensuelles">
+                   <field name="name" string="Libellé"/>
+                   <field name="code"/>
+                   <field name="hours"/>
+               </tree>
+            </field>
+        </record>
+
+    <record id="ir_actions_act_window_hours_contract_data" model="ir.actions.act_window">
+      <field name="help">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+      <field name="res_model">monthly.hours.contract.data</field>
+      <field name="view_type">form</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_id" ref="view_hours_contract_tree"/>
+      <field name="auto_refresh">0</field>
+      <field name="view_mode">tree,form</field>
+      <!-- one2many field 'view_ids' managed on the ir.actions.act_window.view side -->
+      <field name="target">current</field>
+      <field name="multi" eval="False"/>      
+      <field name="name">Volumes horaire mensuelles</field>
+      <field name="auto_search" eval="True"/>
+      <field name="res_id">0</field>
+      <field name="filter" eval="False"/>
+      <field name="limit">80</field>
+      <field name="context">{}</field>
+    </record>
+  </data>
+</openerp>

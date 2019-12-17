@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <!-- VUE TREE DES ACTIVITES EN COURS -->
+        <record model="ir.ui.view" id="hr_enfant">
+            <field name="name">Info Enfant</field>
+            <field name="model">hr.enfant</field>
+            <field name="arch" type="xml">
+            <tree string="Enfant">
+                <field name="name" />
+                <field name="birthday" />
+                <field name="age" />
+                <field name="complete_age" />
+            </tree>
+            </field>
+        </record>
+          <record model="ir.ui.view" id="hr_enfant_form">
+            <field name="name">hr.enfant.form</field>
+            <field name="model">hr.enfant</field>
+            <field name="arch" type="xml">
+                <form string="Enfant">
+                    <group>
+                        <field name="name" class="tag_name"/>
+                        <field name="birthday" />
+                        <field name="age" />
+                        <field name="complete_age" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

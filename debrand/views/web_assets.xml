@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<template id="assets_backend_new" name="hr_etech_paie assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+            	<link rel="stylesheet" href="/debrand/static/src/css/theme_backend.css"/>
+            </xpath>
+        </template>
+	</data>
+</odoo>

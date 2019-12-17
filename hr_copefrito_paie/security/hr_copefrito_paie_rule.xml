@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_perm_service" model="ir.rule">
+            <field name="name">hr.employee.perm</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="domain_force">[('department_id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_contract_perm_service" model="ir.rule">
+            <field name="name">hr.contract.perm</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="domain_force">[('department_id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_department_perm_service" model="ir.rule">
+            <field name="name">hr.department.perm</field>
+            <field name="model_id" ref="hr.model_hr_department"/>
+            <field name="domain_force">[('id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_code_service_perm_service" model="ir.rule">
+            <field name="name">hr.code.service.perm</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_code_service"/>
+            <field name="domain_force">[('service_id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_job_perm_service" model="ir.rule">
+            <field name="name">hr.job.perm</field>
+            <field name="model_id" ref="hr.model_hr_job"/>
+            <field name="domain_force">[('service_id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_code_post_perm_service" model="ir.rule">
+            <field name="name">hr.code.poste.perm</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_code_poste"/>
+            <field name="domain_force">[('job_id.service_id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_payslip_perm_service" model="ir.rule">
+            <field name="name">hr.payslip.perm</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="domain_force">[('employee_id.department_id', 'in', user.service_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <record id="hr_payslip_input_perm_service" model="ir.rule">
+            <field name="name">hr.payslip.input.perm</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip_input"/>
+            <field name="domain_force">[('contract_id.department_id', 'in', user.service_ids.ids), ('contract_id.contract_qualification_id', 'in', user.csp_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>
+
+        <!--<record id="hr_contract_qualification_perm_csp" model="ir.rule">
+            <field name="name">hr.contract.qualification.perm.csp</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_contract_qualification"/>
+            <field name="domain_force">[('id', 'in', user.csp_ids.ids)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>
+        </record>-->
+
+        <!--for operator-->
+
+        <record id="hr_employee_perm_operator" model="ir.rule">
+            <field name="name">hr.employee.perm</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="domain_force">['|', ('csp_id.is_hc', '=', False), ('csp_id', '=', False)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_contract_perm_operator" model="ir.rule">
+            <field name="name">hr.contract.perm</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="domain_force">['|', ('contract_qualification_id.is_hc', '=', False), ('contract_qualification_id', '=', False)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_contract_perm_operator_write" model="ir.rule">
+            <field name="name">hr.contract.perm.write</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="domain_force">[('state','not in',['active']), '|', ('contract_qualification_id.is_hc', '=', False), ('contract_qualification_id', '=', False)]</field>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_payslip_perm_operator" model="ir.rule">
+            <field name="name">hr.payslip.perm</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="domain_force">['|', ('contract_id.contract_qualification_id.is_hc', '=', False), ('contract_id.contract_qualification_id', '=', False)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <!--<record id="hr_payslip_input_perm_operator_read" model="ir.rule">-->
+            <!--<field name="name">hr.payslip.input.perm</field>-->
+            <!--<field name="model_id" ref="hr_payroll.model_hr_payslip_input"/>-->
+            <!--<field name="domain_force">[('contract_id.contract_qualification_id.is_hc', '=', False)]</field>-->
+            <!--<field name="perm_read" eval="1"/>-->
+            <!--<field name="perm_create" eval="1"/>-->
+            <!--<field name="perm_write" eval="1"/>-->
+            <!--<field name="perm_unlink" eval="1"/>-->
+            <!--<field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>-->
+        <!--</record>-->
+
+        <record id="hr_payslip_input_perm_operator" model="ir.rule">
+            <field name="name">hr.payslip.input.perm</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip_input"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <!--<record id="hr_contract_qualification_perm_csp" model="ir.rule">
+            <field name="name">hr.contract.qualification.perm.csp</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_contract_qualification"/>
+            <field name="domain_force">[('is_hc', '=', False)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>-->
+
+        <!--Permission for CSP-->
+        <!--<record id="hr_employee_perm_csp" model="ir.rule">-->
+            <!--<field name="name">hr.employee.perm.csp</field>-->
+            <!--<field name="model_id" ref="hr.model_hr_employee"/>-->
+            <!--<field name="domain_force">[('csp_id', 'in', user.csp_ids.ids)]</field>-->
+            <!--<field name="perm_read" eval="1"/>-->
+            <!--<field name="perm_create" eval="1"/>-->
+            <!--<field name="perm_write" eval="1"/>-->
+            <!--<field name="perm_unlink" eval="1"/>-->
+            <!--<field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>-->
+        <!--</record>-->
+
+        <!--<record id="hr_contract_perm_csp" model="ir.rule">-->
+            <!--<field name="name">hr.contract.perm.csp</field>-->
+            <!--<field name="model_id" ref="hr_contract.model_hr_contract"/>-->
+            <!--<field name="domain_force">[('contract_qualification_id', 'in', user.csp_ids.ids)]</field>-->
+            <!--<field name="perm_read" eval="1"/>-->
+            <!--<field name="perm_create" eval="1"/>-->
+            <!--<field name="perm_write" eval="1"/>-->
+            <!--<field name="perm_unlink" eval="1"/>-->
+            <!--<field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>-->
+        <!--</record>-->
+
+        <!--<record id="hr_contract_qualification_perm_csp" model="ir.rule">-->
+            <!--<field name="name">hr.contract.qualification.perm.csp</field>-->
+            <!--<field name="model_id" ref="hr_copefrito_paie.model_hr_contract_qualification"/>-->
+            <!--<field name="domain_force">[('id', 'in', user.csp_ids.ids)]</field>-->
+            <!--<field name="perm_read" eval="1"/>-->
+            <!--<field name="perm_create" eval="1"/>-->
+            <!--<field name="perm_write" eval="1"/>-->
+            <!--<field name="perm_unlink" eval="1"/>-->
+            <!--<field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager')])]"/>-->
+        <!--</record>-->
+
+        <!--<record id="hr_payslip_perm_csp" model="ir.rule">-->
+            <!--<field name="name">hr.payslip.perm.csp</field>-->
+            <!--<field name="model_id" ref="hr_payroll.model_hr_payslip"/>-->
+            <!--<field name="domain_force">[('employee_id.csp_id', 'in', user.csp_ids.ids)]</field>-->
+            <!--<field name="perm_read" eval="1"/>-->
+            <!--<field name="perm_create" eval="1"/>-->
+            <!--<field name="perm_write" eval="1"/>-->
+            <!--<field name="perm_unlink" eval="1"/>-->
+            <!--<field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>-->
+        <!--</record>-->
+
+        <!--<record id="hr_payslip_input_perm_csp" model="ir.rule">-->
+            <!--<field name="name">hr.payslip.input.perm.csp</field>-->
+            <!--<field name="model_id" ref="hr_payroll.model_hr_payslip_input"/>-->
+            <!--<field name="domain_force">[('employee_id.csp_id', 'in', user.csp_ids.ids)]</field>-->
+            <!--<field name="perm_read" eval="1"/>-->
+            <!--<field name="perm_create" eval="1"/>-->
+            <!--<field name="perm_write" eval="1"/>-->
+            <!--<field name="perm_unlink" eval="1"/>-->
+            <!--<field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_service_manager'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>-->
+        <!--</record>-->
+
+
+        <!--access rule for pay manager and higher-->
+        <record id="hr_employee_perm_higher_service" model="ir.rule">
+            <field name="name">hr.employee.perm</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction')])]"/>
+        </record>
+
+        <record id="hr_contract_perm_higher_service" model="ir.rule">
+            <field name="name">hr.contract.perm</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction')])]"/>
+        </record>
+
+        <record id="hr_department_perm_higher_service" model="ir.rule">
+            <field name="name">hr.department.perm</field>
+            <field name="model_id" ref="hr.model_hr_department"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_code_service_perm_higher_service" model="ir.rule">
+            <field name="name">hr.code.service.perm</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_code_service"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_job_perm_higher_service" model="ir.rule">
+            <field name="name">hr.job.perm</field>
+            <field name="model_id" ref="hr.model_hr_job"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_code_post_perm_higher_service" model="ir.rule">
+            <field name="name">hr.code.poste.perm</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_code_poste"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction'), ref('hr_copefrito_paie.group_pay_operateur')])]"/>
+        </record>
+
+        <record id="hr_payslip_perm_higher_service" model="ir.rule">
+            <field name="name">hr.payslip.perm</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction')])]"/>
+        </record>
+
+        <record id="hr_payslip_input_perm_higher_service" model="ir.rule">
+            <field name="name">hr.payslip.input.perm</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip_input"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction')])]"/>
+        </record>
+
+        <record id="hr_contract_qualification_higher_perm_csp" model="ir.rule">
+            <field name="name">hr.contract.qualification.perm.csp</field>
+            <field name="model_id" ref="hr_copefrito_paie.model_hr_contract_qualification"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(6, 0, [ref('hr_copefrito_paie.group_pay_manager'), ref('hr_copefrito_paie.group_direction')])]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>   
+
+    <record model="ir.ui.view" id="view_dirickx_report_form">
+        <field name="name">dirickx.xls.report.form</field>
+        <field name="model">dirickx.xls.report</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Export Excel">
+                <group col="4" colspan="4">
+                    <field name="hr_payslip_run" required="True"/>
+                </group>
+                <footer>
+                    <button string="Fermer" special="cancel" class="oe_link"/>
+                    ou
+                    <button type="object" name="get_dirickx_xls_file" string="Exporter" class="oe_highlight" icon="fa-file-excel-o"/>
+                </footer>
+            </form>
+        </field>
+    </record>        
+
+    <record id="action_view_dirickx_report" model="ir.actions.act_window">
+        <field name="name">Export ordre de paiement</field>
+        <field name="res_model">dirickx.xls.report</field>
+        <field name="view_type">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_dirickx_report_form" />
+    </record>
+    </data>
+</openerp>

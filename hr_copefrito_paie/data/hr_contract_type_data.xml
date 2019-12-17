@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <!--  DELETE DEFAULT CONTRAT TYPE -->
+    <delete model="hr.contract.type" id="hr_contract.hr_contract_type_emp"/>
+    <delete model="hr.contract.type" id="hr_contract.hr_contract_type_wrkr"/>
+    <delete model="hr.contract.type" id="hr_contract.hr_contract_type_sub"/>
+
+    <!-- <delete model='hr.contract.type' search="['|',('name','!=', 'Contrat de Stage'),('name','!=', 'Contrat CDI')]"/> -->
+    <record model="hr.contract.type" id="contract_stage">
+      <field name="name">Contrat durée indéterminée</field>
+      <field name="code">CDI</field>
+    </record>
+    <record model="hr.contract.type" id="contract_official">
+      <field name="name">Contrat durée déterminée</field>
+      <field name="code">CDD</field>
+    </record>
+
+  </data>
+</openerp>

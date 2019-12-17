@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>        
+        <!-- HIDE ALL UNUSED FIELDS and TAB-->
+        <record id="hr_timesheet_sheet_form_inherit" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.form.inherit</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">             
+                   <xpath expr="//field[@name='user_id']" position="before">
+                      <label for="id_number" class="oe_edit_only" attrs="{'invisible': [('id_number', '=', 'False')]}"/>
+                      <h1><field name="id_number" attrs="{'invisible': [('id_number', '=', 'False')]}"/></h1>
+                    </xpath>
+                    <xpath expr="//field[@name='total_attendance']" position="after">
+                        <field name="contract_hours_type"/>
+                    </xpath>
+                    <xpath expr="//field[@name='total_attendance']" position="after">
+                        <field name="work_night_state" invisible="1"/>
+                    </xpath>
+
+                    <xpath expr="//sheet/div[@name='button_box']/button[2]" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='total_attendance']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath> 
+                    <xpath expr="//field[@name='total_difference']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath> 
+                    <xpath expr="//field[@name='company_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath> 
+                    <xpath expr="//tree[@editable='bottom']/field[@name='unit_amount']" position="replace">
+                        <field name="unit_amount" string="Heures" sum="Total des heures" digits="(16,3)"/>
+                    </xpath> 
+                    <xpath expr="//tree[@editable='bottom']/field[@name='account_id']" position="replace">
+                        <field name="account_id" options="{'no_open': True, 'no_create': True}" string = "Type de présence"/>
+                    </xpath>
+                    <xpath expr="//span[@class='o_stat_value']/field[@name='total_timesheet']" position="replace">
+                        <field name="total_timesheet" digits="(16,3)"/>
+                    </xpath> 
+            </field>
+        </record>
+
+  
+        <record id="view_hr_timesheet_sheet_form_h0" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">  
+                <xpath expr="//button[@name='action_set_to_draft']" position="attributes">
+                    <attribute name="states">done,cancel</attribute>
+                    <attribute name="groups">hr_copefrito_paie.group_system_admin,hr_copefrito_paie.group_pay_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_confirm']" position="attributes">
+                    <attribute name="states">new</attribute>
+                    <attribute name="groups">hr_copefrito_paie.group_system_admin,hr_copefrito_paie.group_pay_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='done']" position="attributes">
+                    <attribute name="groups">hr_copefrito_paie.group_system_admin</attribute>
+                </xpath>
+                <xpath expr="//button[@name='cancel']" position="attributes">
+                    <attribute name="groups">hr_copefrito_paie.group_system_admin</attribute>
+                </xpath>
+                <field name='state' position="attributes">
+                    <attribute name="statusbar_visible">new,confirm,done</attribute>
+                </field>                   
+                <xpath expr="//notebook/page[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[3]" position="after">
+                    <page string="Analyse des données">
+                                <group>
+                                    <group string="Calculé">                                        
+                                        <field name="total_timesheet" string = "Total des heures" digits="(16,3)"/>
+                                        <field name="total_hours_sup" digits="(16,3)"/>
+                                        <field name="total_sundays_hours" digits="(16,3)"/>
+                                        <field name="total_holidays_hours" digits="(16,3)"/>
+                                        <field name="total_night_hours" digits="(16,3)"/>
+                                    </group>
+                                    <group string="Interpreté (Paie)">
+                                        <field name="total_timesheet_for_pay" digits="(16,3)" attrs="{'readonly': [['state', 'in', ['done']]]}"/>
+                                        <field name="total_hours_sup_for_pay" digits="(16,3)" attrs="{'readonly': [['state', 'in', ['done']]]}"/>
+                                        <field name="total_sundays_hours_for_pay" digits="(16,3)" attrs="{'readonly': [['state', 'in', ['done']]]}"/>
+                                        <field name="total_holidays_hours_for_pay" digits="(16,3)" attrs="{'readonly': [['state', 'in', ['done']]]}"/>
+                                        <field name="total_night_hours_for_pay" digits="(16,3)" attrs="{'readonly': [['state', 'in', ['done']]]}"/>
+                                    </group>
+                                </group>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook/page[1]" position="replace">
+                    <page string="Résumé">
+                        <widget type="weekly_timesheet_new" attrs="{'readonly': [['state', 'not in', ['new', 'draft']]]}">
+                        </widget>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="hr_timesheet_sheet_tree_simplified_inherit" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.tree.simplified.inherit</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified"/>            
+            <field name="arch" type="xml" >
+                <data>                
+                    <xpath expr="//field[@name='employee_id']" position="before">                  
+                        <field name="id_number"/>
+                    </xpath>                    
+                    <xpath expr="//field[@name='total_timesheet']" position="replace">                 
+                        <field name="total_timesheet" digits="(16,3)"/>
+                    </xpath>
+                    <xpath expr="//field[@name='total_timesheet']" position="attributes">                 
+                        <attribute name="string">Heures trav.</attribute>
+                    </xpath>                    
+                    <xpath expr="//field[@name='total_timesheet']" position="before">
+                        <field name="contract_hours_type" string ="Heures contrat" digits="(16,3)"/>
+                    </xpath>                    
+                    <xpath expr="//field[@name='total_attendance']" position="attributes">                  
+                        <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='total_difference']" position="attributes">                  
+                        <attribute name="invisible">1</attribute>
+                    </xpath>    
+                    <xpath expr="//field[@name='state']" position="before">
+                        <field name="total_hours_sup" string ="Heures supp." digits="(16,3)"/>
+                        <field name="total_sundays_hours" string ="Heures dim." digits="(16,3)"/>
+                        <field name="total_holidays_hours" string ="Heures Férié" digits="(16,3)"/>
+                        <field name="total_night_hours" string ="Heures nuit" digits="(16,3)"/>
+                        <field name="total_timesheet_for_pay" string ="Heures trav. (paie)" digits="(16,3)"/>
+                        <field name="total_hours_sup_for_pay" string ="Heures supp. (paie)" digits="(16,3)"/>
+                        <field name="total_sundays_hours_for_pay" string ="Heures dim. (paie)" digits="(16,3)"/>
+                        <field name="total_holidays_hours_for_pay" string ="Heures Férié (paie)" digits="(16,3)"/>
+                        <field name="total_night_hours_for_pay" string ="Heures nuit (paie)" digits="(16,3)"/>
+                    </xpath>                                        
+                </data>
+            </field>
+        </record>
+
+        <record id="hr_timesheet_sheet_sheet_filter_inherit" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.filter.inherit</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>     
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group expand="0" string="Group By">                  
+                        <filter string="Date de début" name="date_from" icon="terp-folder-orange" context="{'group_by':'date_from:day'}"/>
+                        <filter string="Heure contrat" name="contract_hours_type" icon="terp-folder-orange" context="{'group_by':'contract_hours_type'}"/>
+                    </group>
+                </xpath>                  
+            </field>
+        </record>         
+
+        <act_window id="action_hr_timesheet_sheet_sheet_approve"
+            multi="True"
+            key2="client_action_multi" name="Approuver feuilles de temps"
+            res_model="hr.timesheet.sheet.wizard" src_model="hr_timesheet_sheet.sheet"
+            view_mode="form" target="new" view_type="form" /> 
+
+
+        <!-- new view for showing all timesheets -->
+
+        <record id="act_hr_timesheet_sheet_form_new" model="ir.actions.act_window">
+            <field name="name">Les feuilles de présences</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>            
+            <field name="search_view_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_open_timesheet_sheet_holidays_tree_new">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_timesheet_sheet_tree_simplified_inherit"/>
+            <field name="act_window_id" ref="act_hr_timesheet_sheet_form_new"/>
+        </record>
+
+        <menuitem action="act_hr_timesheet_sheet_form_new" id="menu_act_hr_timesheet_sheet_form_new" parent="hr_attendance.menu_hr_time_tracking"
+             sequence="11" groups="base.group_hr_user"/>
+        <!-- END -->
+
+
+
+    </data>
+</openerp>

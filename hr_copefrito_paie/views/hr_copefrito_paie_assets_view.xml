@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend_new" name="hr_copefrito_paie assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/hr_copefrito_paie/static/src/css/hr_copefrito_paie.css"/>
+                <link rel="stylesheet" href="/hr_copefrito_paie/static/src/less/timesheet.less"/>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/timesheet.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/payslip_line_report.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/form_widgets.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/toggle_button_orange.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/list_editor.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/date_picker.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/client_channels.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/import_inherit.js"></script>
+                <script type="text/javascript" src="/hr_copefrito_paie/static/src/js/sidebar_inherit.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

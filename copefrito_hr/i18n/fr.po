@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* copefrito_hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20171110\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-08 06:25+0000\n"
+"PO-Revision-Date: 2018-11-08 06:25+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/controllers/main.py:34
+#, python-format
+msgid " done"
+msgstr " créé(s)"
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/controllers/main.py:45
+#, python-format
+msgid "%s classes created successfully"
+msgstr ""
+
+#. module: copefrito_hr
+#: model:ir.model.fields,field_description:copefrito_hr.field_hr_payslip_run_done_employee_ids
+msgid "Done employee ids"
+msgstr ""
+
+#. module: copefrito_hr
+#: model:ir.model.fields,field_description:copefrito_hr.field_hr_payslip_run_employee_ids
+msgid "Employee ids"
+msgstr ""
+
+#. module: copefrito_hr
+#: model:ir.model,name:copefrito_hr.model_hr_payslip_employees
+msgid "Generate payslips for all selected employees"
+msgstr "Générer des bulletins de paie pour tous les employés sélectionnés"
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/controllers/main.py:42
+#, python-format
+msgid "Generating classes in progress..."
+msgstr "Génération des classes en cours..."
+
+#. module: copefrito_hr
+#. openerp-web
+#: code:addons/copefrito_hr/static/src/js/form_view.js:17
+#: code:addons/copefrito_hr/static/src/js/form_view.js:23
+#, python-format
+msgid "Generating in progress..."
+msgstr "Génération en cours..."
+
+#. module: copefrito_hr
+#: model:ir.model,name:copefrito_hr.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr ""
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/controllers/main.py:32
+#, python-format
+msgid "Payslips : "
+msgstr "Bulletins de paie : "
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/controllers/main.py:32
+#, python-format
+msgid "Period : "
+msgstr "Période : "
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/wizard/hr_payroll_payslip_by_employees.py:71
+#, python-format
+msgid "You must select employee(s) to generate payslip(s)."
+msgstr "Vous devez sélectionner au moins un employés pour générer des bulletins de paie."
+
+#. module: copefrito_hr
+#: code:addons/copefrito_hr/controllers/main.py:45
+#, python-format
+msgid "Calculating of the %s payslips in progress..."
+msgstr "Calcul des %s bulletins de paie en cours..."
+
+#. module: copefrito_hr
+#. openerp-web
+#: code:addons/copefrito_hr/static/src/js/form_view.js:26
+#, python-format
+msgid "Generating successfully done"
+msgstr "Génération terminée"
+

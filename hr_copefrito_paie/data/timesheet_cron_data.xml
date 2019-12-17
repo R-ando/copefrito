@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+	<!--This will create some default records if they do not exist yet. We will always need these so these are auto-rendered. -->
+        <record id="title_cron" model="dirickx.remote.db">
+            <field name="cron_title">Dirickx cron by Etech</field>
+            <field name="host_db">192.168.1.37</field>
+            <field name="port_db">5432</field>
+            <field name="dbname">dirtest_odoo</field>
+            <field name="user_db">postgres</field>            
+            <field name="password_db">newpassword</field>
+        </record>
+
+    </data>
+</openerp>

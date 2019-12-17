@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="hr.contract.qualification" id="csp_jr">
+            <field name="name">JR</field>
+            <field name="indice" eval="0"/>
+            <field name="indice_duration" eval="0"/>
+            <field name="indice_seniority" eval="0"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_1a">
+            <field name="name">1A</field>
+            <field name="indice" eval="1340"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1375"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_1b">
+            <field name="name">1B</field>
+            <field name="indice" eval="1345"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1415"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_2a">
+            <field name="name">2A</field>
+            <field name="indice" eval="1355"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1420"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_2b">
+            <field name="name">2B</field>
+            <field name="indice" eval="1395"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1485"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_3a">
+            <field name="name">3A</field>
+            <field name="indice" eval="1480"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1575"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_3b">
+            <field name="name">3B</field>
+            <field name="indice" eval="1580"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1725"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_4a">
+            <field name="name">4A</field>
+            <field name="indice" eval="1680"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="1830"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_4b">
+            <field name="name">4B</field>
+            <field name="indice" eval="1840"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2075"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_5a">
+            <field name="name">5A</field>
+            <field name="indice" eval="2120"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2435"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_5b">
+            <field name="name">5B</field>
+            <field name="indice" eval="2475"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2715"/>
+            <field name="type">employee</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_hc">
+            <field name="name">HC</field>
+            <field name="indice" eval="0"/>
+            <field name="indice_duration" eval="0"/>
+            <field name="indice_seniority" eval="0"/>
+            <field name="type">manager</field>
+            <field name="is_hc" eval="True"/>
+        </record>
+        <record model="hr.contract.qualification" id="csp_m1">
+            <field name="name">M1</field>
+            <field name="indice" eval="1340"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1375"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_m2">
+            <field name="name">M2</field>
+            <field name="indice" eval="1345"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1415"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_os1">
+            <field name="name">OS1</field>
+            <field name="indice" eval="1355"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1420"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_os2">
+            <field name="name">OS2</field>
+            <field name="indice" eval="1395"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1485"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_os3">
+            <field name="name">OS3</field>
+            <field name="indice" eval="1480"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1575"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_op1a">
+            <field name="name">OP1A</field>
+            <field name="indice" eval="1580"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1725"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_op1b">
+            <field name="name">OP1B</field>
+            <field name="indice" eval="1680"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="1830"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_op2a">
+            <field name="name">OP2A</field>
+            <field name="indice" eval="1840"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2075"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_op2b">
+            <field name="name">OP2B</field>
+            <field name="indice" eval="2120"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2435"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_op3">
+            <field name="name">OP3</field>
+            <field name="indice" eval="2475"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2715"/>
+            <field name="type">worker</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_a1">
+            <field name="name">A1</field>
+            <field name="indice" eval="1355"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1420"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_a2">
+            <field name="name">A2</field>
+            <field name="indice" eval="1395"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1480"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_a3">
+            <field name="name">A3</field>
+            <field name="indice" eval="1475"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1575"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_a4">
+            <field name="name">A4</field>
+            <field name="indice" eval="1580"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1725"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_b1">
+            <field name="name">B1</field>
+            <field name="indice" eval="1415"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1450"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_b2">
+            <field name="name">B2</field>
+            <field name="indice" eval="1440"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1475"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_b3">
+            <field name="name">B3</field>
+            <field name="indice" eval="1480"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1515"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_b4">
+            <field name="name">B4</field>
+            <field name="indice" eval="1520"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1580"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_b5">
+            <field name="name">B5</field>
+            <field name="indice" eval="1700"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="1745"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_c1">
+            <field name="name">C1</field>
+            <field name="indice" eval="1475"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1515"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_c2">
+            <field name="name">C2</field>
+            <field name="indice" eval="1520"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1575"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_c3">
+            <field name="name">C3</field>
+            <field name="indice" eval="1580"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1725"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_c4">
+            <field name="name">C4</field>
+            <field name="indice" eval="1680"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="1830"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_d1">
+            <field name="name">D1</field>
+            <field name="indice" eval="1395"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1445"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_d2">
+            <field name="name">D2</field>
+            <field name="indice" eval="1475"/>
+            <field name="indice_duration" eval="3"/>
+            <field name="indice_seniority" eval="1515"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_d3">
+            <field name="name">D3</field>
+            <field name="indice" eval="1520"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1575"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_d4">
+            <field name="name">D4</field>
+            <field name="indice" eval="1580"/>
+            <field name="indice_duration" eval="4"/>
+            <field name="indice_seniority" eval="1725"/>
+            <field name="type">driver</field>
+        </record>
+        <record model="hr.contract.qualification" id="csp_cd">
+            <field name="name">CD</field>
+            <field name="indice" eval="1840"/>
+            <field name="indice_duration" eval="5"/>
+            <field name="indice_seniority" eval="2075"/>
+            <field name="type">driver</field>
+        </record>
+    </data>
+</openerp>

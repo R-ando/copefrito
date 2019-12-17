@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="hr_payslip_class_config_form" model="ir.ui.view">
+			<field name="name">hr.payslip.class.config.form</field>
+			<field name="model">hr.payslip.class.config</field>
+			<field name="arch" type="xml">
+				<form create="false" delete="false" edit="false">
+					<sheet>
+						<group>
+							<group>
+								<field name="code" />
+								<field name="name" />	
+							</group>
+							<group>
+								<field name="category_id" options="{'no_create':1}"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		 
+		<record id="hr_payslip_class_config_tree" model="ir.ui.view">
+			<field name="name">hr.payslip.class.config.tree</field>
+			<field name="model">hr.payslip.class.config</field>
+			<field name="arch" type="xml">
+				<tree create="false">
+					<field name="code" />
+					<field name="name" />
+					<field name="category_id" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_view_hr_class_config_list_form" model="ir.actions.act_window">
+            <field name="name">Classes</field>
+            <field name="res_model">hr.payslip.class.config</field>
+            <field name="view_type">form</field>
+        </record>
+        <!--<menuitem-->
+            <!--id="menu_hr_class_config_view"-->
+            <!--action="action_view_hr_class_config_list_form"-->
+            <!--parent="hr_payroll.menu_hr_payroll_configuration"-->
+            <!--sequence="20"-->
+        <!--/>-->
+		<menuitem
+            id="menu_hr_class_config_view"
+            action="action_view_hr_class_config_list_form"
+            parent="hr_copefrito_paie.menu_general_setting"
+            sequence="2"
+        />
+        
+	</data>
+</openerp>

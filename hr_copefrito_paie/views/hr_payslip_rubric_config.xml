@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <!-- RUBRIC VIEW FORM -->
+    <record id="hr_payslip_rubric_config_form" model="ir.ui.view">
+      <field name="name">hr.payslip.rubric.config.form</field>
+      <field name="model">hr.payslip.rubric.config</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button name="button_toggle_active" type="object"
+                      groups="hr_copefrito_paie.group_system_admin,hr_copefrito_paie.group_pay_manager,base.group_user_root"
+                      class="oe_stat_button" icon="fa-archive">
+                <field name="active" widget="boolean_button"
+                       options='{"terminology": "activate"}'/>
+              </button>
+            </div>
+            <group col="2">
+              <group>
+                <field name="sequence" invisible="1"/>
+                <field name="is_readonly" invisible="1"/>
+                <field name="is_total_readonly" invisible="1"/>
+                <field name="classe_id"
+                       attrs="{'readonly':['|', ('is_readonly', '=', True), ('is_total_readonly', '=', True)]}"
+                       options="{'no_create_edit':1, 'no_quick_create':1}"/>
+
+                <label for="code" string="Code" attrs="{'readonly':[('is_readonly', '=', True)]}"/>
+                <div>
+                  <field name="code_class" class="oe_inline oe_edit_only"/>
+                  <field name="code_temp" class="oe_inline oe_edit_only"
+                         attrs="{'readonly':['|', ('is_readonly', '=', True), '&amp;', ('type', '=', 'total'), ('classe_id', 'not in', [%(CLASS_SUM_RUB)d, %(CLASS_SUM_CLASS)d])]}"
+                         required="1"/>
+                  <field name="code" class="oe_inline oe_read_only"
+                         attrs="{'readonly':['|', ('is_readonly', '=', True), '&amp;', ('type', '=', 'total'), ('classe_id', '!=', %(CLASS_SUM_RUB)d)]}"/>
+                </div>
+                <field name="name" attrs="{'readonly':[('is_readonly', '=', True)]}"/>
+              </group>
+              <group>
+                <field name="type"
+                       attrs="{'readonly':['|', ('is_readonly', '=', True), ('classe_id', '=', %(CLASS_SUM_RUB)d)]}"/>
+                <field name="rule_id"
+                       attrs="{'readonly':['|', ('is_readonly', '=', True), ('type', 'in', ('normal', 'fixe', 'total'))]}"/>
+                <field name="hr_department_ids" widget="many2many_tags"
+                       attrs="{'readonly':[('is_readonly', '=', True)], 'invisible' : [('type', 'in', ('regle', 'total'))]}"/>
+                <field name="company_ids" widget="many2many_tags"
+                       attrs="{'readonly':[('is_readonly', '=', True)], 'invisible' : [('type', 'in', ('regle', 'total'))]}"
+                       groups="base.group_multi_company"/>
+                <field name="invisible_qty"/>
+                <field name="non_taxable" attrs="{'invisible' : [('type', 'not in', ('normal'))]}"/>
+              </group>
+
+            </group>
+            <group col="2">
+              <group string="Propriété">
+                <field name="product_uom" attrs="{'readonly':[('is_readonly', '=', True)]}"/>
+                <field name="status"
+                       attrs="{'readonly':[('is_readonly', '=', True)], 'invisible' : [('type', 'in', ('total', 'regle'))]}"/>
+                <field name="mouvement"
+                       attrs="{'readonly':[('is_readonly', '=', True)], 'invisible' : [('type', 'in', ('total', 'regle'))]}"/>
+              </group>
+              <group col="2" string="Liaison Rubrique"
+                     attrs="{'invisible' : [('type', 'in', ('total', 'regle'))]}">
+                <group>
+                  <!--<field name="rubric_link"  attrs="{'readonly':[('is_readonly', '=', True)]}" domain="[('type', 'in', ('fixe', 'normal'))]"/>-->
+                  <field name="rubric_link_ids" attrs="{'readonly':[('is_readonly', '=', True)]}"
+                         domain="[('type', 'in', ('fixe', 'normal'))]" widget="many2many_tags"/>
+                </group>
+              </group>
+            </group>
+            <group col="2">
+              <group string="Responsable">
+                <field name="responsable_ids" widget="many2many_tags"/>
+              </group>
+            </group>
+            <!--<group col="2">-->
+            <!--<group string="Contrats">-->
+            <!--<field name="contract_ids" widget="many2many_tags" context="{'from_rubric_conf': True}"-->
+            <!--options="{'no_create_edit': 1, 'no_quick_create': 1}"/>-->
+            <!--</group>-->
+            <!--</group>-->
+            <notebook>
+              <page string="Contrats" attrs="{'invisible': [('type', '!=', 'normal')]}">
+                <field name="contract_ids" options="{'no_create_edit': 1, 'no_quick_create': 1}">
+                  <tree>
+                    <field name="num_contract"/>
+                    <field name="matricule"/>
+                    <field name="employee_id"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Rubriques à sommer"
+                    attrs="{'invisible': ['|', ('type', '!=', 'total'), ('classe_id', '=', %(CLASS_SUM_CLASS)d)]}">
+                <field name="summed_rubric"
+                       attrs="{'readonly': [('classe_id', '!=', %(CLASS_SUM_RUB)d)]}"
+                       domain="[('type', 'in', ['normal', 'fixe'])]"
+                       options="{'no_create_edit': 1, 'no_quick_create': 1}"/>
+              </page>
+              <page string="Classes à sommer"
+                    attrs="{'invisible': ['|', ('type', '!=', 'total'), ('classe_id', '!=', %(CLASS_SUM_CLASS)d)]}">
+                <field name="summed_class" options="{'no_create_edit': 1, 'no_quick_create': 1}"/>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="hr_payslip_rubric_config_tree" model="ir.ui.view">
+      <field name="name">hr.payslip.rubric.config.tree</field>
+      <field name="model">hr.payslip.rubric.config</field>
+      <field name="arch" type="xml">
+        <tree create="true">
+
+          <field name="sequence" widget="handle"/>
+          <field name="classe_id"/>
+          <field name="code"/>
+          <field name="name"/>
+          <button name="do_nothing" field_name="mouvement" widget="toggle_button_mouvement"/>
+          <field name="mouvement" invisible="1"/>
+          <field name="active" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_view_hr_rubric_config_list_view" model="ir.actions.act_window">
+      <field name="name">Rubriques de paie</field>
+      <field name="res_model">hr.payslip.rubric.config</field>
+      <field name="view_type">form</field>
+    </record>
+    <!--<menuitem-->
+    <!--id="menu_hr_rubric_config_view"-->
+    <!--action="action_view_hr_rubric_config_list_view"-->
+    <!--parent="hr_payroll.menu_hr_payroll_configuration"-->
+    <!--sequence="20"-->
+    <!--/>-->
+    <menuitem
+        id="menu_hr_rubric_config_view"
+        action="action_view_hr_rubric_config_list_view"
+        parent="menu_company_setting"
+        sequence="2"
+    />
+
+  </data>
+</openerp>

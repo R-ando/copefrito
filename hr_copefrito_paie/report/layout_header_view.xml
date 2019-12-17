@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="copefrito_report_layout_header" inherit_id="report.external_layout_header"
+              name="Copefrito report header">
+      <xpath expr="//div[@class='header']" position="replace">
+        <div class="header" style="font-size: 8pt;">
+          <div class="row">
+            <div class="col-xs-3">
+              <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-width: 250px;"/>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div t-field="company.partner_id"
+                   t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+              <br/>
+              <div t-field="company.rml_header1" style="font-weight: bold;"/>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </template>
+
+  </data>
+</openerp>
+
+
+

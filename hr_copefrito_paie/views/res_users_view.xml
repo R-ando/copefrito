@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">view.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook//page[@name='access_rights']//group[1]" position="after">
+                <group string="Services">
+                    <field name="service_ids" widget="many2many_tags"/>
+                </group>
+                <group string="CSP">
+                    <field name="csp_ids" widget="many2many_tags"/>
+                </group>
+            </xpath>
+            <xpath expr="//notebook//page[2]//group[1]" position="after">
+                <group string="Signature">
+                    <field name="signature_img" widget="image" nolabel="1"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_users_form_simple_modif_inherit" model="ir.ui.view">
+        <field name="name">simple.modif.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <field name="signature" position="before">
+                <field name="signature_img" widget="image"/>
+            </field>
+        </field>
+    </record>
+</openerp>

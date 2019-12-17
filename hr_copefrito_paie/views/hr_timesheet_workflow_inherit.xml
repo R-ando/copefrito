@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Workflow definition -->
+        <record id="hr_timesheet_sheet.act_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="hr_timesheet_sheet.wkf_timesheet"/>
+            <field name="name">cancel</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'cancel'})</field>
+        </record>
+        <record id="hr_timesheet_sheet.t3" model="workflow.transition">
+            <field name="act_from" ref="hr_timesheet_sheet.act_confirm"/>
+            <field name="act_to" ref="hr_timesheet_sheet.act_cancel"/>
+            <field name="signal">cancel</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+    </data>
+</openerp>

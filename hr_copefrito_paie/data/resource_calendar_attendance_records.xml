@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="resource_calendar_attendance_312_heuresmois_r0" model="resource.calendar.attendance">
+      <field name="dayofweek">0</field>
+      <field name="calendar_id" ref="hr_copefrito_paie.resource_calendar_312_heuresmois_r0"/>
+      <field name="name">Lundi</field>
+      <field name="hour_from">6.0</field>
+      <field name="hour_to">18.0</field>
+    </record>
+    <record id="resource_calendar_attendance_312_heuresmois_r1" model="resource.calendar.attendance">
+      <field name="dayofweek">1</field>
+      <field name="calendar_id" ref="hr_copefrito_paie.resource_calendar_312_heuresmois_r0"/>
+      <field name="name">Mardi</field>
+      <field name="hour_from">6.0</field>
+      <field name="hour_to">18.0</field>
+    </record>
+    <record id="resource_calendar_attendance_312_heuresmois_r2" model="resource.calendar.attendance">
+      <field name="dayofweek">2</field>
+      <field name="calendar_id" ref="hr_copefrito_paie.resource_calendar_312_heuresmois_r0"/>
+      <field name="name">Mercredi</field>
+      <field name="hour_from">6.0</field>
+      <field name="hour_to">18.0</field>
+    </record>
+    <record id="resource_calendar_attendance_312_heuresmois_r3" model="resource.calendar.attendance">
+      <field name="dayofweek">3</field>
+      <field name="calendar_id" ref="hr_copefrito_paie.resource_calendar_312_heuresmois_r0"/>
+      <field name="name">Jeudi</field>
+      <field name="hour_from">6.0</field>
+      <field name="hour_to">18.0</field>
+    </record>
+    <record id="resource_calendar_attendance_312_heuresmois_r4" model="resource.calendar.attendance">
+      <field name="dayofweek">4</field>
+      <field name="calendar_id" ref="hr_copefrito_paie.resource_calendar_312_heuresmois_r0"/>
+      <field name="name">Vendredi</field>
+      <field name="hour_from">6.0</field>
+      <field name="hour_to">18.0</field>
+    </record>
+    <record id="resource_calendar_attendance_312_heuresmois_r5" model="resource.calendar.attendance">
+      <field name="dayofweek">5</field>
+      <field name="calendar_id" ref="hr_copefrito_paie.resource_calendar_312_heuresmois_r0"/>
+      <field name="name">Samedi</field>
+      <field name="hour_from">6.0</field>
+      <field name="hour_to">18.0</field>
+    </record>
+  </data>
+</openerp>

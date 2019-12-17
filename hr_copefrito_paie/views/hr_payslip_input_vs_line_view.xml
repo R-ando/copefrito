@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model='ir.ui.view' id='hr_payslip_input_vs_line_view_report_pivot'>
+      <field name="name">hr.payslip.input.vs.line.pivot</field>
+      <field name="model">hr.payslip.input.vs.line</field>
+      <field name="type">pivot</field>
+      <field name='arch' type='xml'>
+        <pivot string='Analyses des lignes de paie' disable_linking="True">
+          <field name="payslip_run_id" type="row"/>
+          <field name="employee_id" type="row"/>
+          <field name="rubric_id" type="col"/>
+          <field name="input_amount" type="measure"/>
+          <field name="line_amount" type="measure"/>
+        </pivot>
+      </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_hr_payslip_analysis_2">
+      <field name="name">Etat nominatif de salaire</field>
+      <field name="model_id" ref="model_hr_payslip_input_vs_line"/>
+      <field name="code">action = self.open_hr_payslip_analysis_pivot(cr, uid, context.get('active_ids', []),
+        context=context)
+      </field>
+    </record>
+
+    <menuitem
+        action="hr_copefrito_paie.action_hr_payslip_analysis_2"
+        id="menu_input_vs_line"
+        parent="hr_payroll.menu_hr_payroll_root" sequence="7" groups="hr_copefrito_paie.group_service_manager"/>
+
+    <record id="hr_payslip_input_vs_line_search_view" model="ir.ui.view">
+      <field name="name">hr.payslip.input.vs.line.search</field>
+      <field name="model">hr.payslip.input.vs.line</field>
+      <field name="arch" type="xml">
+        <search string="Dernier mois">
+          <filter string="Dernier mois" name="filter_last_month" domain="[(1, '=', 1)]"/>
+        </search>
+      </field>
+    </record>
+
+  </data>
+</openerp>

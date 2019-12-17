@@ -1,0 +1,125 @@
+@charset "utf-8";
+/*=============================================
+=            css style edit mode         =
+=============================================*/
+.oe_form_editable .oe_form_sheet_width{
+ background: #459ab5;
+}
+.oe_form_editable .oe_form_group{
+	color:#ffffff!important;
+}
+.oe_form_editable label{
+	color:#ffffff!important;
+}
+.oe_form_editable .oe_list_pager_state{
+	color:#555555;
+}
+.openerp input, .openerp textarea, .openerp select {
+	background : transparent !important;
+	border:none;
+	border-bottom: 1px solid #ffffff;
+	outline: none;
+}
+/*button top*/
+.oe_form_editable .oe_button_box .oe_stat_button{
+	background: #2b5d6d;
+}
+.oe_form_editable .o_button_icon{
+	color:#ffffff!important;
+}
+.oe_form_editable .o_stat_info .text-success{
+	color:#66b567!important;
+}
+.oe_form_editable .o_stat_info .o_stat_value{
+	color:#ffdcac!important;
+}
+.oe_form_editable .o_stat_info .o_stat_text{
+	color:#ffffff;
+}
+.oe_form_editable .oe_stat_button:hover{
+	background:#1f434f!important;
+}
+/*default required*/
+.openerp .oe_form .oe_form_required input:not([disabled]):not([readonly]), 
+.openerp .oe_form .oe_form_required select:not([disabled]):not([readonly]), 
+.openerp .oe_form .oe_form_required textarea:not([disabled]):not([readonly]){
+	background: transparent!important;
+	border-bottom: 2px solid #ffdcac!important;
+	color:#ffdcac;
+}
+.oe_form_editable .o_form_field_many2manytags{
+	border:none!important;
+	border-bottom: 2px solid #ffdcac!important;
+	color:#ffdcac;
+}
+.oe_form_editable .oe_horizontal_separator {
+	color : #ffdcac !important;
+}
+.openerp .oe_form input[type="text"], 
+.openerp .oe_form input[type="password"], 
+.openerp .oe_form input[type="file"], 
+.openerp .oe_form select, 
+.openerp .oe_form textarea{
+	color:#ffffff;
+}
+.oe_form_editable .oe_form_uri{
+	color:#7feeff;
+}
+.oe_form_editable .nav-tabs > li > a{
+	color:#ffffff!important;
+}
+.oe_form_editable .nav-tabs > li > a:hover{
+	color:#000!important;
+}
+.oe_form_editable .nav-tabs > li.active > a{
+	color:#000!important;
+}
+.openerp .oe_form_editable .oe_form_field_many2one .oe_m2o_cm_button{
+	color:#ffffff!important;
+}
+.oe_form_editable .nav-tabs{
+	margin-top: 10px;
+}
+.oe_form_editable .o_form_field_many2manytags .oe_form_field_many2one .ui-autocomplete-input::-webkit-input-placeholder{
+	color:#fff!important;
+}
+.oe_form_editable .oe_form_field_text textarea.field_text::placeholder{
+	color:#fff!important;
+}
+.oe_form_editable .oe_list_content{
+	color:#4c4c4c;
+}
+.oe_form_editable .oe_form_field .oe_form_field_char .oe_form_char_content{
+	color:#4c4c4c!important;
+}
+.oe_form_editable .oe_form_field .oe_form_field_selection select, option{
+	color: #4c4c4c;
+}
+/*remove default required color for name*/
+.oe_form_editable .tag_name input{
+	color: #4c4c4c!important;
+}
+/*requierd*/
+.openerp .oe_list.oe_list_editable.oe_editing .oe_form_field.oe_form_field_datetime input.o_datepicker_input, 
+.openerp .oe_list.oe_list_editable.oe_editing .oe_form_field.oe_form_field_date input.o_datepicker_input{
+	color: #4c4c4c;
+    background: #459ab5;
+    border-bottom: 2px solid #ffdcac!important;
+}
+/*Datepicker*/
+.oe_form_editable .oe_form_required .o_datepicker{
+	color: #459ab5!important;
+}
+/*BG td name*/
+.openerp .oe_form_editable .oe_list_editable .oe_list_content td.oe_required{
+	background: #fff;
+}
+/*td border*/
+.openerp .oe_form_editable .oe_list_editable .oe_list_content td.oe_required{
+	border: 1px solid #eee;
+}
+/*input border*/
+.openerp .oe_list.oe_list_editable.oe_editing .oe_form_field input, 
+.openerp .oe_list.oe_list_editable.oe_editing .oe_form_field textarea{
+	border: 1px solid #eee;
+}

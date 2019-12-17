@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="hr.contract.model" id="ie_smp">
+            <field name="code">IE-SMP</field>
+            <field name="name">Contrat durée indéterminée - Employé - Simple</field>
+        </record>
+        <record model="hr.contract.model" id="ie_cnf">
+            <field name="code">IE-CNF</field>
+            <field name="name">Contrat durée indéterminée - Employé - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="ie_cnc">
+            <field name="code">IE-CNC</field>
+            <field name="name">Contrat durée indéterminée - Employé - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="ic_smp">
+            <field name="code">IC-SMP</field>
+            <field name="name">Contrat durée indéterminée - Cadre - Simple</field>
+        </record>
+        <record model="hr.contract.model" id="ic_nnc">
+            <field name="code">IC-NNC</field>
+            <field name="name">Contrat durée indéterminée - Cadre - Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="ic_cnf">
+            <field name="code">IC-CNF</field>
+            <field name="name">Contrat durée indéterminée - cadre - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="ic_cnc">
+            <field name="code">IC-CNC</field>
+            <field name="name">Contrat durée indéterminée - Cadre - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="de_smp">
+            <field name="code">DE-SMP</field>
+            <field name="name">Contrat durée déterminée - Employé - Simple</field>
+        </record>
+        <record model="hr.contract.model" id="de_cnf">
+            <field name="code">DE-CNF</field>
+            <field name="name">Contrat durée déterminée - Employé - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="de_cnc">
+            <field name="code">DE-CNC</field>
+            <field name="name">Contrat durée déterminée - Employé - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="dc_cnf">
+            <field name="code">DC-CNF</field>
+            <field name="name">Contrat durée déterminée - cadre - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="dc_cnc">
+            <field name="code">DC-CNC</field>
+            <field name="name">Contrat durée déterminée - Cadre - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="ce_smp">
+            <field name="code">CE-SMP</field>
+            <field name="name">Contrat Chantier durée déterminée - Employé - Simple</field>
+        </record>
+        <record model="hr.contract.model" id="ce_cnf">
+            <field name="code">CE-CNF</field>
+            <field name="name">Contrat chantier durée déterminée - Employé - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="ce_cnc">
+            <field name="code">CE-CNC</field>
+            <field name="name">Contrat chantier durée déterminée - Employé - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="cc_cnf">
+            <field name="code">CC-CNF</field>
+            <field name="name">Contrat chantier durée déterminée - cadre - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="cc_cnc">
+            <field name="code">CC-CNC</field>
+            <field name="name">Contrat Chnatier durée déterminée - Cadre - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="ie_smp">
+            <field name="code">IE-SMP</field>
+            <field name="name">Contrat durée indéterminée - Employé - Simple</field>
+        </record>
+        <record model="hr.contract.model" id="ie_cnf">
+            <field name="code">IE-CNF</field>
+            <field name="name">Contrat durée indéterminée - Employé - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="ie_cnc">
+            <field name="code">IE-CNC</field>
+            <field name="name">Contrat durée indéterminée - Employé - Confidentialité et Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="ic_smp">
+            <field name="code">IC-SMP</field>
+            <field name="name">Contrat durée indéterminée - Cadre - Simple</field>
+        </record>
+        <record model="hr.contract.model" id="ic_nnc">
+            <field name="code">IC-NNC</field>
+            <field name="name">Contrat durée indéterminée - Cadre - Non concurrence</field>
+        </record>
+        <record model="hr.contract.model" id="ic_cnf">
+            <field name="code">IC-CNF</field>
+            <field name="name">Contrat durée indéterminée - cadre - Confidentialité</field>
+        </record>
+        <record model="hr.contract.model" id="ic_cnc">
+            <field name="code">IC-CNC</field>
+            <field name="name">Contrat durée indéterminée - Cadre - Confidentialité et Non concurrence</field>
+        </record>
+    </data>
+</openerp>

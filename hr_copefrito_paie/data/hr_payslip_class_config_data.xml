@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record model="hr.payslip.class.config" id="CLASS_SCONTRACT">
+      <field name="name">Salaire sur Contrat</field>
+      <field name="code">1</field>
+      <field name="category_id" ref="hr_copefrito_paie.S_CONTRACT"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_ELM_VAR_CONTR">
+      <field name="name">Rubriques liées au temps</field>
+      <field name="code">2</field>
+      <field name="category_id" ref="hr_copefrito_paie.ELM_VAR_CONTRACT"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_HSUP_ABS_CNG">
+      <field name="name">Rubriques variables</field>
+      <field name="code">3</field>
+      <field name="category_id" ref="hr_copefrito_paie.HSUP_ABS_CNG"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_VRB_PLUS">
+      <field name="name">Rubriques variables avec quantité</field>
+      <field name="code">4</field>
+      <field name="category_id" ref="hr_copefrito_paie.VRB_PLUS"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_VRB_OCC">
+      <field name="name">Rubriques occasionnelles hors contrat</field>
+      <field name="code">5</field>
+      <field name="category_id" ref="hr_copefrito_paie.VRB_OCC"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_INDMNT">
+      <field name="name">Rubriques occasionnelles hors contrat avec quantité</field>
+      <field name="code">6</field>
+      <field name="category_id" ref="hr_copefrito_paie.INDMNT"/>
+    </record>
+
+    <!--<record model="hr.payslip.class.config" id="CLASS_BONIF">-->
+    <!--<field name="name">Bonification</field>-->
+    <!--<field name="code">7</field>-->
+    <!--<field name="category_id" ref="hr_copefrito_paie.BONIF" />-->
+    <!--</record>-->
+
+    <!--<record model="hr.payslip.class.config" id="CLASS_BRUT">-->
+    <!--<field name="name">Salaire Brut</field>-->
+    <!--<field name="code">20</field>-->
+    <!--<field name="category_id" ref="hr_payroll.GROSS" />-->
+    <!--</record>-->
+
+    <record model="hr.payslip.class.config" id="CLASS_DED_REG">
+      <field name="name">Déduction Réglementaire</field>
+      <field name="code">7</field>
+      <field name="category_id" ref="hr_copefrito_paie.DED_REGLE"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_DED_DVRS">
+      <field name="name">Déductions et allocations diverses</field>
+      <field name="code">8</field>
+      <field name="category_id" ref="hr_copefrito_paie.DED_DVRS"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_REPORT">
+      <field name="name">Gestion des reports</field>
+      <field name="code">9</field>
+      <field name="category_id" ref="hr_copefrito_paie.REPORT"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_SS_TOTAL">
+      <field name="name">Sous total</field>
+      <field name="code">ST</field>
+      <field name="category_id" ref="hr_copefrito_paie.SS_TOTAL"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_SUM_RUB">
+      <field name="name">Somme rubrique</field>
+      <field name="code">SR</field>
+      <field name="category_id" ref="hr_copefrito_paie.SUM_RUB"/>
+    </record>
+
+    <record model="hr.payslip.class.config" id="CLASS_SUM_CLASS">
+      <field name="name">Somme classe</field>
+      <field name="code">SC</field>
+      <field name="category_id" ref="hr_copefrito_paie.SUM_CLASS"/>
+    </record>
+
+    <!--<record model="hr.payslip.class.config" id="CLASS_NET">-->
+    <!--<field name="name">Element variable NET</field>-->
+    <!--<field name="code">50</field>-->
+    <!--<field name="category_id" ref="hr_payroll.NET" />-->
+    <!--</record>-->
+
+    <!--<record model="hr.payslip.class.config" id="CLASS_NT">
+      <field name="name">Rubriques liées au temps (Non imposable)</field>
+      <field name="code">2</field>
+      <field name="category_id" ref="hr_copefrito_paie.NON_IMPOSABLE"/>
+    </record>-->
+
+  </data>
+</openerp>
+
