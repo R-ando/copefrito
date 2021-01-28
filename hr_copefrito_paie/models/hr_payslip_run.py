@@ -245,6 +245,7 @@ class hr_payslip_run(models.Model):
             else:
                 self.state = 'draft'
         except Exception, e:
+            self.env.cr.rollback()
             try:
                 if e.name.find(_('Please compute the period : %s') % self.name) >= 0:
                     raise ValidationError(_('Please compute the period : %s') % self.name)
@@ -274,10 +275,13 @@ class hr_payslip_run(models.Model):
                     4 - Matricule of the employee
         """
         # ajusted_register = lambda s: s.rjust(6, '0')
-        sorted_payslip = sorted(recs.slip_ids, key=lambda p: p.employee_id.register)
-        sorted_payslip = sorted(sorted_payslip, key=lambda p: p.payment_mode.name)
-        sorted_payslip = sorted(sorted_payslip, key=lambda p: p.contract_id.department_id.code_service)
-        sorted_payslip = sorted(sorted_payslip, key=lambda p: not p.contract_id.contract_qualification_id.is_hc)
+        # sorted_payslip = sorted(recs.slip_ids, key=lambda p: p.employee_id.register)
+        # sorted_payslip = sorted(sorted_payslip, key=lambda p: p.payment_mode.name)
+        # sorted_payslip = sorted(sorted_payslip, key=lambda p: p.contract_id.department_id.code_service)
+        # sorted_payslip = sorted(sorted_payslip, key=lambda p: not p.contract_id.contract_qualification_id.is_hc)
+
+        # fix of useless code above
+        sorted_payslip = recs.slip_ids
 
         res = {}
         # for payslip in sorted_payslip:

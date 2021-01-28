@@ -22,7 +22,7 @@
 import threading
 import time
 
-from openerp import models
+from openerp import models, _
 from openerp.api import Environment
 from openerp.exceptions import UserError
 
@@ -56,13 +56,14 @@ class hr_payslip_employees(models.TransientModel):
             list_class_ids = []
             employee_ids = []
             payslip_run_id = run_pool.browse(new_cr, uid, ids)[0]
+            payslip_run_id = run_pool.browse(new_cr, uid, [context.get('active_id', None)])[0]
             time.sleep(5)
             done_employee_ids = []
             while len(done_employee_ids) <= len(employee_ids) or (
                     len(employee_ids) == 0 and len(done_employee_ids) == 0):
                 ###############################################################################################
                 # done_employee_ids = eval(payslip_run_id.done_employee_ids)
-                data = self.browse(new_cr, uid, payslip_run_id.id, context=context)
+                data = self.browse(new_cr, uid, ids, context=context)
                 from_date = payslip_run_id.date_start
                 to_date = payslip_run_id.date_end
                 credit_note = payslip_run_id.credit_note
