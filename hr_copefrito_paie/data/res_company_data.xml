@@ -24,7 +24,7 @@
         </record>
         <record model="res.partner" id="base.main_partner">
             <!--<field name="name">Copefrito</field>-->
-            <field name="street">Avenue de France Mahavatse II - BP 212 Tuléar 601</field>            
+            <field name="street">Avenue de France Mahavatse II - BP 212 Tuléar 601</field>
         </record>
         <record model="res.company" id="base.main_company">
             <field name="phone">(261-20) 94 438 02</field>
@@ -34,7 +34,7 @@
             <field name="nif">1 836 664</field>
             <field name="stat">264 739</field>
             <field name="company_registry">TOLIARA 2003B00018</field>
-            <field name="seuil_irsa" eval="2000"/>
+            <field name="seuil_irsa" eval="3000"/>
             <field name="taux_irsa" eval="20.00"/>
             <field name="cotisation_cnaps_patr" eval="13.00"/>
             <field name="cotisation_cnaps_emp" eval="1.00"/>
